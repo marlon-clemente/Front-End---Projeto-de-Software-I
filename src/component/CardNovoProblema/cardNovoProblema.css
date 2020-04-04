@@ -1,0 +1,16 @@
+.root{
+    height: 225px;
+    width: 275px;
+    margin: 0px 18px ;
+}
+
+.root h1{
+    size: 10px;
+    text-align: center;
+}
+
+.root h2{
+    size: 48px;
+    text-align: center;
+    color: #336666;
+}

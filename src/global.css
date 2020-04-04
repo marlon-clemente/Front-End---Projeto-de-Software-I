@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+.container{
+    margin: 90px;
+}
+
+.ui-h2{
+    color: #336666;
+    font-size: 1.5rem;
+}
+
+.ui-paper{
+    padding: 18px;
+    width: 100%;
+    margin: 8px;
+}
+
+.ui-button{
+    padding: 18px;
+    height: 54px;
+    width: 100%;
+}
+
+.ui-imput{
+    width: 100%;
+}
+
+.ui-button-icon{
+    margin: 5px;
+}
