@@ -1,19 +1,19 @@
 import React from 'react';
-import Menu from '../../component/Menu';
 import BoxAddSala from './component/BoxAddSala';
 import BoxSala from './component/BoxSala';
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 
+import salas from '../../temp/sala';
+
 export default function Salas(){
     return(
         <div>
-            <Container className="container">
-                <Menu title="Salas de aula" />
+            <Container className="ui-content">
+                
                 <BoxAddSala />
                 <List>
-                    {["Sala 122", "Sala 102", "Sala 111", 
-                        "Sala 118", "Sala 112A", "Sala 111B"].map((item)=>(
+                    {salas.map((item)=>(
                             <BoxSala sala={item}/>
                         ))
                     }

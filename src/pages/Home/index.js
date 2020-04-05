@@ -15,7 +15,6 @@ export default function Home(){
     return(
         <div>
             <Container className="container">
-                <Menu title="Página Inicial"/>
                     <Paper className="ui-paper">
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={8}>
@@ -25,7 +24,7 @@ export default function Home(){
                         <Grid item xs={12} sm={4}>
                             <h2 className="h2" color="primary">Novas mensagen</h2>
                             <Divider />
-                            <ComNotificacao texto="Aqui uma descrição"/>
+                            <ComNotificacao texto="Isso é uma mensagem"/>
                         </Grid>
                     </Grid>
                     </Paper>
