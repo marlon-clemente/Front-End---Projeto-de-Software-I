@@ -9,13 +9,12 @@ import Menu from '../component/Menu';
 *   Switch permite que somente uma rota seja utilizada por vez
 *
 */
-
+//<Route component={Menu}/>
 export default function Routers(){
     return (
         <BrowserRouter>
             <Switch>
                 <Route path="/login" component={Login} />
-                <Route component={Menu}/>
             </Switch>
         </BrowserRouter>
     );

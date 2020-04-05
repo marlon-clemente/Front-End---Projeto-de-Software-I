@@ -3,19 +3,16 @@
     padding: 3px;
     flex-grow: inherit;
 }
-.container{
-    margin: 90px;
+
+.ui-container{
+    display: flex;
+    padding: auto;
+    flex-grow: 1;
 }
 
 .ui-h2{
     color: #336666;
     font-size: 1.5rem;
-}
-
-.ui-paper{
-    padding: 18px;
-    width: 100%;
-    margin: 8px;
 }
 
 .ui-button{

@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 export default function BoxSala(props){
     return (
         <div>
-            <Paper elevation={2} className="ui-paper">
+            <Paper elevation={2}>
                 <Grid container spacing={3}>
                         <Grid item xs={10}>
                             <h2>{ props.sala }</h2>

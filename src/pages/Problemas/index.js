@@ -1,9 +1,18 @@
 import React from 'react';
+import Styles from '../../styles';
+import Menu from '../../component/Menu';
 
 export default function Problema(){
-    return (
+    const c = Styles();
+
+    return(
         <div>
-            <h1>Problemas</h1>
+            <div className={c.root}>
+                <Menu title="Problemas" />
+                <div className={c.content}>
+                
+                </div>
+            </div>
         </div>
     );
 }

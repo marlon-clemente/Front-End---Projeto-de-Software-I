@@ -13,14 +13,13 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 //icons
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-
-import PrivateRoutes from '../../routes/private'; 
 
 const drawerWidth = 240;
 
@@ -83,7 +82,7 @@ export default function Menu(props) {
       <Divider />
       
       <List>
-          <ListItem button to="/index">
+          <ListItem button component={Link} to="/index">
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -91,21 +90,21 @@ export default function Menu(props) {
           </ListItem>
           
 
-          <ListItem button  to="/caixa_entrada">
+          <ListItem button component={Link} to="/caixa_entrada">
             <ListItemIcon>
               <MailIcon />
             </ListItemIcon>
             <ListItemText primary="Caixa de Entrada" />
           </ListItem>
 
-          <ListItem button to="/problemas">
+          <ListItem button component={Link} to="/problemas">
             <ListItemIcon>
               <SyncProblemIcon />
             </ListItemIcon>
             <ListItemText primary="Problemas" />
           </ListItem>
 
-          <ListItem button to="/salas">
+          <ListItem button component={Link} to="/salas">
             <ListItemIcon>
               <MeetingRoomIcon />
             </ListItemIcon>
@@ -168,11 +167,6 @@ export default function Menu(props) {
           </Drawer>
         </Hidden>
       </nav>
-
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-            <PrivateRoutes />
-      </main>
     </div>
   );
 }
