@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     flex: {
         display: 'flex',
-      },
+      }, 
     block: {
         display: 'block',
       },
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
+    appBarSpacer: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
     },

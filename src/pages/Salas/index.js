@@ -1,7 +1,6 @@
 import React from 'react';
 import BoxAddSala from './component/BoxAddSala';
 import BoxSala from './component/BoxSala';
-import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
 import Menu from '../../component/Menu';
 import Styles from '../../styles';
