@@ -14,12 +14,11 @@ export default function BoxMensages(){
     return (
         <div>
             <div className={classes.root}>
-                <Paper elevation={2}>
-                    <Box fontWeight="fontWeightLight" m={1}>
+                <Paper elevation={2} className={classes.paper}>
+                    
                         <Title>Ultimas mensagens</Title>
                         <Divider />
                         <ComMsg mensagens={mensagens}/>
-                    </Box>
                 </Paper>
             </div>
         </div>
