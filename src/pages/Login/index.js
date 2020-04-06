@@ -1,25 +1,25 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './styles.css';
-//import { FiLogIn } from 'react-icons/fi';
-//import img_h from '../../assets/heroes.png';
 
 export default function Login(){
     return(
-        <div>
-            <div className="login-container">
-                <section className="form">
-                    <h1>Bem vindo</h1>
-                    <h2>Faça login para continuar.</h2>
-                    <form action="">
-                        <input placeholder="Sua ID"/>
-                        <input placeholder="Sua Senha"/>
-                        <button className="button" type="submit">Entrar</button>
-                    </form>
-                    <a href="/register">
-                        Esqueci minha senha.
-                    </a>
-                </section>
-            </div>
-        </div> 
+       < div className = 'logon-container'>        
+           <section className="form">           
+                <form>            
+                    <h1>Bem Vindo</h1>                
+                    <h3 style={{opacity:0.6}}><i>Faça login para continuar </i></h3>
+                
+                    <input placeholder = "usuario"/>
+                    <input type="password" placeholder = "senha"/>
+
+                    <button className="button" type="submit"> Entrar</button>
+
+                    <a>Não esta conseguindo entrar?
+                        <Link to ="/Registro" variant="body2">{"Clique aqui"}</Link>
+                    </a>                
+                </form>
+            </section>            
+       </div>
     );
 }
