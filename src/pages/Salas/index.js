@@ -10,19 +10,21 @@ export default function Salas(){
     const c = Styles();
 
     return(
-        <div>
-            <div className={c.root}>
-                <Menu title="Salas" />
-                <div className={c.content}>
+        <div className={c.root}>
+            <Menu title="Salas" />
+            <div className={c.content}>
+                <div className={c.appBarSpacer} />
                     <BoxAddSala />
-                    <List>
-                        {salas.map((item)=>(
-                                <BoxSala sala={item}/>
-                            ))
-                        }
-                    </List>
                 </div>
-            </div>
         </div>
     );
 }
+
+/**
+
+{salas.map((item)=>(
+                                <BoxSala sala={item}/>
+                            ))
+                        }
+
+ */

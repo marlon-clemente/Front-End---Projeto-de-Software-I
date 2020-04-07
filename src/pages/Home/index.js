@@ -10,14 +10,14 @@ export default function Home(){
     const c = Styles();
     return(
         <div className={c.root}>
-            <Menu />
+            <Menu title="Página Inicial"/>
             <div className={c.content}>
             <div className={c.appBarSpacer} />
                 <Grid container spacing={4}>
-                    <Grid item xs={8} sm={8}>
+                    <Grid item xl={8} lg={12} md={12} sm={12} xs={12}>
                         <BoxProb />
                     </Grid>
-                    <Grid item xs={8} sm={4}>
+                    <Grid item xl={4} lg={12} md={12} sm={12} xs={12}>
                         <BoxMsg />
                     </Grid>
                 </Grid>

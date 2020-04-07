@@ -9,12 +9,11 @@ import '../../../../global.css';
 export default function BoxProblemas(){
     const classes = Style();
     return (
-        
             <div className={classes.root}>
                 <Paper elevation={2} className={classes.paper}>
                     <Title>Problemas</Title>
                     <Divider />
-                    <Tables />
+                    
                 </Paper>
             </div>
        

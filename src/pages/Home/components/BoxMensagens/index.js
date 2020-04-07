@@ -15,7 +15,6 @@ export default function BoxMensages(){
         <div>
             <div className={classes.root}>
                 <Paper elevation={2} className={classes.paper}>
-                    
                         <Title>Ultimas mensagens</Title>
                         <Divider />
                         <ComMsg mensagens={mensagens}/>

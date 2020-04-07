@@ -4,27 +4,28 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import Grid from '@material-ui/core/Grid';
-
+import Style from '../../styles';
 
 export default function BoxAddSala(){
+    const classes = Style();
     return (
         <div>
             <form noValidate autoComplete="off">
-                <Paper elevation={2} className="ui-paper">
-                    <Grid container spacing={3}>
-                        <Grid item xs={10}>
-                            <TextField id="outlined-basic" label="Adicionar nova sala"
-                            variant="outlined" className="ui-imput" color="primary" />
-                        </Grid>
-
-                        <Grid item xs={2}>
-                            <Button variant="contained" color="primary"
-                                size="large" className="ui-button"
-                                startIcon={<SaveIcon />}
-                            >Salvar</Button>
-                        </Grid>
+                <Grid container spacing={4}>
+                    <Grid item xl={6} lg={12} md={12} sm={12} xs={12}>
+                        <TextField id="outlined-basic" label="Buscar sala..." variant="outlined" />
                     </Grid>
-                </Paper>
+                    <Grid item xl={6} lg={12} md={12} sm={12} xs={12}>     
+                            <Grid container spacing={4}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.button}
+                                    startIcon={<SaveIcon />}
+                                >Nova sala</Button>
+                            </Grid>
+                    </Grid>
+                </Grid>
             </form>
         </div>
     );
