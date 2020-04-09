@@ -12,13 +12,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
+import LinkUi from '@material-ui/core/Link';
+
 //icons
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HelpIcon from '@material-ui/icons/Help';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -58,14 +62,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface ResponsiveDrawerProps {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  container?: any;
-}
-
 export default function Menu(props) {
   const { container } = props;
   const classes = useStyles();
@@ -82,7 +78,7 @@ export default function Menu(props) {
       <Divider />
       
       <List>
-          <ListItem button component={Link} to="/index">
+          <ListItem button component={Link} to="/dashboard">
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -112,7 +108,32 @@ export default function Menu(props) {
           </ListItem>
 
         </List>
-      
+
+        <Divider />
+
+        <List>
+        <ListItem button component={Link} to="/ajuda">
+            <ListItemIcon>
+              <HelpIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ajuda" />
+          </ListItem>
+
+          <ListItem button component={Link} to="/">
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Sair" />
+          </ListItem>
+        </List>
+
+        <Box justifyContent="center">
+          <LinkUi
+            component={Link}
+            to="/versao">
+            Versão
+          </LinkUi>
+        </Box>
     </div>
   );
 
