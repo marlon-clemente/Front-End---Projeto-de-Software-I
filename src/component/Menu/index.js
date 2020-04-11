@@ -4,13 +4,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +13,11 @@ import {Link} from 'react-router-dom';
 import LinkUi from '@material-ui/core/Link';
 
 //icons
+import IconButton from '@material-ui/core/IconButton';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuIcon from '@material-ui/icons/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
@@ -33,20 +33,20 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('xl')]: {
         width: drawerWidth,
         flexShrink: 0,
       },
     },
     appBar: {
       [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
+        width: "100%",
         marginLeft: drawerWidth,
       },
     },
     menuButton: {
       marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('xl')]: {
         display: 'none',
       },
     },
@@ -126,14 +126,6 @@ export default function Menu(props) {
             <ListItemText primary="Sair" />
           </ListItem>
         </List>
-
-        <Box justifyContent="center">
-          <LinkUi
-            component={Link}
-            to="/versao">
-            Versão
-          </LinkUi>
-        </Box>
     </div>
   );
 
@@ -159,7 +151,7 @@ export default function Menu(props) {
 
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden xlUp implementation="css">
           <Drawer
             container={container}
             variant="temporary"
@@ -176,7 +168,7 @@ export default function Menu(props) {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden lgDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,

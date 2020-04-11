@@ -52,7 +52,7 @@ export default function Login(){
                             autoComplete="current-password"
                             />
                             <Button
-                            href="/index"
+                            href="/dashboard"
                             fullWidth
                             variant="contained"
                             color="primary"
