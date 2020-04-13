@@ -7,10 +7,8 @@ import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Toolbar from '@material-ui/core/Toolbar';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
-import LinkUi from '@material-ui/core/Link';
 
 //icons
 import IconButton from '@material-ui/core/IconButton';

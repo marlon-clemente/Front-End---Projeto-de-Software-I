@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
+import HomeUser from '../pages/HomeUser';
 import CaixaEntrada from '../pages/CaixaEntrada';
 import Salas from '../pages/Salas';
 import Problemas from '../pages/Problemas';
@@ -30,6 +31,7 @@ export default function Routers(){
                 <Route path="/login_diretor" component={Login} />
                 <Route path="/auth" component={LoginUsuario} />
                 <Route path="/grid" component={Grid} />
+                <Route path="/home" component={HomeUser} />
                 <Route component={Error} />
             </Switch>
         </BrowserRouter>

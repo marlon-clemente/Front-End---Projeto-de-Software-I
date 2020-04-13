@@ -1,8 +1,7 @@
 # FrontEnd Projeto de Software I
 
 ###### Já okk
-- Responsividade global da seção do diretor
-- 
+- Responsividade global da seção do diretor 
 
 ###### Dicas
 - Usar /grid para auxilio da responsividade  
@@ -14,4 +13,3 @@
 - login aluno/professor
 - adicionar informações do diteror no drawer
 - finalizar "card mensagens" no dashboard
-- pagina 404

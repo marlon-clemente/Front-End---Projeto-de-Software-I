@@ -1,7 +1,5 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
 import Title from '../../../../component/Title';
 import Style from './styles';
 import Divider from '@material-ui/core/Divider';

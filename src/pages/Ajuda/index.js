@@ -1,17 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Menu from '../../component/Menu';
-import { makeStyles } from '@material-ui/core/styles';
 
 import Styles from '../../styles';
 
 export default function Ajuda() {
     const c = Styles();
-    const [expanded, setExpanded] = React.useState(true);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
 
     return (
         <div className={c.root}>

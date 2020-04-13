@@ -18,17 +18,11 @@ export default function Salas(){
     
 
     function addSala(){
-        setSala([ ... sala,
+        setSala([ ...sala,
                     { id: Math.random(), nome: "" }
                 ]);
     }
     
-    function removeSala(){
-        setSala([ ... sala,
-            { id: Math.random(), nome: "Nova Sala" }
-        ]);
-    }
-
     function Linha(props){
         return (
             <> 

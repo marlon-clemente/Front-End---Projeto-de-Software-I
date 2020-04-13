@@ -2,18 +2,19 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
-import ImgBg from '../../assets/Sala-de-aula.webp';
+import ImgDir from '../../assets/diretor.svg';
+import ImgAl from '../../assets/aluno.svg';
 import {Link} from 'react-router-dom';
 
 const images = [
     {
-      url: '/static/images/grid-list/breakfast.jpg',
+      url: ImgAl,
       title: 'Sou diretor',
       width: '50%',
       cam: '/login_diretor'
     },
     {
-      url: `url(${ImgBg})`,
+      url: ImgDir,
       title: 'Sou aluno ou professor',
       width: '50%',
       cam: '/auth'
@@ -24,12 +25,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      minWidth: 300,
       width: '100%',
     },
     image: {
-      position: 'relative',
-      height: 200,
+      maxWidth: "100%",
       [theme.breakpoints.down('xs')]: {
         width: '100% !important', // Overrides inline-style
         height: 100,
