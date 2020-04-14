@@ -1,12 +1,16 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
+import { IoLogoGoogle } from "react-icons/io";
+
 import UseStyles from './styles';
 
 export default function Login(){
@@ -21,33 +25,47 @@ export default function Login(){
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />
                         </Avatar>
-                        <Typography component="h2" variant="h5">
-                            Bem vindo
+                        <Typography component="h2" fontWeight="fontWeightLight" variant="h5">
+                            Bem vindo,
                         </Typography>
-                        <Typography component="h1" variant="h5">
-                            Aluno e professor
+                        <Typography className={classes.boxH1}>
+                            <Box
+                                component="h1" 
+                                fontFamily="Comic Neue"
+                                fontWeight="fontWeightBold">
+                                Aluno & Professor
+                            </Box>
                         </Typography>
-                        <Typography component="body" variant="h8">
-                            Para contribuir com a direção de sua escola, logue-se
-                            em uma das contas a seguir.
+
+                        <Typography className={classes.boxTxt}>
+                            <Box
+                                component="h3"
+                                textAlign="center"
+                                fontWeight="fontWeightLight" 
+                                fontFamily="Roboto">
+                            Para contribuir com a direção de sua escola,
+                            entre com uma das contas a seguir.
+                            </Box>
                         </Typography>
                         
                         <Button
                             variant="contained"
-                            color="secondary"
-                            className={classes.button}
+                            className={classes.buttonFace}
                             startIcon={<FacebookIcon />}
+                            component={Link}
+                            to="/home"
                         >
-                            Logar com Facebook
+                            Entrar com Facebook
                         </Button>
 
                         <Button
                             variant="contained"
-                            color="secondary"
-                            className={classes.button}
-                            startIcon={<FacebookIcon />}
+                            className={classes.buttonGoogle}
+                            startIcon={<IoLogoGoogle />}
+                            component={Link}
+                            to="/home"
                         >
-                            Logar com Google
+                            Entar com Google
                         </Button>
 
                     </div>

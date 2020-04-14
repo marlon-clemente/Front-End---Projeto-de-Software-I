@@ -1,25 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
-import ImgDir from '../../assets/diretor.svg';
-import ImgAl from '../../assets/aluno.svg';
 import {Link} from 'react-router-dom';
-
-const images = [
-    {
-      url: ImgAl,
-      title: 'Sou diretor',
-      width: '50%',
-      cam: '/login_diretor'
-    },
-    {
-      url: ImgDir,
-      title: 'Sou aluno ou professor',
-      width: '50%',
-      cam: '/auth'
-    }
-];
+import Button from '@material-ui/core/Button';
+import {GiTeacher} from 'react-icons/gi';
+import {IoIosSchool} from 'react-icons/io';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -96,39 +80,28 @@ export default function Ajuda() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            {images.map((image) => (
-            <ButtonBase
-                focusRipple
-                key={image.title}
-                className={classes.image}
-                focusVisibleClassName={classes.focusVisible}
-                style={{
-                    width: image.width,
-                    }}
-                component={Link}
-                to={image.cam}
-            >
-                <span
-                    className={classes.imageSrc}
-                    style={{
-                    backgroundImage: `url(${image.url})`,
-                    }}
-                />
-                
-                <span className={classes.imageBackdrop} />
-                
-                <span className={classes.imageButton}>
-                    <Typography
-                        component="span"
-                        variant="subtitle1"
-                        color="inherit"
-                        className={classes.imageTitle}
-                        >
-                        {image.title}
-                        <span className={classes.imageMarked} />
-                    </Typography>
-                </span>
-            </ButtonBase>
-            ))}
+          
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<IoIosSchool />}
+            component={Link}
+            to = "/login_diretor"
+          >
+          Sou Diretor
+        </Button>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<GiTeacher />}
+            component={Link}
+            to = "/auth"
+          >
+          Sou Aluno ou Professor
+        </Button>
+            
         </div>);
 }

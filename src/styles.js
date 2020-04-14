@@ -22,6 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
+    fab: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     appBarSpacer: theme.mixins.toolbar,
