@@ -1,107 +1,36 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import {GiTeacher} from 'react-icons/gi';
-import {IoIosSchool} from 'react-icons/io';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      width: '100%',
-    },
-    image: {
-      maxWidth: "100%",
-      [theme.breakpoints.down('xs')]: {
-        width: '100% !important', // Overrides inline-style
-        height: 100,
-      },
-      '&:hover, &$focusVisible': {
-        zIndex: 1,
-        '& $imageBackdrop': {
-          opacity: 0.15,
-        },
-        '& $imageMarked': {
-          opacity: 0,
-        },
-        '& $imageTitle': {
-          border: '4px solid currentColor',
-        },
-      },
-    },
-    focusVisible: {},
-    imageButton: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: theme.palette.common.white,
-    },
-    imageSrc: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center 40%',
-    },
-    imageBackdrop: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      backgroundColor: theme.palette.common.black,
-      opacity: 0.4,
-      transition: theme.transitions.create('opacity'),
-    },
-    imageTitle: {
-      position: 'relative',
-      padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
-    },
-    imageMarked: {
-      height: 3,
-      width: 18,
-      backgroundColor: theme.palette.common.white,
-      position: 'absolute',
-      bottom: -2,
-      left: 'calc(50% - 9px)',
-      transition: theme.transitions.create('opacity'),
-    },
-  }));
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Styles from './sytles';
+import AuthDir from './AuthDir';
+import AuthUser from './AuthUser';
 
 export default function Ajuda() {
-    const classes = useStyles();
-    return (
-        <div className={classes.root}>
-          
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            startIcon={<IoIosSchool />}
-            component={Link}
-            to = "/login_diretor"
-          >
-          Sou Diretor
-        </Button>
+    const classes = Styles();
+    const [viewDir, setViewDir] = React.useState(false);
 
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<GiTeacher />}
-            component={Link}
-            to = "/auth"
-          >
-          Sou Aluno ou Professor
-        </Button>
-            
-        </div>);
+    const trocaViewDir = () =>{
+      setViewDir(!viewDir);
+      console.log(viewDir)
+    };
+
+    return (
+      <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={false} md={6} lg={6} xl={8} className={classes.image} />
+          <Grid item xs={12} sm={12} md={6} lg={6} xl={4}
+                className={classes.resp} component={Paper}
+                elevation={6} square>
+                {
+                  viewDir ? ( <AuthDir /> ) : ( <AuthUser /> )
+                }
+                <Box mt={5}><Button
+                  onClick={trocaViewDir}>Trocar</Button>
+                </Box>
+          </Grid>
+      </Grid>
+    );
 }

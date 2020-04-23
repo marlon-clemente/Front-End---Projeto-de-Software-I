@@ -10,19 +10,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
+import Styles from '../sytles';
 
-import UseStyles from './styles';
-
-export default function Login(){
-    const classes = UseStyles();
-    return(
-       <div>
-        <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={false} sm={false} md={6} lg={6} xl={8} className={classes.image} />
-                <Grid item xs={12} sm={12} md={6} lg={6} xl={4} className={classes.resp} component={Paper} elevation={6} square>
-                    <div className={classes.paper}>
-                        <Avatar className={classes.avatar}>
+export default function AuthUser() {
+    const classes = Styles();
+    return (
+        <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h2" fontWeight="fontWeightLight" variant="h5">
@@ -65,12 +59,8 @@ export default function Login(){
                             component={Link}
                             to="/home"
                         >
-                            Entar com Google
+                            Entrar com Google
                         </Button>
-
-                    </div>
-                </Grid>
-        </Grid>
         </div>
-    );
+    )
 }

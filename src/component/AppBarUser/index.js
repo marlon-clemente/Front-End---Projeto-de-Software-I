@@ -12,7 +12,7 @@ export default function AppBarUser() {
             <AppBar position="fixed" className={classes.appBar} color="secondary">
                 <Toolbar>
                     <Typography variant="h6" noWrap>
-                        Bem Vindo
+                        Bem Vindo @usuario
                     </Typography>
                 </Toolbar>
             </AppBar>

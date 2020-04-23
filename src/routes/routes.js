@@ -8,10 +8,9 @@ import CaixaEntrada from '../pages/CaixaEntrada';
 import Salas from '../pages/Salas';
 import Problemas from '../pages/Problemas';
 import Ajuda from '../pages/Ajuda';
-import Login from '../pages/Login';
 import Error from '../pages/Error';
 import Grid from '../temp/Grades';
-import LoginUsuario from '../pages/Auth';
+import NewDir from '../pages/NovoDiretor';
 /*
 *   BrowserRouters deve fica por volta de todas as rotas utilizadas
 *   Switch permite que somente uma rota seja utilizada por vez
@@ -28,10 +27,9 @@ export default function Routers(){
                 <Route path="/salas" component={Salas} />
                 <Route path="/problemas" component={Problemas} />
                 <Route path="/ajuda" component={Ajuda} />
-                <Route path="/login_diretor" component={Login} />
-                <Route path="/auth" component={LoginUsuario} />
                 <Route path="/grid" component={Grid} />
                 <Route path="/home" component={HomeUser} />
+                <Route path="/new" component={NewDir} />
                 <Route component={Error} />
             </Switch>
         </BrowserRouter>

@@ -73,7 +73,7 @@ export default function RecipeReviewCard() {
             </IconButton>
         </Tooltip>
         
-        <Tooltip title="Relacionar a um problema">
+        <Tooltip title="Tornar um problema">
             <IconButton>
                 <LinkIcon />
             </IconButton>
