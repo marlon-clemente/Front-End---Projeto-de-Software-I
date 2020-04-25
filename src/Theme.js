@@ -10,6 +10,10 @@ const ThemeGreen = createMuiTheme({
     },
   },
 
+  typography: {
+    fontFamily: 'Lato, Robotto',
+  },
+  
   breakpoints: {
     values: {
       xs: 360,

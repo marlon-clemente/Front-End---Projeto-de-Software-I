@@ -6,7 +6,17 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      
     },
+    content: {
+      [theme.breakpoints.up('xs')]: {
+        width:'360px',
+      },
+      flexGrow: 1,
+      height: '100vh',
+      padding: theme.spacing(3),
+    },
+
     paper: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -32,13 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
     appBarSpacer: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
-    },
-    content: {
-      [theme.breakpoints.up('xs')]: {
-        width:'360px',
-      },
-      flexGrow: 1,
-      padding: theme.spacing(3),
     },
   }),
 );

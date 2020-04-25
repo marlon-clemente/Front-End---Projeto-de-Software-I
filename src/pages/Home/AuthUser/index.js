@@ -2,18 +2,23 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import {Link} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
 import Styles from '../sytles';
 
+import { useAuth } from '../../../functions/Auth';
+
 export default function AuthUser() {
     const classes = Styles();
+    const { singInGoogle } = useAuth(); 
+    function handleSignInGoogle(e){
+        e.preventDefault();
+        singInGoogle();
+    }
+
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -46,8 +51,6 @@ export default function AuthUser() {
                             variant="contained"
                             className={classes.buttonFace}
                             startIcon={<FacebookIcon />}
-                            component={Link}
-                            to="/home"
                         >
                             Entrar com Facebook
                         </Button>
@@ -56,8 +59,9 @@ export default function AuthUser() {
                             variant="contained"
                             className={classes.buttonGoogle}
                             startIcon={<IoLogoGoogle />}
-                            component={Link}
-                            to="/home"
+                            onClick={
+                                e => handleSignInGoogle(e)}
+                            >
                         >
                             Entrar com Google
                         </Button>

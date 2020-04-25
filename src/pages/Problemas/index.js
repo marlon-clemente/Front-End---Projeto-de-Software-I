@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from '../../styles';
-import Menu from '../../component/Menu';
+import Menu from '../../component/Menu2';
 
 export default function Problema(){
     const c = Styles();
@@ -8,7 +8,7 @@ export default function Problema(){
     return(
         <div>
             <div className={c.root}>
-                <Menu title="Problemas" />
+                <Menu />
                 <div className={c.content}>
                 
                 </div>

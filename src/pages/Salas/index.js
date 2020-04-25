@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import Menu from '../../component/Menu';
+import Menu from '../../component/Menu2';
 import Box from '@material-ui/core/Box';
 import Styles from './styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -78,7 +78,7 @@ export default function Salas(){
 
     return(
         <div className={c.root}>
-        <Menu title="Salas" />
+        <Menu />
         <div className={c.content}><div className={c.appBarSpacer} />
             <ViewAddSala />
             <Grid container spacing={4}>

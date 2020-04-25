@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -6,9 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import UseStyles from './styles';
-
 export default function Registro() {
   const classes = UseStyles();
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("")
+
   return (
     <div className={classes.root}>
 
@@ -55,7 +57,11 @@ export default function Registro() {
                       label="Seu e-mail"
                       name="email"
                       autoComplete="email"
-                      
+                      onChange={
+                        event=>{
+                          setEmail(event.target.value)
+                        }
+                      }
                       />
 
                       <TextField
@@ -68,7 +74,12 @@ export default function Registro() {
                       type="password"
                       id="password"
                       autoComplete="current-password"
-                      />        
+                      onChange={
+                        event=>{
+                          setSenha(event.target.value)
+                        }
+                      }
+                      />
                   
                       <Button 
                       href="/"                            
@@ -78,12 +89,12 @@ export default function Registro() {
                       > voltar
                       </Button>
                       
-                      <Button 
-                      href="/Registro"
+                      <Button
                       fullWidth
                       variant="contained"
                       color="primary"
                       className={classes.submit}
+                      
                       >Cadastrar
                       </Button>
                                                                                                               

@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Menu from '../../component/Menu';
+import Menu from '../../component/Menu2';
 
 import Styles from '../../styles';
 
@@ -9,7 +9,7 @@ export default function Ajuda() {
 
     return (
         <div className={c.root}>
-            <Menu title="Ajuda" />
+            <Menu/>
             <div className={c.content}>
             <div className={c.appBarSpacer} />
                 <Grid container direction="row-reverse" spacing={4}>
