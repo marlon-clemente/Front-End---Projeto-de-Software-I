@@ -9,10 +9,10 @@ import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import Styles from './styles';
-//import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 export default function AppBarLeft() {
     const classes = Styles();
+
     return (
     <div className={classes.root}>
         <List component="nav" className={classes.ul} aria-label="main mailbox folders">

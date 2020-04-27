@@ -10,5 +10,6 @@
   - tratamante de erro de login
   - validação do formulário
 
-- Dashboard
-  - logOut
+- Dashboard | Diretor
+  - (ok) reconhecimento de informações de usuário 
+  - (ok) logOut

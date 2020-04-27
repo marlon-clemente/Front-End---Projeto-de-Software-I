@@ -7,6 +7,16 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         backgroundColor: theme.palette.primary.main,
     },
+    drawer:{
+        height: 200,
+        overflow: 'hidden',
+        position: 'relative',
+        border: '1px solid #ebedf0',
+        borderRadius: '2px',
+        padding: '48px',
+        textAlignlign: 'center',
+        background: '#fafafa',
+    },
     ul: {
         listStyleType: 'nome',
         margin: 0,
