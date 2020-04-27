@@ -3,14 +3,16 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import './global.css';
 import Theme from './Theme';
-import PublicRoutes from './routes/routes';
-
+import Routes from './routes/routes';
+import { AuthProvider } from './context/Auth';
 function App() {
   return(
       <div>
+        <AuthProvider>
         <ThemeProvider theme={Theme}>
-          <PublicRoutes />
-        </ThemeProvider>
+            <Routes />
+          </ThemeProvider>
+        </AuthProvider>
       </div>
   );
 }

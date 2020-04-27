@@ -3,15 +3,17 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      display: 'block',
     },
-    avatar: {
-      marginRight: theme.spacing(2),
+    grid_user: {
+        backgroundColor: theme.palette.secondary.main,
+        margin: 0,
+        textAlign: 'center'
     },
-    title: {
-      flexGrow: 1,
+    grid_msg: {
+        margin:0
     }
-  })
-)
+  }),
+);
 
 export default useStyles;

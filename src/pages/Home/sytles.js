@@ -6,14 +6,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
       height: '100vh',
     },
-    boxH1:{
-      marginTop: '5px',
-      marginBottom:'20px',
-    },
-    boxTxt:{
-      marginTop: '8px',
-      marginBottom: '25px',
-    },
     image: {
         backgroundImage: `url(${ImgBg})`,
         backgroundRepeat: 'no-repeat',
@@ -42,12 +34,20 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff',
       width: '80%',
       margin: '18px',
+      '&:hover':{
+        backgroundColor: '#2a5277',
+        color: '#ffffff',
+      },
     },
     buttonGoogle:{
       backgroundColor:'#ea4335',
       color: '#ffffff',
       width: '80%',
       margin: '18px',
+      '&:hover':{
+        backgroundColor: '#ea4344',
+        color: '#ffffff',
+      },
     },
     avatar: {
       margin: theme.spacing(1),

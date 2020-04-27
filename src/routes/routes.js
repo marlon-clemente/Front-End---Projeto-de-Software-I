@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
-import Home from '../pages/Home';
+import Login from '../pages/Home';
 import HomeUser from '../pages/HomeUser';
 import CaixaEntrada from '../pages/CaixaEntrada';
 import Salas from '../pages/Salas';
@@ -12,44 +12,21 @@ import Error from '../pages/Error';
 import Grid from '../temp/Grades';
 import NewDir from '../pages/NovoDiretor';
 
-import { useAuth } from '../functions/Auth';
-
-/*
-*   BrowserRouters deve fica por volta de todas as rotas utilizadas
-*   Switch permite que somente uma rota seja utilizada por vez
-*
-*/
-
-
-const PrivateRoute = ({ component: Component, ...rest }) =>(
-    
-    <Route 
-        { ...rest }
-        render={props =>
-            useAuth.isAuthenticated ? (
-                <Component { ... props} />
-            ) : (
-                <Redirect to={{ pathname: "/", state:{from: props.location} }} />
-            )
-        }
-    />
-);
+import PrivateRoute from './PrivateRoute';
 
 export default function Routers(){
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" component={Home} exact />
-
-                <PrivateRoute path="/dashboard" component={Dashboard} />
-
-                <Route path="/caixa_entrada" component={CaixaEntrada} />
-                <Route path="/salas" component={Salas} />
-                <Route path="/problemas" component={Problemas} />
-                <Route path="/ajuda" component={Ajuda} />
-
+                <PrivateRoute path="/" component={Dashboard} exact />
+                <PrivateRoute path="/caixa_entrada" component={CaixaEntrada} />
+                <PrivateRoute path="/salas" component={Salas} />
+                <PrivateRoute path="/ajuda" component={Ajuda} />
+                <PrivateRoute path="/problemas" component={Problemas} />
+                <PrivateRoute path="/home" component={HomeUser} />
+                
+                <Route path="/login" component={Login} exact />
                 <Route path="/grid" component={Grid} />
-                <Route path="/home" component={HomeUser} />
                 <Route path="/new" component={NewDir} />
                 <Route component={Error} />
             </Switch>

@@ -94,7 +94,7 @@ export default function Registro() {
                       variant="contained"
                       color="primary"
                       className={classes.submit}
-                      
+                      onClick={console.log(email + senha)}
                       >Cadastrar
                       </Button>
                                                                                                               
