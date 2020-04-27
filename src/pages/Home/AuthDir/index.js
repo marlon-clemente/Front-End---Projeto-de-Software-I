@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import Styles from '../sytles';
+import Styles from './styles';
 
 import loginApp from '../../../firebase';
 import { AuthContext } from '../../../context/Auth';

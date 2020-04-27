@@ -6,7 +6,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
-import Styles from '../sytles';
+
+import Styles from './styles';
 
 export default function AuthUser() {
     const classes = Styles();

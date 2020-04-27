@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
+// import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Styles from './sytles';
+import Styles from './styles';
 import AuthDir from './AuthDir';
 import AuthUser from './AuthUser';
 
@@ -28,10 +27,10 @@ export default function Ajuda() {
                     viewDir ? ( <AuthDir /> ) : ( <AuthUser /> )
                   }
                   
-                  <Typography component="a"
-                    onClick={trocaViewDir}>
-                    Trocar
-                  </Typography>
+              <Typography
+                onClick={trocaViewDir}>
+                Trocar
+              </Typography>
             </Grid>
         </Grid>
       );

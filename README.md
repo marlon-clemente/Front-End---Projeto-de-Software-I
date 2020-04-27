@@ -1,8 +1,14 @@
 # FrontEnd Projeto de Software I
  
-###### Complementar
-- organizar as rotas
-- ajustar componentes na tela Salas
-- tela inicial
-- adicionar informações do diteror no drawer
-- finalizar "card mensagens" no dashboard
+###### Pra fazer
+- autenticações (funcionais)
+  - facebook
+  - google
+
+- tela login diretor 
+  - recuperação de senha do diretor
+  - tratamante de erro de login
+  - validação do formulário
+
+- Dashboard
+  - logOut
