@@ -7,10 +7,34 @@ import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
 
+import * as firebase from "firebase";
+import "firebase/auth";  
+
 import Styles from './styles';
 
 export default function AuthUser() {
     const classes = Styles();
+    var provider = new firebase.auth.FacebookAuthProvider();
+   
+    const loginFacebook=()=>{
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+    
     return (
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
@@ -37,7 +61,8 @@ export default function AuthUser() {
                         
             <Button variant="contained"
                 className={classes.buttonFace}
-                startIcon={<FacebookIcon />}>
+                startIcon={<FacebookIcon />}
+                onClick={loginFacebook}>
                 Entrar com Facebook
             </Button>
 
