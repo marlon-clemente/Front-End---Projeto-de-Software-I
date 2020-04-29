@@ -12,7 +12,8 @@ import * as firebase from "firebase/app";
 import Styles from './styles';
 //import app from '../../../firebase';
 const providerGoogle = new firebase.auth.GoogleAuthProvider();
-    
+const providerFacebook = new firebase.auth.FacebookAuthProvider();
+
 export default function AuthUser() {
     
     const handleLoginGoogle = ()=>{
@@ -23,6 +24,14 @@ export default function AuthUser() {
             alert(error)
         });
     
+    }
+
+    const handleLoginFacebook=()=>{
+        firebase.auth().signInWithPopup(providerFacebook).then(function(result) {
+            //okk
+        }).catch(function(error) {
+            alert(error)
+        });
     }
     
     const classes = Styles();
@@ -79,7 +88,8 @@ export default function AuthUser() {
         <div className={classes.paper_buttons}>   
             <Button variant="contained"
                 className={classes.buttonFace}
-                startIcon={<FacebookIcon />}>
+                startIcon={<FacebookIcon />}
+                onClick={handleLoginFacebook}>
                 Entrar com Facebook
             </Button>
 
