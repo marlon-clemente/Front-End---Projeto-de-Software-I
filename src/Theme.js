@@ -6,7 +6,7 @@ const ThemeGreen = createMuiTheme({
       main: "#336666",
     },
     secondary: {
-      main: "#007CA5",
+      main: "#2A3261",
     },
   },
 

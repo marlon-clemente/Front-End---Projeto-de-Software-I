@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
-import Login from '../pages/Home';
+import Login from '../pages/Login';
 import HomeUser from '../pages/HomeUser';
 import CaixaEntrada from '../pages/CaixaEntrada';
 import Salas from '../pages/Salas';

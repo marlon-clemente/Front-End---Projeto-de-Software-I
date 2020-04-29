@@ -40,7 +40,7 @@ export default function Conta() {
         Sair
       </Button>
       <Divider className={classes.divider} />
-
+      {console.log(currentUser.providerData)}
     </div></div>
   )
 }

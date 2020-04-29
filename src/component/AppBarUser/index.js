@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import { AuthContext } from '../../context/Auth';
+import app from '../../firebase';
 import Styles from './styles';
 
 export default function MenuAppBar() {
   const classes = Styles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const {currentUser} = useContext(AuthContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,14 +25,23 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const handleLogOut = () => {
+    app.auth().signOut().then(function() {
+      return(
+        <Redirect to="/login" />
+      )
+    }).catch(function(error) {
+      console.log("Erro de LogOut : " + error);
+    });
+  }
 
   return (
     <div className={classes.root}>
       <AppBar color="secondary" position="static">
         <Toolbar>
-          <Avatar className={classes.avatar}>MC</Avatar>
           <Typography variant="h6" className={classes.title}>
-          Olá
+          Olá {currentUser.displayName}
           </Typography>
 
           <div>
@@ -40,8 +52,9 @@ export default function MenuAppBar() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <Avatar src={currentUser.photoURL} className={classes.avatar}>MC</Avatar>
             </IconButton>
+
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -57,8 +70,7 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
                 >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogOut}>Sair</MenuItem>
             </Menu>
             </div>
         </Toolbar>
