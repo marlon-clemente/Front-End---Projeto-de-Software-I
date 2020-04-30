@@ -11,9 +11,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'lato',
     borderRightColor: '#fdfdf',
   },
-  avatar:{
-    margin: 'auto',
-  },
+  
   content: {
     [theme.breakpoints.up('xs')]: {
       width:'360px',

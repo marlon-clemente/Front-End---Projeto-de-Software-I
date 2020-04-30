@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
         backgroundColor: theme.palette.primary.main,
+        display:'flex'
     },
     drawer:{
         height: 200,
@@ -36,14 +37,15 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '16px',
     },
     listItem_active:{
-        padding: '8px 0px',
-        margin: '0px',
+        padding: '8px 8px',
+        display: 'block',
+        margin: 'auto',
+        textDecoration: 'none',
+        textAlign: 'center',
+        fontFamily: 'Lato',
+        fontSize: '16px',
         backgroundColor: '#ffffff',
         color: theme.palette.primary.main,
-        '&:hover':{
-            backgroundColor: '#ffffff',
-            color: theme.palette.primary.main,
-        },
     },
     versao: {
         flex: 0,

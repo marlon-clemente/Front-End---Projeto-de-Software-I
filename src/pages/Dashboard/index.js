@@ -5,14 +5,12 @@ import Menu from '../../component/Menu2';
 import Styles from '../../styles';
 import BoxProb from './components/BoxProblemas';
 import BoxMsg from './components/BoxMensagens';
-import Section from '../../component/sections';
 
 export default function Dashboard(){
     const c = Styles();
     return(
         <div className={c.root}>
         <Menu/>
-        <Section />
         <div className={c.content}>
             <Grid container spacing={4}>
                 <Grid item xl={9} lg={12} md={12} sm={12} xs={12}>

@@ -26,18 +26,10 @@ export default function Conta() {
   return (
     <div className={classes.root}><div className={classes.content}>
       <Avatar className={classes.avatar}
-        >
+        src={ currentUser.photoURL }>
       </Avatar>
       <Title>{ currentUser.displayName }</Title>
-      {
-        currentUser.providerData.forEach(function (profile) {
-          console.log("Sign-in provider: " + profile.providerId);
-          console.log("  Provider-specific UID: " + profile.uid);
-          console.log("  Name: " + profile.displayName);
-          console.log("  Email: " + profile.email);
-          console.log("  Photo URL: " + profile.photoURL);
-        })
-      }
+      
       <Button
         variant="contained"
         color="primary"
@@ -49,7 +41,7 @@ export default function Conta() {
         Sair
       </Button>
       <Divider className={classes.divider} />
-      {console.log(currentUser.providerData)}
+      
     </div></div>
   )
 }

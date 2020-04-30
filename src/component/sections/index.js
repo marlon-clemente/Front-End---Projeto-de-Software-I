@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Conta from './Conta';
 
-export default function Statessss() {
+export default function Section(props) {
 
-  const [visible, setVisible] = useState(false);
-  const onClose = () => setVisible(!visible);
-  console.log(onClose);
-  return (
-    <div>
+  if (props.section === "conta"){
+    return (
+       <div>
       <Conta />
-      {/* <Button onClick={onClose}>Abrir</Button> */}
-
     </div>
+    );
+  }
+  return (
+    <></>
   )
 }

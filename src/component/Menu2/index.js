@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import List from '@material-ui/core/List';
 //icons
@@ -8,24 +8,39 @@ import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import Styles from './styles';
 
+import Styles from './styles';
+import Sections from '../sections/Conta';
 export default function AppBarLeft() {
     const classes = Styles();
+
+    const [secao, setSecao] = useState(false);
+    const handleSection = () =>{
+        setSecao(!secao);
+    }
 
     return (
     <div className={classes.root}>
         <List component="nav" className={classes.ul} aria-label="main mailbox folders">
-            
-            <NavLink
-                exact
-                activeClassName={classes.listItem_active}
-                className={classes.listItem}
-                to="/conta"
-                >
-                <AccountCircleOutlinedIcon className={classes.icone} />
-                <div className={classes.text}>Conta</div>
-            </NavLink>
+            {
+                secao ? (
+                    <div
+                        onClick={handleSection}
+                        className={classes.listItem_active}
+                        >
+                        <AccountCircleOutlinedIcon className={classes.icone} />
+                        <div className={classes.text}>Conta</div>
+                    </div>
+                ) : (
+                    <div
+                        onClick={handleSection}
+                        className={classes.listItem}
+                        >
+                        <AccountCircleOutlinedIcon className={classes.icone} />
+                        <div className={classes.text}>Conta</div>
+                    </div>
+                )
+            }
 
             <NavLink
                 exact
@@ -77,6 +92,11 @@ export default function AppBarLeft() {
                 <div className={classes.text}>Ajuda</div>
             </NavLink>
         </List>
+
+        {
+            secao ? (<Sections />) : (<></>)
+        }
+
     </div>
     )
 }
