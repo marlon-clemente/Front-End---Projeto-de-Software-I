@@ -1,5 +1,5 @@
-import React from 'react';
-//import { Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -10,31 +10,41 @@ import { IoLogoGoogle } from "react-icons/io";
 import * as firebase from "firebase/app";
 
 import Styles from './styles';
-//import app from '../../../firebase';
+import { AuthContext } from '../../../context/Auth';
+
 const providerGoogle = new firebase.auth.GoogleAuthProvider();
 const providerFacebook = new firebase.auth.FacebookAuthProvider();
 
-export default function AuthUser() {
+const LoginUser = ({history}) =>{
+    const classes = Styles();
     
-    const handleLoginGoogle = ()=>{
-        firebase.auth().signInWithPopup(providerGoogle).then(function(result) {
-            alert("Logado")
-            // return <Redirect to="/home"/>
-        }).catch(function(error) {
-            alert(error)
-        });
+     const handleLoginGoogle = ()=>{
+         firebase.auth()
+             .signInWithRedirect(providerGoogle)
+             .then(function(result) {
+                //  logado
+         }).catch(function(error) {
+             alert(error)
+         });
     
+     }
+
+     const handleLoginFacebook=()=>{
+         console.log("Cliquei no face")
+        firebase.auth()
+          .signInWithRedirect(providerFacebook)
+          .then(function(result) {
+          }).catch(function(error) {
+            alert("FAcebook" + error)
+         });
+     }
+    
+    const { currentUser } = useContext(AuthContext);
+    
+    if(currentUser){
+        return <Redirect to="/" />
     }
 
-    const handleLoginFacebook=()=>{
-        firebase.auth().signInWithPopup(providerFacebook).then(function(result) {
-            //okk
-        }).catch(function(error) {
-            alert(error)
-        });
-    }
-    
-    const classes = Styles();
     return (<>
         <meta name="theme-color" content="#2A3261"/>
         <div className={classes.section_description}>
@@ -89,7 +99,8 @@ export default function AuthUser() {
             <Button variant="contained"
                 className={classes.buttonFace}
                 startIcon={<FacebookIcon />}
-                onClick={handleLoginFacebook}>
+                onClick={handleLoginFacebook}
+                >
                 Entrar com Facebook
             </Button>
 
@@ -102,3 +113,5 @@ export default function AuthUser() {
         </div>
     </>)
 }
+
+export default withRouter(LoginUser);

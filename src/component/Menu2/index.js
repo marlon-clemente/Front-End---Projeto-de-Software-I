@@ -31,7 +31,7 @@ export default function AppBarLeft() {
                 exact
                 activeClassName={classes.listItem_active}
                 className={classes.listItem}
-                to="/"
+                to="/dashboard"
                 >
                 <DashboardOutlinedIcon className={classes.icone} />
                 <div className={classes.text}>Início</div>
