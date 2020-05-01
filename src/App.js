@@ -5,14 +5,18 @@ import './global.css';
 import Theme from './Theme';
 import Routes from './routes/routes';
 import { AuthProvider } from './context/Auth';
+import { SectionsProvider } from './context/Sections';
+
 function App() {
   return(
       <div>
-        <AuthProvider>
-        <ThemeProvider theme={Theme}>
-            <Routes />
-          </ThemeProvider>
-        </AuthProvider>
+        <SectionsProvider>
+          <AuthProvider>
+            <ThemeProvider theme={Theme}>
+              <Routes />
+            </ThemeProvider>
+          </AuthProvider>
+        </SectionsProvider>
       </div>
   );
 }

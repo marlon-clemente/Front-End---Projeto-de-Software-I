@@ -4,17 +4,17 @@ import { AuthContext } from '../context/Auth';
 
 const PrivateRouteUser = ({component: RouteComponent, ...rest}) => {
   const {currentUser} = useContext(AuthContext);
-  var provider = '';
-  if (currentUser != null){
-    const getProviderUser = currentUser.providerData;
-    provider = getProviderUser[0].providerId;
-  }
+  // var provider = '';
+  // if (currentUser != null){
+  //   const getProviderUser = currentUser.providerData;
+  //   provider = getProviderUser[0].providerId;
+  // }
 
   return(
       <Route
         {...rest}
         render={routeProps =>
-          !!currentUser && provider === 'google.com' ? (
+          !!currentUser ? (
               <RouteComponent {...routeProps } />
           ) : (
               <Redirect to={"/login"} />

@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import Styles from './styles';
+import { useSections } from '../../context/Sections';
+
 import Conta from './Conta';
+import EditProfile from './EditProfile';
+import Security from './Security';
 
-export default function Section(props) {
+export default function Section() {
+  const classes = Styles();
+  const { currentSections } = useSections();
 
-  if (props.section === "conta"){
-    return (
-       <div>
-      <Conta />
+  const section = (
+    <div>
+      { currentSections==='conta' ? (<Conta />) : (<></>)}
+      { currentSections==='editprofile' ? (<EditProfile />) : (<></>)}
+      { currentSections==='security' ? (<Security />) : (<></>)}
+      
     </div>
-    );
-  }
+  ) 
+  
   return (
-    <></>
+    <div className={classes.root}><div 
+      className={classes.content}component={Paper} elevation={6}>
+      { section }
+    </div></div>
   )
 }

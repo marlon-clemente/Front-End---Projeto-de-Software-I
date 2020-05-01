@@ -10,22 +10,26 @@ import SyncProblemIcon from '@material-ui/icons/SyncProblem';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 
 import Styles from './styles';
-import Sections from '../sections/Conta';
+import CompSections from '../sections'
+import { useSections } from '../../context/Sections';
+
 export default function AppBarLeft() {
     const classes = Styles();
-
-    const [secao, setSecao] = useState(false);
-    const handleSection = () =>{
-        setSecao(!secao);
+    const [menuSection, setMenuSection] = useState(false);
+    const {currentSections, setCurrentSections} = useSections();
+    
+    const handleActiveSection = () =>{
+        setMenuSection(!menuSection);
+        setCurrentSections("conta");
     }
 
     return (
     <div className={classes.root}>
         <List component="nav" className={classes.ul} aria-label="main mailbox folders">
             {
-                secao ? (
+                menuSection ? (
                     <div
-                        onClick={handleSection}
+                        onClick={handleActiveSection}
                         className={classes.listItem_active}
                         >
                         <AccountCircleOutlinedIcon className={classes.icone} />
@@ -33,7 +37,7 @@ export default function AppBarLeft() {
                     </div>
                 ) : (
                     <div
-                        onClick={handleSection}
+                        onClick={handleActiveSection}
                         className={classes.listItem}
                         >
                         <AccountCircleOutlinedIcon className={classes.icone} />
@@ -94,9 +98,8 @@ export default function AppBarLeft() {
         </List>
 
         {
-            secao ? (<Sections />) : (<></>)
+            menuSection ? (<CompSections />) : (<></>)
         }
-
     </div>
     )
 }

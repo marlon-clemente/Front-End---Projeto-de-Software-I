@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
+    position: 'relative',
     backgroundColor: '#ffffff',
     height: '100vh',
     width: 400,
@@ -22,17 +23,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     padding: theme.spacing(3),
   },
-  paper: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
-  },
   button:{
-    margin: '8px',
+    margin: '16',
   },
   divider:{
-    marginTop: 18
+    marginTop: 18,
   }
 }));
 

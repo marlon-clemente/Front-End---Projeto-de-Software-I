@@ -9,9 +9,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     alignItems: 'center',
     fontFamily: 'lato',
-    borderRightColor: '#fdfdf',
   },
-  
   content: {
     [theme.breakpoints.up('xs')]: {
       width:'360px',
@@ -26,12 +24,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
-  button:{
-    margin: '8px',
-  },
-  divider:{
-    marginTop: 18
-  }
 }));
 
 export default useStyles;
