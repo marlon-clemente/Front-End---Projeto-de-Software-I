@@ -16,7 +16,7 @@ import { useSections } from '../../context/Sections';
 export default function AppBarLeft() {
     const classes = Styles();
     const [menuSection, setMenuSection] = useState(false);
-    const {currentSections, setCurrentSections} = useSections();
+    const {setCurrentSections} = useSections();
     
     const handleActiveSection = () =>{
         setMenuSection(!menuSection);
