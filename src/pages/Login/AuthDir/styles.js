@@ -21,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
     submit: {
       margin: theme.spacing(3, 0, 2),
     },
+    titulo:{      
+      margin: theme.spacing(6),
+      marginTop:theme.spacing(1),
+      fontSize:'32px'
+    },
+    subtitulo:{     
+      margin: theme.spacing(2),
+      fontSize:'20px'
+    },
   }));
 
   export default useStyles;
