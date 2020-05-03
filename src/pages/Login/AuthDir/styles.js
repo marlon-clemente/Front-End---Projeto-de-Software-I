@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(2),
       fontSize:'20px'
     },
+    alert:{
+      fontFamily: 'Robotto',
+      fontSize: 14,
+    }
   }));
 
   export default useStyles;
