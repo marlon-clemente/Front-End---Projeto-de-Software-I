@@ -5,10 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Styles from './styles';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import { useSections } from '../../../../context/Sections';
 
 export default function NewMsg() {
   const classes = Styles();
+  const { setCurrentSections } = useSections();
+  const handleVoltar = () => {
+    setCurrentSections("voltar");
+  }
   return (
     <div className={classes.layout}>
       <Paper className={classes.paper}>
@@ -27,25 +33,17 @@ export default function NewMsg() {
           <Grid item xl={8} md={12} sm={12}>
             <TextField
               required
-              id="lastName"
-              name="lastName"
-              label="Last name"
+              id="id_obj"
+              label="Indentificação do objeto:"
               fullWidth
               autoComplete="lname"
             />
+            
             <TextField
               required
               id="lastName"
               name="lastName"
-              label="Last name"
-              fullWidth
-              autoComplete="lname"
-            />
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              label="Last name"
+              label="Descrição completa"
               fullWidth
               autoComplete="lname"
             />
@@ -60,6 +58,18 @@ export default function NewMsg() {
                você está sendo indentificado
                e não é possivel voltar atrás."
             />
+          </Grid>
+          <Grid item xs={6}>
+            <Button variant="contained"
+              className={classes.button_c}
+              onClick={handleVoltar}>
+              Cancelar
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button variant="contained" color="secondary">
+              Enviar
+            </Button>
           </Grid>
         </Grid>
       </Paper>

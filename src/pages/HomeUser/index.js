@@ -21,7 +21,7 @@ export default function Home(props) {
     <div className={classes.root}><AppBar/><div
       className={classes.content}>
       {currentSections==='newMsg' ? (<NewMsg />) : (< Switcher/>)}
-      {currentSections != 'newMsg' ? (
+      {currentSections !== 'newMsg' ? (
         <Fab color="secondary"
             className={classes.fab} onClick={handleFab}
             aria-label="add"><AddCommentIcon />
