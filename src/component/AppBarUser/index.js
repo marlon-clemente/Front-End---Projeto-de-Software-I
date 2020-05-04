@@ -38,6 +38,7 @@ export default function MenuAppBar() {
 
   return (
     <div className={classes.root}>
+      <meta name="theme-color" content="#2A3261"/>
       <AppBar color="secondary" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>

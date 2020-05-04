@@ -11,13 +11,17 @@ import * as firebase from "firebase/app";
 
 import Styles from './styles';
 import { AuthContext } from '../../../context/Auth';
+import { useSections } from '../../../context/Sections'; 
 
 const providerGoogle = new firebase.auth.GoogleAuthProvider();
 const providerFacebook = new firebase.auth.FacebookAuthProvider();
 
 const LoginUser = ({history}) =>{
     const classes = Styles();
-    
+    const { setCurrentSections } = useSections();
+    const handleAlterBox = () =>{
+        setCurrentSections('loginDir')
+    }
      const handleLoginGoogle = ()=>{
          firebase.auth()
              .signInWithRedirect(providerGoogle)
@@ -29,8 +33,8 @@ const LoginUser = ({history}) =>{
     
      }
 
+
      const handleLoginFacebook=()=>{
-         console.log("Cliquei no face")
         firebase.auth()
           .signInWithRedirect(providerFacebook)
           .then(function(result) {
@@ -110,6 +114,15 @@ const LoginUser = ({history}) =>{
                 onClick={handleLoginGoogle}>
                 Entrar com Google
             </Button>
+            <Typography component="div">
+                <Box fontFamily="Roboto"
+                onClick={handleAlterBox}
+                fontSize={18}
+                color="primary"
+                fontWeight={300}
+                textAlign="center">
+                Entrar como diretor
+            </Box></Typography>
         </div>
     </>)
 }

@@ -12,7 +12,7 @@ import Switcher from './Sections';
 export default function Home(props) {  
   const classes = Styles();
   const { currentSections, setCurrentSections } = useSections();
-
+  
   const handleFab = () => {
       setCurrentSections("newMsg");
   }
@@ -32,6 +32,3 @@ export default function Home(props) {
     </div></div>
     )
 }
-
-
-

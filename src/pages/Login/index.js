@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 // import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
+import { useSections } from '../../context/Sections'; 
 import Styles from './styles';
 import AuthDir from './AuthDir';
 import AuthUser from './AuthUser';
 
 export default function Ajuda() {
     const classes = Styles();
-    const [viewDir, setViewDir] = useState(false);
-    const trocaViewDir = () => setViewDir(!viewDir);
-
+    const { currentSections } = useSections();
     return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -21,12 +19,9 @@ export default function Ajuda() {
         <Grid item xs={12} sm={12} md={6} lg={6} xl={4}
           component={Paper} elevation={6} square>
           {
-            viewDir ? ( <AuthDir /> ) : ( <AuthUser /> )
+          currentSections === 'loginDir' ? (<AuthDir/>) : 
+          currentSections === 'rescuePassword' ? (<>rescue</>) : (<AuthUser/>)
           }
-          <Typography className={classes.trocar}
-            onClick={trocaViewDir}>
-            Entrar como diretor
-          </Typography> 
         </Grid>
     </Grid>
   );

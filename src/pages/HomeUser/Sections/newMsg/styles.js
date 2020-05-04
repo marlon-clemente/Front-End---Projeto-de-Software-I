@@ -4,7 +4,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     layout: {
       width: 'auto',
-      fontFamily: 'Lato',
       [theme.breakpoints.down('xs')]: {
         marginLeft: 0,
         marginRight: 0,
@@ -26,27 +25,29 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: 200,
       },
     },
+    
     paper: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
       padding: theme.spacing(2),
-      
     },
-    stepper: {
-      padding: theme.spacing(3, 0, 5),
+    grid_img:{
+      alignContent:'center',
     },
-    buttons: {
-      display: 'flex',
-      justifyContent: 'flex-end',
+    form: {
+      marginTop: theme.spacing(3),
     },
     button_e: {
       marginTop: theme.spacing(3),
       marginLeft: theme.spacing(1),
+      width: '100%',
     },
     button_c: {
       marginTop: theme.spacing(3),
       marginLeft: theme.spacing(1),
+      width: '100%',
     },
+    
   }),
 );
 

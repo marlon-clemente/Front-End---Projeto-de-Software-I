@@ -11,7 +11,7 @@ const ThemeGreen = createMuiTheme({
   },
 
   typography: {
-    fontFamily: 'Lato, Robotto',
+    fontFamily: 'Lato, Roboto',
   },
   
   breakpoints: {

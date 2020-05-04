@@ -11,14 +11,23 @@ import Styles from './styles';
 
 import loginApp from '../../../firebase';
 import { AuthContext } from '../../../context/Auth';
+import { useSections } from '../../../context/Sections'; 
 
 const Login = ({history}) =>{     
   const classes = Styles();
+  const { setCurrentSections } = useSections();
   
   var [requiredEmail,setRequiredEmail]=useState(false)
   var [requiredPassword,setRequiredPassword]=useState(false)
   const [alertForm, setAlertForm] = useState(<></>);
- 
+  
+  const handleAlterBox = () =>{
+        setCurrentSections(' ')
+  }
+  const handleSuport = () =>{
+        setCurrentSections('rescuePassword')
+  }
+  
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
@@ -91,6 +100,7 @@ const Login = ({history}) =>{
   }
   return(    
   <div className={classes.paper}>
+    <meta name="theme-color" content="#336666"/>
     <Avatar className={classes.avatar}>
       <LockOutlinedIcon />
     </Avatar>
@@ -131,11 +141,26 @@ const Login = ({history}) =>{
       > Entrar
       </Button>
 
-      <Box mt={5}>
-        <Typography variant="body2" color="textSecondary" align="center">
+      <Typography component="div">
+        <Box mt={5}
+          fontFamily="Roboto"
+          onClick={handleSuport}
+          fontSize={16}
+          color="primary"
+          fontWeight={500}
+          textAlign="center">
           Não está conseguindo entrar? Clique aqui.
-        </Typography>
-      </Box>
+        </Box>
+        <Box fontFamily="Roboto"
+          m={3}
+          fontSize={18}
+          onClick={handleAlterBox}
+          color="primary"
+          fontWeight={300}
+          textAlign="center">
+          Entrar como aluno ou professor
+        </Box>
+      </Typography>
     </form>
   </div>
   )
