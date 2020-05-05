@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
@@ -29,10 +27,8 @@ const LoginUser = ({history}) =>{
                 //  logado
          }).catch(function(error) {
              alert(error)
-         });
-    
+         });    
      }
-
 
      const handleLoginFacebook=()=>{
         firebase.auth()
@@ -52,9 +48,6 @@ const LoginUser = ({history}) =>{
     return (<>
         <meta name="theme-color" content="#2A3261"/>
         <div className={classes.section_description}>
-            <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
-            </Avatar>
             <Typography component="div"><Box fontFamily="Lato"
                 fontSize={20}
                 fontWeight={300}
@@ -76,26 +69,20 @@ const LoginUser = ({history}) =>{
         </div>
         
         <div className={classes.section_description_mob}>
-            <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
-            </Avatar>
             <Typography component="div"><Box fontFamily="Lato"
-                fontSize={20}
-                fontWeight={300}
-                textAlign="center">
+                fontSize={37}
+                fontWeight={300}>
                 BEM VINDO
-            </Box><Box fontFamily="Comic Neue"
+            </Box><Box fontFamily="Roboto"
                 fontSize={25}
-                fontWeight={800}
-                textAlign="center">
-                Aluno & Professor
+                fontWeight={800}>
+                Aluno & Professor <br/>
             </Box><Box 
-                fontSize={20}
+                fontSize={14}
                 fontWeight={400}
-                fontFamily="Lato"
-                textAlign="center">
+                fontFamily="Arial">
                 Para contribuir com a direção de sua escola,
-                entre com uma das contas a seguir.
+                <br/> entre com uma das contas a seguir.
             </Box></Typography>
         </div>
 
@@ -116,9 +103,11 @@ const LoginUser = ({history}) =>{
             </Button>
             <Typography component="div">
                 <Box fontFamily="Roboto"
+                className={classes.buttonTroca}
                 onClick={handleAlterBox}
                 fontSize={18}
                 color="primary"
+                
                 fontWeight={300}
                 textAlign="center">
                 Entrar como diretor

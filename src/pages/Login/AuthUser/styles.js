@@ -1,36 +1,46 @@
 import { makeStyles } from '@material-ui/core/styles';
+import ImgBg from '../../../assets/user_bg.svg';
 
 const useStyles = makeStyles((theme) => ({
   section_description: {
-      display: 'flex',
-      margin: theme.spacing(8, 4),
-      flexDirection: 'column',
-      alignItems: 'center',
-      // backgroundColor: 'red',
-      [theme.breakpoints.down('xs')]: {
-        display: 'none',
-      },
+    display: 'flex',
+    margin: theme.spacing(8, 4),
+    flexDirection: 'column',
+    alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
     },
+  },
   
   section_description_mob: {
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-    margin: theme.spacing(8 , 2),
+    position:'relative',
     flexDirection: 'column',
-    alignItems: 'center',
-    },
+    margin: 0,
+    padding: 8,
+    color: '#ffffff',
+    width:'100%',
+    height:'50%',
+    backgroundImage: `url(${ImgBg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
 
-    paper_buttons: {
-        [theme.breakpoints.down('xs')]: {
-            margin: theme.spacing(8 , 2),
-        },
-        margin: theme.spacing(8, 4),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        // backgroundColor: 'red',
-    },
+  paper_buttons: {
+      [theme.breakpoints.down('xs')]: {
+          margin: 0,
+          alignItems: 'center',
+          display: 'flex',
+      },
+      margin: theme.spacing(8, 4),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+  },
     buttonFace:{
       backgroundColor:'#2a5297',
       color: '#ffffff',
@@ -52,10 +62,8 @@ const useStyles = makeStyles((theme) => ({
         color: '#ffffff',
       },
     },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+    buttonTroca: {
+      margin: theme.spacing(3),
     },
   }));
-
   export default useStyles;
