@@ -1,11 +1,9 @@
 import React, { useContext, useCallback, useState} from 'react'
 import {withRouter, Redirect} from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Styles from './styles';
 
@@ -101,16 +99,29 @@ const Login = ({history}) =>{
   return(    
   <div className={classes.paper}>
     <meta name="theme-color" content="#336666"/>
-    <Avatar className={classes.avatar}>
-      <LockOutlinedIcon />
-    </Avatar>
-    <Typography className={classes.titulo} component="h1" variant="h5" color="primary">
-      <b>Bem Vindo</b>
-    </Typography>
-    <Typography className={classes.subtitulo} component="h1" variant="body2" color="textSecondary">
-      <i>Faça login para continuar</i>
-    </Typography>                
-              
+    
+    <div className={classes.section_desktop}>
+      <Typography component="div"><Box fontFamily="Lato"
+        fontSize={25} fontWeight={400}
+        textAlign="center">BEM VINDO DIRETOR
+        </Box><Box fontFamily="Roboto"
+        fontSize={18} fontWeight={300}
+        textAlign="center">Efetue login na continuar
+        na plataforma.</Box>
+      </Typography>               
+    </div>
+
+    <div className={classes.section_mobile}>
+      <Typography component="div">
+        <Box fontFamily="Roboto" color="#ffffff"
+        fontSize={18} fontWeight={400} m={0}
+        >Bem vindo
+        </Box><Box fontFamily="Roboto" m={0}
+        fontSize={45} fontWeight={600} color="#ffffff"
+        >Diretor</Box>
+      </Typography>               
+    </div>
+
     <form className={classes.form} 
       onSubmit={handleLogin}              
       noValidate>                   
@@ -136,32 +147,32 @@ const Login = ({history}) =>{
         fullWidth
         variant="contained"
         color="primary"                
-        className={classes.submit}                                 
+        className={classes.button}                                 
         type="submit"                
       > Entrar
       </Button>
 
-      <Typography component="div">
-        <Box mt={5}
+      <Typography component="div" color="primary">
+        <Box mt={1}
           fontFamily="Roboto"
           onClick={handleSuport}
           fontSize={16}
           color="primary"
           fontWeight={500}
-          textAlign="center">
-          Não está conseguindo entrar? Clique aqui.
-        </Box>
+          textAlign="right">
+          Esqueceu sua senha?
+        </Box></Typography><Typography>
         <Box fontFamily="Roboto"
           m={3}
           fontSize={18}
           onClick={handleAlterBox}
-          color="primary"
           fontWeight={300}
           textAlign="center">
           Entrar como aluno ou professor
         </Box>
       </Typography>
     </form>
+  
   </div>
   )
 };
