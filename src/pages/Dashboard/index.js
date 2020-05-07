@@ -10,7 +10,7 @@ export default function Dashboard(){
     const c = Styles();
     return(
         <div className={c.root}>
-        <Menu/>
+        <Menu title="Dashboard"/>
         <div className={c.content}>
             <Grid container spacing={4}>
                 <Grid item xl={9} lg={12} md={12} sm={12} xs={12}>

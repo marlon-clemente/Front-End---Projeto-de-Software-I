@@ -10,7 +10,7 @@ export default function CaixaEntrada(){
     return(
         <div>
             <div className={c.root}>
-            <Menu />
+            <Menu title="Caixa de entrada"/>
             <div className={c.content}>
             <div className={c.appBarSpacer} />
                 <Grid container spacing={1}>

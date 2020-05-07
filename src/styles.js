@@ -6,11 +6,14 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      
+      [theme.breakpoints.down('md')]: {
+        display:'block',
+      },
     },
     content: {
-      [theme.breakpoints.up('xs')]: {
-        width:'360px',
+      [theme.breakpoints.down('md')]: {
+        margin: 0, 
+        flexGrow:0,
       },
       flexGrow: 1,
       height: '100vh',

@@ -4,9 +4,19 @@ const widthMenu = 84;
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100vh',
+        display: 'flex',
         backgroundColor: theme.palette.primary.main,
-        display:'flex'
+    },
+    menuWeb:{
+        [theme.breakpoints.down('md')]: {
+            display: 'none',
+        },
+    },
+    menuMobile:{
+        flexGrow: 1,
+        [theme.breakpoints.up('lg')]: {
+            display: 'none',
+        },
     },
     drawer:{
         height: 200,
@@ -18,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         textAlignlign: 'center',
         background: '#fafafa',
     },
-    ul: {
+    ul: { //lista
         listStyleType: 'nome',
         margin: 0,
         padding: 0,
@@ -72,6 +82,15 @@ const useStyles = makeStyles((theme) => ({
         //color: '#ffffff',
         fontFamily: 'Arial',
         fontSize: '16px',
+    },
+    title:{
+        flexGrow: 1,
+    },
+    buttonLogOut: {
+        marginRight: theme.spacing(2),
+    },
+    appbar: {
+        width: '100%',
     },
   }));
 

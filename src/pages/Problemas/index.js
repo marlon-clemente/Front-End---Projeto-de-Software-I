@@ -8,7 +8,7 @@ export default function Problema(){
     return(
         <div>
             <div className={c.root}>
-                <Menu />
+                <Menu title="Problemas"/>
                 <div className={c.content}>
                 
                 </div>

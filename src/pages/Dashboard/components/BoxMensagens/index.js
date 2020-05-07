@@ -10,8 +10,7 @@ export default function BoxMensages(){
         <div>
             <div className={classes.root}>
                 <Typography component="div">
-                    <Box
-                        fontSize={16} 
+                    <Box fontSize={16} 
                         m={1}
                         fontFamily="Lato"
                         fontWeight={700}>
