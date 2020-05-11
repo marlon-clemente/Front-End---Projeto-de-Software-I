@@ -6,6 +6,8 @@ import { useSections } from '../../context/Sections';
 import Conta from './Conta';
 import EditProfile from './EditProfile';
 import Security from './Security';
+import Sala from './Salas';
+import Ajuda from './Ajuda';
 
 export default function Section() {
   const classes = Styles();
@@ -16,6 +18,8 @@ export default function Section() {
       { currentSections==='conta' ? (<Conta />) : (<></>)}
       { currentSections==='editprofile' ? (<EditProfile />) : (<></>)}
       { currentSections==='security' ? (<Security />) : (<></>)}
+      { currentSections==='sala' ? (<Sala />) : (<></>)}
+      { currentSections==='ajuda' ? (<Ajuda />) : (<></>)}
       
     </div>
   ) 

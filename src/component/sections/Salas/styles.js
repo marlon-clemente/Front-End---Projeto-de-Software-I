@@ -3,17 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
-    position: 'relative',
     backgroundColor: '#ffffff',
     height: '100vh',
     width: 400,
     textAlign: 'center',
     alignItems: 'center',
     fontFamily: 'lato',
-    borderRightColor: '#fdfdf',
-  },
-  avatar:{
-    margin: 'auto',
   },
   content: {
     [theme.breakpoints.up('xs')]: {
@@ -23,8 +18,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     padding: theme.spacing(3),
   },
-  button:{
-    margin: 8,
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
   },
 }));
 

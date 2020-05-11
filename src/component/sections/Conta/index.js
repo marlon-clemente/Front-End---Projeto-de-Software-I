@@ -54,7 +54,7 @@ export default function Conta() {
         Sair
       </Button>
 
-      <Divider className={classes.divider} />
+      <Divider />
 
       <Typography><Box fontFamily="Lato" fontSize={16}
         fontWeight={600} textAlign="left"

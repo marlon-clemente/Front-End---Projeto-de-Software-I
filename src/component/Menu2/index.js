@@ -21,29 +21,44 @@ import { useSections } from '../../context/Sections';
 
 export default function AppBarLeft(props) {
     const classes = Styles();
-    const [menuSection, setMenuSection] = useState(false);
+    const [menuSection, setMenuSection] = useState("off");
     const {setCurrentSections} = useSections();
     
-    const handleActiveSection = () =>{
-        setMenuSection(!menuSection);
+    const handleActiveMenuConta = () =>{
+        setMenuSection('conta');
         setCurrentSections("conta");
     }
+    const handleActiveMenuSala = () =>{
+        setMenuSection('sala');
+        setCurrentSections("sala");
+    }
+
+    const handleActiveMenuAjuda = () =>{
+        setMenuSection('ajuda');
+        setCurrentSections("ajuda");
+    }
+
+    const handleOffActive = () =>{
+        setMenuSection("off");
+    }
+
     return (
-    <div className={classes.root}>
-        <div className={classes.menuWeb}>
-            <List component="nav" className={classes.ul} aria-label="main mailbox folders">
+    <div className={classes.root}><div className={classes.menuWeb}>
+      <List component="nav" className={classes.ul}
+          aria-label="main mailbox folders">
             {
-                menuSection ? (
+                menuSection === 'conta' ? (
                     <div
-                        onClick={handleActiveSection}
+                        onClick={handleOffActive}
                         className={classes.listItem_active}
                         >
                         <AccountCircleOutlinedIcon className={classes.icone} />
                         <div className={classes.text}>Conta</div>
                     </div>
+                    
                 ) : (
                     <div
-                        onClick={handleActiveSection}
+                        onClick={handleActiveMenuConta}
                         className={classes.listItem}
                         >
                         <AccountCircleOutlinedIcon className={classes.icone} />
@@ -71,7 +86,7 @@ export default function AppBarLeft(props) {
                 <EmailOutlinedIcon className={classes.icone} />
                 <div className={classes.text}>Caixa de Entrada</div>
             </NavLink>
-
+            
             <NavLink
                 exact
                 activeClassName={classes.listItem_active}
@@ -81,29 +96,47 @@ export default function AppBarLeft(props) {
                 <SyncProblemIcon className={classes.icone} />
                 <div className={classes.text}>Análises</div>
             </NavLink>
-
-            <NavLink
-                exact
-                activeClassName={classes.listItem_active}
-                className={classes.listItem}
-                to="/salas"
+            
+            {menuSection ==='sala' ? (
+                <div onClick={handleOffActive}
+                    className={classes.listItem_active}
                 >
-                <MeetingRoomOutlinedIcon className={classes.icone} />
-                <div className={classes.text}>Salas</div>
-            </NavLink>
-
-            <NavLink
-                exact
-                activeClassName={classes.listItem_active}
-                className={classes.listItem}
-                to="/ajuda"
+                    <MeetingRoomOutlinedIcon className={classes.icone} />
+                    <div className={classes.text}>Salas</div>
+                </div>
+            ):(
+                <div className={classes.listItem}
+                    onClick={handleActiveMenuSala}
                 >
-                <HelpOutlineOutlinedIcon className={classes.icone} />
-                <div className={classes.text}>Ajuda</div>
-            </NavLink>
+                    <MeetingRoomOutlinedIcon className={classes.icone} />
+                    <div className={classes.text}>Salas</div>
+                </div>
+            )}
+            
+            {
+                menuSection === 'ajuda' ? (
+                    <div
+                    onClick={handleOffActive}
+                    className={classes.listItem_active}
+                    >
+                       <HelpOutlineOutlinedIcon className={classes.icone} />
+                        <div className={classes.text}>Ajuda</div> 
+                    </div>
+                ):(
+                    <div
+                    onClick={handleActiveMenuAjuda}
+                    className={classes.listItem}
+                    >
+                       <HelpOutlineOutlinedIcon className={classes.icone} />
+                        <div className={classes.text}>Ajuda</div> 
+                    </div>
+                )
+            }
         </List>
 
         </div>
+
+        {/* MENU MOB  */}
         <div className={classes.menuMobile}>
             <AppBar position="static">
               <Toolbar>
@@ -116,9 +149,8 @@ export default function AppBarLeft(props) {
               </Toolbar>
             </AppBar>
         </div>
-        {
-            menuSection ? (<CompSections />) : (<></>)
-        }
+
+        {menuSection !== 'off' ? (<CompSections />) : (<></>)}
     </div>
     )
 }
