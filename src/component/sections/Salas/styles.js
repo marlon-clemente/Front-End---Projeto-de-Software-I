@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     fontFamily: 'lato',
   },
+  button:{
+    margin: theme.spacing(1),
+  },
   content: {
     [theme.breakpoints.up('xs')]: {
       width:'360px',

@@ -9,6 +9,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     alignItems: 'center',
     fontFamily: 'lato',
+    //border
+    borderStyle: 'outset',
+    borderTopWidth: 0,
+    borderRightWidth: 1,
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
+    boxShadow: '5px 0px 40px 0px #212121',
   },
   content: {
     [theme.breakpoints.up('xs')]: {

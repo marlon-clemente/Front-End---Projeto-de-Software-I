@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     marginBottom: 8
   },
-  margin:{
-    margin: 3
-  },
 }));
 
 
@@ -42,21 +39,20 @@ export default function Header(props) {
             </Box>
           </Typography>
         </div>
-      ) : (
+        ) : (
         <div>
           <Typography>
-            <IconButton
+            <Box
+            m={1}
+            fontFamily="Lato"
+            fontWeight={500}
+            height="24px"
+            fontSize={22}>
+              <IconButton
               className={classes.margin}
               onClick={handleIconButton}>
               <ArrowBackIcon/>
             </IconButton>
-        
-            <Box
-            fontFamily="Lato"
-            fontWeight={500}
-            alignContent="center"
-            height="24px"
-            fontSize={22}>
             {props.title}
             </Box>
           </Typography>

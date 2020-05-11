@@ -16,7 +16,6 @@ export default function Salas(){
 
     const [sala, setSala] = useState(salas);
     
-
     function addSala(){
         setSala([ ...sala,
                     { id: Math.random(), nome: "" }

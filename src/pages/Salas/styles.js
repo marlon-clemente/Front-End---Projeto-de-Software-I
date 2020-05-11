@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme: Theme) =>
     imput: {
       width: '100%',
     },
+    button: {
+      width: '100%',
+      margin: theme.spacing(2),
+    },
     paper: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -19,12 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
         height: theme.spacing(4),
       },
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
-    },
+    
     // necessary for content to be below app bar
     toolbar: theme.mixins.toolbar,
     appBarSpacer: theme.mixins.toolbar,
