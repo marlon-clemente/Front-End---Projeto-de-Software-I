@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { IoLogoGoogle } from "react-icons/io";
@@ -110,7 +111,9 @@ const LoginUser = ({history}) =>{
                 
                 fontWeight={300}
                 textAlign="center">
-                Entrar como diretor
+                <Link href="#" onClick={handleAlterBox} color="inherit">
+                    Entrar como diretor
+                </Link>
             </Box></Typography>
         </div>
     </>)

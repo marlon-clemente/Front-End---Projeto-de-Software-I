@@ -8,6 +8,7 @@ import { useSections } from '../../context/Sections';
 import Styles from './styles';
 import AuthDir from './AuthDir';
 import AuthUser from './AuthUser';
+import RescuePassword from './rescuePassword';
 
 export default function Ajuda() {
     const classes = Styles();
@@ -20,7 +21,7 @@ export default function Ajuda() {
           component={Paper} elevation={6} square>
           {
           currentSections === 'loginDir' ? (<AuthDir/>) : 
-          currentSections === 'rescuePassword' ? (<>rescue</>) : (<AuthUser/>)
+          currentSections === 'rescuePassword' ? (<RescuePassword/>) : (<AuthUser/>)
           }
         </Grid>
     </Grid>

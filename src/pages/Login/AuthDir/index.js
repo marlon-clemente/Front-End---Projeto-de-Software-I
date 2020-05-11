@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Styles from './styles';
 
@@ -160,7 +161,9 @@ const Login = ({history}) =>{
           color="primary"
           fontWeight={500}
           textAlign="right">
-          Esqueceu sua senha?
+          <Link href="#" onClick={handleSuport} color="inherit">
+            Esqueceu sua senha?
+          </Link>
         </Box></Typography><Typography>
         <Box fontFamily="Roboto"
           m={3}
@@ -168,7 +171,9 @@ const Login = ({history}) =>{
           onClick={handleAlterBox}
           fontWeight={300}
           textAlign="center">
-          Entrar como aluno ou professor
+          <Link href="#" onClick={handleAlterBox} color="inherit">
+            Entrar como aluno ou diretor
+          </Link>
         </Box>
       </Typography>
     </form>
