@@ -45,7 +45,7 @@ export default function EditProfile() {
         className={classes.textFiel}
         id="standard-basic"
         name="formName"
-        label="Nome de usuário"
+        label="Nome da escola"
         onChange={(e)=> setUserName(e.target.value)}
         value={userName}
         />

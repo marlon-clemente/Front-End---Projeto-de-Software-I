@@ -107,8 +107,8 @@ const Login = ({history}) =>{
         textAlign="center">BEM VINDO DIREÇÃO
         </Box><Box fontFamily="Roboto"
         fontSize={18} fontWeight={300}
-        textAlign="center">Efetue login na continuar
-        na plataforma.</Box>
+        textAlign="center">Efetue login para acessar
+        a plataforma.</Box>
       </Typography>               
     </div>
 
