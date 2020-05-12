@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   avatar:{
     margin: 'auto',
   },
+  icon:{
+    margin: 2,
+  },
   content: {
     [theme.breakpoints.up('xs')]: {
       width:'360px',

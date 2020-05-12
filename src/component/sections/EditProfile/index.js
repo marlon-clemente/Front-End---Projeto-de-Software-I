@@ -39,7 +39,7 @@ export default function EditProfile() {
 
   return (
     <div>
-      <Header title="Alterar perfil" returnTo="conta" />
+      <Header title="Alterar perfil escolar" returnTo="conta" />
       <Divider/>
       <TextField 
         className={classes.textFiel}
