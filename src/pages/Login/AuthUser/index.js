@@ -112,7 +112,7 @@ const LoginUser = ({history}) =>{
                 fontWeight={300}
                 textAlign="center">
                 <Link href="#" onClick={handleAlterBox} color="inherit">
-                    Entrar como diretor
+                    Acesso da direção escolar
                 </Link>
             </Box></Typography>
         </div>

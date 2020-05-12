@@ -104,7 +104,7 @@ const Login = ({history}) =>{
     <div className={classes.section_desktop}>
       <Typography component="div"><Box fontFamily="Lato"
         fontSize={25} fontWeight={400}
-        textAlign="center">BEM VINDO DIRETOR
+        textAlign="center">BEM VINDO DIREÇÃO
         </Box><Box fontFamily="Roboto"
         fontSize={18} fontWeight={300}
         textAlign="center">Efetue login na continuar
@@ -119,7 +119,7 @@ const Login = ({history}) =>{
         >Bem vindo
         </Box><Box fontFamily="Roboto" m={0}
         fontSize={45} fontWeight={600} color="#ffffff"
-        >Diretor</Box>
+        >Direção</Box>
       </Typography>               
     </div>
 
@@ -129,7 +129,7 @@ const Login = ({history}) =>{
       <TextField
         variant="outlined" margin="normal"
         required fullWidth
-        id="email" label="Endereço de e-mail"
+        id="email" label="Endereço de e-mail da escola"
         name="email" autoComplete="email"                        
         autoFocus
         error = {requiredEmail}                  
@@ -172,7 +172,7 @@ const Login = ({history}) =>{
           fontWeight={300}
           textAlign="center">
           <Link href="#" onClick={handleAlterBox} color="inherit">
-            Entrar como aluno ou diretor
+            Acesso do aluno e professor
           </Link>
         </Box>
       </Typography>

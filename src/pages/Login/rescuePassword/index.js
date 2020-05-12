@@ -22,8 +22,8 @@ export default function RescuePassword() {
         </Box><Box fontFamily="Roboto"
         fontSize={16} fontWeight={200} m={2}
         textAlign="center">Para solicitar uma nova 
-        senha, digite o e-mail que você utilizava pra
-        entrar na plataforma.</Box>
+        senha, digite o e-mail que sua escola utiliza pra
+        acessar a plataforma.</Box>
       </Typography>  
       <form className={classes.form} 
         onSubmit={handleRescue}              
