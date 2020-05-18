@@ -2,9 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
 
-// import { Container } from './styles';
 const useStyles = makeStyles((theme) => ({
   root:{
     paddingLeft: '25px',
@@ -15,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Title(props) {
   const classes = useStyles();
   return(
-    <div className={classes.root}><Typography>
+    <div className={classes.root}><Typography component="div">
      <Box fontFamily="Lato" 
       fontSize={20}
       fontWeight={500}>

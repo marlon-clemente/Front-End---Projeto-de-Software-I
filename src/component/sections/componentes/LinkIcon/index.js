@@ -33,7 +33,7 @@ export default function LinkIcon(props) {
       {props.icon === 'LockIcon' ? (<LockIcon className={classes.root}/>):(<></>)}
       {props.icon === 'SchoolIcon' ? (<SchoolIcon className={classes.root}/>):(<></>)}
 
-      <Typography><Box 
+      <Typography component="div"><Box 
         fontFamily="Roboto" fontSize={16}
         fontWeight={500} m={1}
         textAlign="left">

@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         backgroundColor: theme.palette.primary.main,
+        // overflow: 'auto',
     },
     menuWeb:{
         [theme.breakpoints.down('md')]: {
@@ -57,29 +58,14 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#ffffff',
         color: theme.palette.primary.main,
     },
-    versao: {
-        flex: 0,
-        color: '#ffffff',
-        fontFamily: 'Arial',
-        fontSize: '16px',
-        textAlign: 'center'
-    },
-    button_box: {
-        display: 'block',
-        margin: 'auto',
-        padding: '0px',
-        textAlign: 'center',
-    },
     icone: {
         fontSize: '30px',
         textAlign: 'center',
         margin: '0px',
         pading: '0px',
-        //color: '#ffffff',
     },
     text: {
         textAlign: 'center',
-        //color: '#ffffff',
         fontFamily: 'Arial',
         fontSize: '16px',
     },

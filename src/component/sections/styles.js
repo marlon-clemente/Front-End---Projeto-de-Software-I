@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
     backgroundColor: '#ffffff',
-    height: '100vh',
+    height: '100%',
     width: 400,
     textAlign: 'center',
     alignItems: 'center',
@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
       width:'360px',
     },
     flexGrow: 1,
-    height: '100vh',
     padding: theme.spacing(3),
   },
   paper: {

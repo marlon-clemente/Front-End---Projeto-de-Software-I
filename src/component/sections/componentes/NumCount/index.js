@@ -45,7 +45,7 @@ function NumCount(props) {
         <HelpOutlineIcon fontSize="inherit" />
       </IconButton>
 
-    <Typography>
+    <Typography component="div">
      <Box fontFamily="Roboto"
       fontSize={20}
       color="primary"

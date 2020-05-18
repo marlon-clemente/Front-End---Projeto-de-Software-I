@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      height: '100vh',
       [theme.breakpoints.down('md')]: {
         display:'block',
       },
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
         flexGrow:0,
       },
       flexGrow: 1,
-      height: '100vh',
+      // height: '100vh',
       padding: theme.spacing(3),
     },
 
@@ -29,11 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
         height: theme.spacing(4),
       },
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
+    color:{
+      backgroundColor:'red',
     },
     fab: {
       position: 'absolute',

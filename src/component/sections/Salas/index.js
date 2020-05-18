@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import {Form} from '@unform/web';
-import Divider from '@material-ui/core/Divider'
-import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import Header from '../componentes/header';
 import Input from '../../../component/Form/input';
+
+import InfoZeroSalas from '../componentes/BoxInfo/semSalas';
 
 import Styles from './styles';
 
@@ -28,7 +31,9 @@ function Salas() {
       <Divider/>
       {
         formSala ? (
+          <Paper className={classes.paper} elevation={3}>
           <div className={classes.form}>
+            <h4>Adicionar nova sala</h4>
             <Form onSubmit={handleForm}>
               <Input name="sala" label="Nome da sala" />
 
@@ -47,8 +52,7 @@ function Salas() {
                 type="submit">Salvar
               </Button>
             </Form>
-            <Divider />
-          </div>
+          </div></Paper>
         ) : (
           <div className={classes.sectionBt}>
             <Button
@@ -61,13 +65,10 @@ function Salas() {
           </div>
         )
       }
-      
       {
         sala > 0 ?(
           <div><p>Com sala</p></div>
-        ):(
-          <div><h3>Não há salas</h3></div>
-        )
+        ):(<InfoZeroSalas/>)
       }
   </div>)
 }
