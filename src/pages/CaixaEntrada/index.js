@@ -1,26 +1,16 @@
 import React from 'react';
 import Menu from '../../component/Menu2';
 import Styles from '../../styles';
-import Grid from '@material-ui/core/Grid';
-import CardMsg from './component/CardMsg';
+import BoxInfoNoMsg from '../../component/BoxInfo/Default';
 
-export default function CaixaEntrada(){
-    const c = Styles();
+var mensagens = {};
 
-    return(
-        <div>
-            <div className={c.root}>
-            <Menu title="Caixa de entrada"/>
-            <div className={c.content}>
-            <div className={c.appBarSpacer} />
-                <Grid container spacing={1}>
-                    <CardMsg />
-                    <CardMsg />
-                    <CardMsg />
-                    <CardMsg />
-                </Grid>
-            </div>
-            </div>
-        </div>
-    );
+export default function CaixaEntrada() {
+  const classes = Styles();
+  return (
+    <div className={classes.root}><Menu />
+      <div className={classes.content}>
+        { !mensagens ? (<>combo 1</>) : (<BoxInfoNoMsg title="Não há mensagens no momento" />) }
+    </div></div>
+  );
 }

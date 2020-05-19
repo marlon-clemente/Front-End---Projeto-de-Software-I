@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     fontFamily: 'lato',
     //border
-
+    overflow: 'auto',
     boxShadow: '5px 0px 40px 0px #212121',
   },
   content: {
