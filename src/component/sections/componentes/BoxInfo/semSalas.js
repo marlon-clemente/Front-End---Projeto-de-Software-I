@@ -25,7 +25,7 @@ export default function BoxInfo() {
           fontWeight={300}>
           Manter as salas da escola registradas
           na aplicação auxilía qualquer usuário a identificar
-          os bens patrimonias que necessitam de uma atenção. 
+          os bens patrimoniais que necessitam de uma atenção. 
                
         </Box>
     </Typography>

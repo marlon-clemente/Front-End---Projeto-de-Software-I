@@ -26,13 +26,13 @@ export default function Conta() {
 
   return (
     <div>
+      {console.log(currentUser)}
       <Avatar className={classes.avatar}
-        src={ currentUser.photoURL }>
+        src="">
       </Avatar>
 
       <Title title={currentUser.displayName}
        city="Nome da cidade | UF"/>
-      
       <Button
         variant="contained"
         color="primary"
