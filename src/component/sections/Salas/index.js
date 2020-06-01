@@ -7,10 +7,13 @@ import Header from '../componentes/header';
 import Input from '../../../component/Form/input';
 
 import InfoZeroSalas from '../componentes/BoxInfo/semSalas';
+import ListaSalas from '../componentes/itemSala';
 
 import Styles from './styles';
 
-var sala = 0;
+import temp from '../../../temp/sala'
+
+var sala = temp;
 
 function Salas() {
   function handleForm(data){
@@ -34,6 +37,7 @@ function Salas() {
           <Paper className={classes.paper} elevation={3}>
           <div className={classes.form}>
             <h4>Adicionar nova sala</h4>
+            {console.log(sala)}
             <Form onSubmit={handleForm}>
               <Input name="sala" label="Nome da sala" />
 
@@ -66,9 +70,7 @@ function Salas() {
         )
       }
       {
-        sala > 0 ?(
-          <div><p>Com sala</p></div>
-        ):(<InfoZeroSalas/>)
+        sala.length > 0 ? (<ListaSalas salas={sala} />):(<InfoZeroSalas/>)
       }
   </div>)
 }

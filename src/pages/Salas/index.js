@@ -95,9 +95,7 @@ export default function Salas(){
 
 /**
 
-{salas.map((item)=>(
-                                <BoxSala sala={item}/>
-                            ))
+{salas.map((item)=>(<BoxSala sala={item}/>))
                         }
 
  */
