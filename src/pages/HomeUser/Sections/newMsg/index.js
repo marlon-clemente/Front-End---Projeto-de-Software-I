@@ -6,14 +6,20 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Styles from './styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { useSections } from '../../../../context/Sections';
 
 import Title from '../../componentes/titleForm';
 import Input from '../../../../component/Form/input';
+
 import InputImg from '../../componentes/inputImg';
+import Salas from '../../../../temp/sala'
 
 export default function NewMsg() {
   const classes = Styles();
+  const salas = Salas;
+
   const { setCurrentSections } = useSections();
   const handleVoltar = () => {
     setCurrentSections("voltar");
@@ -23,8 +29,11 @@ export default function NewMsg() {
     console.log(data);
   }
 
+  const data = new Date().toLocaleString()
+
   const initialData = {
-    email:"",
+    status: 'noRead',
+    time: data,
   }
 
   return (
@@ -43,20 +52,34 @@ export default function NewMsg() {
           <Grid item xl={8} md={12} sm={12}>
             <Input name="identificacao"
               color="secondary"
-              fullWidth
               label="Identificação"
               helperText="Nome do objeto | 
               Código do patrimonio escolar"/>
 
-
-
+            <Autocomplete
+              options={ salas }
+              getOptionLabel={(option) => option.nome}
+              renderInput={(params) => <Input 
+                  {...params}
+                  name="sala"
+                  label="Selecione uma sala"
+                  color="secondary"
+              />}
+            />
+            
             <Input name="descricao"
               color="secondary"
-              fullWidth
               multiline
               label="Descrição completa da situação"
-
             />
+
+            <Input name="time"
+              className={classes.invisible}
+            />
+            <Input name="status"
+              className={classes.invisible}/>
+
+
             {/* Mais inputs aki */}
           </Grid>
           {/* grid confirm */}
@@ -74,7 +97,7 @@ export default function NewMsg() {
           {/* grid buttons */}
           <Grid item ><Button variant="contained"
               className={classes.button_c}
-              fullWidth="true"
+              fullWidth
               onClick={handleVoltar}>
               Cancelar</Button>
           </Grid>
@@ -83,7 +106,7 @@ export default function NewMsg() {
               variant="contained"
               className={classes.button_e}
               color="secondary"
-              fullWidth={true}
+              fullWidth
               type="submit">
               Enviar</Button>
           </Grid>
