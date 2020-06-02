@@ -140,7 +140,7 @@ const Login = ({history}) =>{
         name="password" label="Senha"
         type="password" id="password"
         autoComplete="current-password"
-        autoFocus                                                                         
+                                                                                
         error = {requiredPassword}                                           
       />
       { alertForm }
