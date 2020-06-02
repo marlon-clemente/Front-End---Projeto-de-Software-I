@@ -104,7 +104,7 @@ const Login = ({history}) =>{
     <div className={classes.section_desktop}>
       <Typography component="div"><Box fontFamily="Lato"
         fontSize={25} fontWeight={400}
-        textAlign="center"><b>BEM VINDO DIREÇÃO</b>
+        textAlign="center">BEM VINDO DIREÇÃO
         </Box><Box fontFamily="Roboto"
         fontSize={18} fontWeight={300}
         textAlign="center">Efetue login para acessar
