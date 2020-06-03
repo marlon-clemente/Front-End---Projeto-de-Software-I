@@ -29,12 +29,10 @@ const UseStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
-        borderRadius:"35px",
+        margin: theme.spacing(3, 1, 0),
         textAlign:'center',     
         alignItems: 'center', 
         width:"50%",
-        
         alignSelf:'center' 
     }
   }));

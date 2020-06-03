@@ -1,104 +1,91 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {Form} from '@unform/web';
+
+import Input from '../../component/Form/input'; 
 
 import UseStyles from './styles';
 export default function Registro() {
   const classes = UseStyles();
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("")
+  
+  function handleForm(data){
+    console.log(data);
+  }
 
   return (
     <div className={classes.root}>
-
       <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>          
-          <Grid item xs>
-               <Typography className={classes.titulo} component="h1" variant="h5" color="primary">
-                     <b>Cadastre-se</b>
-               </Typography>                      
-               <Typography className={classes.subtitulo} component="h1" variant="body2" color="textSecondary">
-                     <i>Crie uma conta e entre na plataforma</i>
-               </Typography>
-               
-               <form className={classes.form} noValidate>
-                      <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="user"
-                      label="Seu nome de usuario"
-                      name="user"
-                      autoComplete="user"
-                      autoFocus
-                      />
+        <Grid container wrap="nowrap" spacing={2}>          <Grid item xs>
+          <Typography className={classes.titulo} component="h1" variant="h5" color="primary">
+            <b>Cadastre-se</b>
+          </Typography><Typography className={classes.subtitulo} component="h1" variant="body2" color="textSecondary">
+            <i>Crie uma conta e entre na plataforma</i>
+          </Typography>
+             
+          <Form className={classes.form}
+            onSubmit={handleForm}
+            noValidate>
+            {/* Informações escolares */}
+            <Input
+              required fullWidth
+              label="Razão social" name="school.social_reason"
+              autoFocus
+            />
 
-                        <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="cpf"
-                      label="Seu CPF"
-                      name="cpf"
-                      autoComplete="cpf"                            
-                      />
+            <Input
+              required fullWidth
+              label="Rua" name="school.address.street"
+              autoFocus
+            />
 
-                      <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="email"
-                      label="Seu e-mail"
-                      name="email"
-                      autoComplete="email"
-                      onChange={
-                        event=>{
-                          setEmail(event.target.value)
-                        }
-                      }
-                      />
+            <Input
+              required fullWidth
+              label="Número" name="school.address.number"
+              autoFocus
+            />
 
-                      <TextField
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      name="password"
-                      label="Senha"
-                      type="password"
-                      id="password"
-                      autoComplete="current-password"
-                      onChange={
-                        event=>{
-                          setSenha(event.target.value)
-                        }
-                      }
-                      />
-                  
-                      <Button 
-                      href="/"                            
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      > voltar
-                      </Button>
+            <Input
+              required fullWidth
+              label="Complemento" name="school.address.complement"
+              autoFocus
+            />
+
+            {/* Informações de usuário */}
+
+            <Input
+              required fullWidth
+              label="Nome de usuario" name="username"
+              autoFocus
+            />
+
+            <Input
+              required fullWidth
+              label="E-mail" name="email"
+              autoComplete="user" autoFocus
+            />
+            <Input
+              required fullWidth type="password"
+              label="Senha" name="password"
+              autoFocus
+            />
+            
+            <Button 
+              variant="contained" type="submit"
+              color="primary" className={classes.submit}> Confirmar
+            </Button>
+
+            <Button 
+              href="/" variant="contained" disableElevation
+              color="primary" className={classes.submit}> voltar
+            </Button>
                       
-                      <Button
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      onClick={console.log(email + senha)}
-                      >Cadastrar
-                      </Button>
+                      
                                                                                                               
-                 </form>
+          </Form>
           </Grid>
         </Grid>
       </Paper>
