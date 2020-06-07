@@ -7,7 +7,7 @@ export default function BoxProblemas(){
   const classes = Style();
   return (
     <div className={classes.root}>
-      <Title>Analises</Title>
+      <Title>Situação Geral</Title>
       <Divider />
     </div>);
 }

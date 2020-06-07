@@ -10,7 +10,7 @@ const useStyles = makeStyles({
       marginLeft:'50%',
       marginTop:'50vh',
     }
-  });
+});
   
 export const AuthProvider = ({ children }) =>{
     const [currentUser, setCurrentUser] = useState(null);

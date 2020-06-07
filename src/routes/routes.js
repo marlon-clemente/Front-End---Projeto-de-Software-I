@@ -5,7 +5,7 @@ import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import HomeUser from '../pages/HomeUser';
 import CaixaEntrada from '../pages/CaixaEntrada';
-import Salas from '../pages/Salas';
+// import Salas from '../pages/Salas';
 import Problemas from '../pages/Problemas';
 import Ajuda from '../pages/Ajuda';
 import Error from '../pages/Error';
@@ -36,7 +36,7 @@ export default function Routers(){
                 
                 <PrivateRouteDir path="/dashboard" component={Dashboard} />
                 <PrivateRouteDir path="/caixa_entrada" component={CaixaEntrada} />
-                <PrivateRouteDir path="/salas" component={Salas} />
+                {/* <PrivateRouteDir path="/salas" component={Salas} /> */}
                 <PrivateRouteDir path="/ajuda" component={Ajuda} />
                 <PrivateRouteDir path="/problemas" component={Problemas} />
                 

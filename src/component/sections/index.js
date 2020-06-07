@@ -20,14 +20,18 @@ export default function Section() {
       { currentSections==='security' ? (<Security />) : (<></>)}
       { currentSections==='sala' ? (<Sala />) : (<></>)}
       { currentSections==='ajuda' ? (<Ajuda />) : (<></>)}
-      
     </div>
   ) 
   
   return (
-    <div className={classes.root}><div 
-      className={classes.content}component={Paper} elevation={6}>
-      { section }
-    </div></div>
+    <div className={classes.root}>
+      <div 
+        className={classes.content}
+        component={Paper}
+        elevation={6}
+      >
+        { section }
+      </div>
+    </div>
   )
 }

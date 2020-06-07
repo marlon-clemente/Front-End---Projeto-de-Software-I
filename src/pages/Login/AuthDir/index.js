@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useState} from 'react'
+import React, { useContext, useState } from 'react'
 import {withRouter, Redirect} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
@@ -8,107 +8,52 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Styles from './styles';
 
-import loginApp from '../../../firebase';
-import { AuthContext } from '../../../context/Auth';
-import { useSections } from '../../../context/Sections'; 
+import { useSections } from '../../../context/Sections';
+import DataContext from '../../../context/Data';
 
 const Login = ({history}) =>{     
   const classes = Styles();
   const { setCurrentSections } = useSections();
   
-  var [requiredEmail,setRequiredEmail]=useState(false)
-  var [requiredPassword,setRequiredPassword]=useState(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [requiredEmail, setRequiredEmail] = useState(false)
+  const [requiredPassword, setRequiredPassword] = useState(false)
   const [alertForm, setAlertForm] = useState(<></>);
   
   const handleAlterBox = () =>{
-        setCurrentSections(' ')
+    setCurrentSections(' ')
   }
   const handleSuport = () =>{
-        setCurrentSections('rescuePassword')
+    setCurrentSections('rescuePassword')
   }
   
-  const handleLogin = useCallback(
-    async event => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
+  const { handleLogin, loggedUser } = useContext(DataContext);
 
-      if(email.value.length===0 &&
-         password.value.length===0){           
-        setRequiredEmail(true);
-        setRequiredPassword(true);
-        setAlertForm(<Alert severity="error">
-            Por favor! Digite seu e-mail e sua senha!
-          </Alert>
-        );              
-      }
-      else if(email.value.length===0 
-        && password.value.length!==0){           
-        setRequiredEmail(true);
-        setRequiredPassword(false);
-        setAlertForm(<Alert severity="error">
-            Por favor! Digite seu e-mail!
-          </Alert>
-        );              
-      }
-      else if(email.value.length!==0
-        && password.value.length===0){           
-        setRequiredPassword(true);
-        setRequiredEmail(false);
-        setAlertForm(<Alert severity="error">
-            Por favor! Digite sua senha!
-          </Alert>
-        );              
-      }
-      else{
-        try {
-          await loginApp
-            .auth()
-            .signInWithEmailAndPassword(email.value, password.value);
-          history.push("/");
-        } catch (error) {
-            var errorCode = error.code;
-            if(errorCode==="auth/user-not-found" ||
-               errorCode==="auth/wrong-password" ){
-                setRequiredEmail(true);
-                setRequiredPassword(true);
-                setAlertForm(
-                <Alert 
-                  severity="error">
-                  Seu e-mail e sua senha não correspondem!
-                </Alert>
-            );                 
-          }else if(errorCode==="auth/invalid-email"){
-            setRequiredEmail(true);
-            setRequiredPassword(true);
-            setAlertForm(
-              <Alert 
-                severity="error">
-                Por favor! Digite um e-mail válido!
-              </Alert>
-            );           
-          }                                
-        }
-      }
-    }
-    ,[history]
-  );
-    
-  const { currentUser } = useContext(AuthContext);
-  if(currentUser){
-      return <Redirect to="/" />
+  if(Object.keys(loggedUser).length){
+    return <Redirect to="/" />
   }
-  return(    
+  return(
   <div className={classes.paper}>
     <meta name="theme-color" content="#336666"/>
     
     <div className={classes.section_desktop}>
-      <Typography component="div"><Box fontFamily="Lato"
-        fontSize={25} fontWeight={400}
-        textAlign="center">BEM VINDO DIREÇÃO
-        </Box><Box fontFamily="Roboto"
-        fontSize={18} fontWeight={300}
-        textAlign="center">Efetue login para acessar
-        a plataforma.</Box>
+      <Typography component="div">
+        <Box 
+          fontFamily="Lato"
+          fontSize={25}
+          fontWeight={400}
+          textAlign="center"
+        >BEM VINDO DIREÇÃO
+        </Box>
+        <Box
+          fontFamily="Roboto"
+          fontSize={18}
+          fontWeight={300}
+          textAlign="center"
+        >Efetue login para acessar a plataforma.
+        </Box>
       </Typography>               
     </div>
 
@@ -123,24 +68,62 @@ const Login = ({history}) =>{
       </Typography>               
     </div>
 
-    <form className={classes.form} 
-      onSubmit={handleLogin}              
-      noValidate>                   
+    <form 
+      className={classes.form} 
+      noValidate
+      onSubmit={ (event) => {
+        event.preventDefault()
+        setLoading(true);
+        if (!email)
+          setRequiredEmail(true);
+        if (!password)
+          setRequiredPassword(true);
+
+        if (email && password)
+          handleLogin({ email, password }, (status, error) => {
+            if (error?.response?.status > 300) {
+              setAlertForm(
+                <Alert severity="error">
+                  Seu e-mail e sua senha não correspondem!
+                </Alert>
+              );
+            } else {
+              status === 200 && history.push('/')
+            }
+            setLoading(false);
+          });
+      } }
+    >
       <TextField
-        variant="outlined" margin="normal"
-        required fullWidth
-        id="email" label="Endereço de e-mail da escola"
-        name="email" autoComplete="email"                        
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        id="email" 
+        name="email"
+        autoComplete="email"                        
+        label="Endereço de e-mail da escola"
         autoFocus
-        error = {requiredEmail}                  
+        error = {requiredEmail}
+        onChange={event => {
+          setRequiredEmail(false);
+          setEmail(event.target.value)
+        }}
       />
       <TextField                       
-        variant="outlined" margin="normal"
-        required fullWidth
-        name="password" label="Senha"
-        type="password" id="password"
-        autoComplete="current-password"
-                                                                                
+        variant="outlined"
+        margin="normal"
+        required
+        fullWidth
+        id="password"
+        name="password"
+        type="password"
+        label="Senha"
+        autoComplete="current-password"                                                                        
+        onChange={event => {
+          setRequiredPassword(false);
+          setPassword(event.target.value)
+        }}
         error = {requiredPassword}                                           
       />
       { alertForm }
@@ -149,8 +132,8 @@ const Login = ({history}) =>{
         variant="contained"
         color="primary"                
         className={classes.button}                                 
-        type="submit"                
-      > Entrar
+        type="submit"
+      > { loading ? 'Carregando...' : 'Entrar' }
       </Button>
 
       <Typography component="div" color="primary">

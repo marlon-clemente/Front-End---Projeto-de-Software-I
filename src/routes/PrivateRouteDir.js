@@ -1,20 +1,15 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../context/Auth';
+import DataContext from '../context/Data';
 
 const PrivateRouteDir = ({component: RouteComponent, ...rest}) => {
-  const {currentUser} = useContext(AuthContext);
-  var provider = '';
-  if (currentUser != null){
-    const getProviderUser = currentUser.providerData;
-    provider = getProviderUser[0].providerId;
-  }
+  const { loggedUser } = useContext(DataContext);
 
   return(
       <Route
         {...rest}
         render={routeProps =>
-          !!currentUser && provider === 'password' ? (
+          !!Object.keys(loggedUser).length && loggedUser.password ? (
               <RouteComponent {...routeProps } />
           ) : (
               <Redirect to={"/login"} />

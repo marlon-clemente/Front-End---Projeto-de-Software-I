@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BoxMsg from './boxMsg';
 import BoxNoMsg from './boxNoMsg';
 
+import DataContext from '../../../context/Data';
+
 export default function Switcher() {
-  var mensagens = [];
+  const { tickets, fetchTickets } = useContext(DataContext);
+  const [error, setError] = useState({});
+  
+  const getTickets = async() => {
+    await fetchTickets((res, error) => {
+      if (error)
+        setError(error);
+    });
+  }
+
+  useEffect(() => {
+    getTickets();
+  }, []);
+  
+  setInterval(() => {
+    getTickets();
+  }, 600000);
 
   return (
     <div>
-      {mensagens.length > 0 ? (<BoxMsg/>) : (<BoxNoMsg/>) }
+      {tickets.length ? <BoxMsg tickets={tickets} /> : <BoxNoMsg error={error} />}
     </div>
   )
 }

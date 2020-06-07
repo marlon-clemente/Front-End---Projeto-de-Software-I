@@ -14,13 +14,15 @@ import Styles from './styles';
 import Input from '../../../component/Form/input';
 import loginApp from '../../../firebase';
 import { useSections } from '../../../context/Sections';
-import { AuthContext } from '../../../context/Auth';
+// import { AuthContext } from '../../../context/Auth';
+import DataContext from '../../../context/Data';
 
 
 export default function EditProfile() {
   const classes = Styles();
-  const {currentUser} = useContext(AuthContext);
-  const userApp = loginApp.auth().currentUser;
+  // const {currentUser} = useContext(AuthContext);
+  const { loggedUser, school } = useContext(DataContext);
+  // const userApp = loginApp.auth().currentUser;
   const [alert, setAlert] = useState((<></>));
   const { setCurrentSections} = useSections();
 
@@ -41,38 +43,39 @@ export default function EditProfile() {
   };
 
   async function handleUpdateUser(data){
-    await getFileBlob(previewUrl, blob =>{
-      loginApp.storage().ref().child("profileImage/"+data.name+"/avatar.jpg")
-      .put(blob).then(function(snapshot) {
-        console.log("Imagem carregada com suceso.");
-        snapshot.ref.getDownloadURL().then(function(downloadURL) {
-          console.log('Você pode encontrar o arquivo em: ',downloadURL);
-          data.urlImg = downloadURL;
-        })
-      })
-    })
+    // await getFileBlob(previewUrl, blob =>{
+    //   loginApp.storage().ref().child("profileImage/"+data.name+"/avatar.jpg")
+    //   .put(blob).then(function(snapshot) {
+    //     console.log("Imagem carregada com suceso.");
+    //     snapshot.ref.getDownloadURL().then(function(downloadURL) {
+    //       console.log('Você pode encontrar o arquivo em: ',downloadURL);
+    //       data.urlImg = downloadURL;
+    //     })
+    //   })
+    // })
 
-    const update = {
-      displayName: data.name,
-      photoURL: data.urlImg
-    }
-    await userApp.updateProfile(update)
-    .then(()=>{
-      setAlert(
-        <Alert 
-          severity="success">
-          Seu perfil de usuário foi alterado com sucesso!
-        </Alert>
-      )
-    })
-    .catch((error) => {
-      setAlert(
-        <Alert 
-          severity="error">
-          {error}
-        </Alert>
-      )
-    })
+    // const update = {
+    //   displayName: data.name,
+    //   photoURL: data.urlImg
+    // }
+    // await userApp.updateProfile(update)
+    // .then(()=>{
+    //   setAlert(
+    //     <Alert 
+    //       severity="success">
+    //       Seu perfil de usuário foi alterado com sucesso!
+    //     </Alert>
+    //   )
+    // })
+    // .catch((error) => {
+    //   setAlert(
+    //     <Alert 
+    //       severity="error">
+    //       {error}
+    //     </Alert>
+    //   )
+    // })
+    console.log('updated')
   }
 
   function handleCancel(){
@@ -90,10 +93,6 @@ export default function EditProfile() {
       setControlCrop(true);
     }
   };
-
-  const initialData ={
-    name: currentUser.displayName
-  }
 
   const onLoad = useCallback(img => {
     imgRef.current = img;
@@ -142,7 +141,7 @@ export default function EditProfile() {
     <div>
       <Header title="Alterar perfil escolar" returnTo="conta" />
       <Divider/>
-       <Form initialData={initialData} onSubmit={handleUpdateUser}>
+       <Form initialData={ school } onSubmit={handleUpdateUser}>
         <input accept="image/*" className={classes.inputImage}
         id="icon-button-file" name="photo" type="file" onChange={onSelectFile}/>
         
@@ -180,10 +179,9 @@ export default function EditProfile() {
           )
         }
         
-        
-        <Input name="name" label="Nome da escola"/>
-        <Input name="social" label="Razão Social"/>
-        <Input name="city" label="Cidade"/>
+        <Input name="social_reason" label="Razão Social"/>
+        <Input name="address.street" label="Endereço"/>
+        <Input name="address.number" label="Número"/>
         <Button
           variant="contained"
           color="primary"

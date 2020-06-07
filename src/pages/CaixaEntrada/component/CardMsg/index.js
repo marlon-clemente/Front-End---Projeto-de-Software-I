@@ -18,7 +18,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 300,
+    width: '100%'
   },
   media: {
     height: 0,
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({ tickets }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -48,59 +49,67 @@ export default function RecipeReviewCard() {
   };
 
   return (
-      <Grid item xs>
-        <Card className={classes.root}>
-
+    <Grid 
+      container
+      justify="flex-start"
+      item
+      xs
+      style={{ flexGrow: 1 }}
+      >
+      { tickets.map(ticket => (
+        ticket.tickets.map(t => (
+          <Card key={t.id} className={classes.root}>
             <CardHeader
-                title="[Sala com problema]"
-                subheader="[dd/mm/aaaa]"
+              title={ticket.identifier}
+              subheader={t.updated_at}
             />
 
             <CardMedia
-                className={classes.media}
-                image="/static/images/cards/paella.jpg"
+              className={classes.media}
+              image="/static/images/cards/paella.jpg"
             />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          [Identificação do patrimonio]
-        </Typography>
-      </CardContent>
 
-      <CardActions disableSpacing>
-        <Tooltip title="Quem solicitou?">
-            <IconButton>
-                <PersonIcon />
-            </IconButton>
-        </Tooltip>
-        
-        <Tooltip title="Tornar um problema">
-            <IconButton>
-                <LinkIcon />
-            </IconButton>
-        </Tooltip>
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {t.title}
+              </Typography>
+            </CardContent>
 
-        <Tooltip title="Mostrar mais">
-            <IconButton
-                className={clsx(classes.expand, {
-                    [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                >
-                <ExpandMoreIcon />
-            </IconButton>
-        </Tooltip>
+            <CardActions disableSpacing>
+              <Tooltip title="Quem solicitou?">
+                <IconButton>
+                  <PersonIcon />
+                </IconButton>
+              </Tooltip>
+              
+              <Tooltip title="Tornar um problema">
+                <IconButton>
+                  <LinkIcon />
+                </IconButton>
+              </Tooltip>
 
-      </CardActions>
+              <Tooltip title="Mostrar mais">
+                <IconButton
+                  className={clsx(classes.expand, {
+                      [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  >
+                  <ExpandMoreIcon/>
+                </IconButton>
+              </Tooltip>
+            </CardActions>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            [Descrição completa do relato]
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>
+                  {t.description}
+                </Typography>
+              </CardContent>
+            </Collapse>
+          </Card>
+      ))))}
     </Grid>
   );
 }

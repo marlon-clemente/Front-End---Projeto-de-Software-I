@@ -44,8 +44,13 @@ const useStyles = makeStyles((theme) => ({
     buttonFace:{
       backgroundColor:'#2a5297',
       color: '#ffffff',
-      width: '80%',
       margin: '18px',
+      border: 0,
+      fontSize: 15,
+      padding: 15,
+      cursor: 'pointer',
+      borderRadius: '3px',
+      fontWeight: 'bold',
       '&:hover':{
         backgroundColor: '#2a5277',
         color: '#ffffff',
@@ -55,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
     buttonGoogle:{
       backgroundColor:'#ea4335',
       color: '#ffffff',
-      width: '80%',
       margin: '18px',
       '&:hover':{
         backgroundColor: '#ea4344',
