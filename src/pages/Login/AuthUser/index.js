@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 
@@ -13,6 +15,8 @@ import { useSections } from '../../../context/Sections';
 const LoginUser = ({history}) =>{
     const classes = Styles();
     const { setCurrentSections } = useSections();
+    const [alertForm, setAlertForm] = useState(<></>);
+    
     const handleAlterBox = () =>{
         setCurrentSections('loginDir')
     }
@@ -20,15 +24,28 @@ const LoginUser = ({history}) =>{
     const { loggedUser, handleLogin } = useContext(DataContext);
     
     const handleLoginGoogle = ({ profileObj: { email, name, imageUrl }}) => {
-        handleLogin({ name, email, picture: imageUrl }, (status, error) => {
-            console.log(status)
-            status === 200 && history.push('/')
+        setAlertForm(<></>);
+        handleLogin({ name, email, picture: imageUrl }, (response, error) => {
+            if (error)
+                setAlertForm(
+                    <Alert severity="error">
+                        <AlertTitle>{error.name}</AlertTitle>
+                        {error.message}
+                    </Alert>
+                );
         });
     }
 
     const handleFacebookLogin = ({ name, email, picture }) => {
-        handleLogin({ name, email, picture: picture.data.url }, (status, error) => {
-            status === 200 && history.push('/')
+        setAlertForm(<></>);
+        handleLogin({ name, email, picture: picture.data.url }, (response, error) => {
+            if (error) 
+                setAlertForm(
+                    <Alert severity="error">
+                        <AlertTitle>{error.name}</AlertTitle>
+                        {error.message}
+                    </Alert>
+                );
         });
     }
     
@@ -94,12 +111,15 @@ const LoginUser = ({history}) =>{
             </Typography>
         </div>
 
+        { alertForm }
+
         <div className={classes.paper_buttons}>
             <FacebookLogin
                 appId="1124613164561850"
                 fields="name, picture, email"
                 callback={handleFacebookLogin}
                 icon="fa fa-facebook"
+                disableMobileRedirect={true}
                 textButton={<span style={{ paddingLeft: 5 }}>Entrar com Facebook</span>}
                 cssClass={classes.buttonFace}
             />
@@ -109,8 +129,14 @@ const LoginUser = ({history}) =>{
                 buttonText="Entrar com Google"
                 className={classes.buttonGoogle}
                 onSuccess={handleLoginGoogle}
-                onFailure={handleLoginGoogle}
-                cookiePolicy={'single_host_origin'}
+                onFailure={(error) => {
+                    setAlertForm(
+                        <Alert severity="error">
+                            <AlertTitle>{error.name}</AlertTitle>
+                            {error.message}
+                        </Alert>
+                    );
+                }}
             />
 
             <Typography component="div">

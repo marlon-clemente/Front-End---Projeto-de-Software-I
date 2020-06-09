@@ -33,6 +33,7 @@ export default function Routers(){
         <BrowserRouter>
             <Switch>
                 <Route path="/" component={SwitchRoute} exact />
+                <Route path="/login" component={Login} />
                 
                 <PrivateRouteDir path="/dashboard" component={Dashboard} />
                 <PrivateRouteDir path="/caixa_entrada" component={CaixaEntrada} />
@@ -42,7 +43,6 @@ export default function Routers(){
                 
                 <PrivateRouteUser path="/home" component={HomeUser} />
                 
-                <Route path="/login" component={Login} exact />
                 <Route path="/grid" component={Grid} />
                 <Route path="/new" component={NewDir} />
                 <Route component={Error} />
