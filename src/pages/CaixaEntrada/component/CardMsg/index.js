@@ -48,6 +48,8 @@ export default function RecipeReviewCard({ tickets }) {
     setExpanded(!expanded);
   };
 
+  console.log(tickets)
+
   return (
     <Grid 
       container
@@ -57,21 +59,20 @@ export default function RecipeReviewCard({ tickets }) {
       style={{ flexGrow: 1 }}
       >
       { tickets.map(ticket => (
-        ticket.tickets.map(t => (
-          <Card key={t.id} className={classes.root}>
+          <Card key={ticket.id} className={classes.root}>
             <CardHeader
-              title={ticket.identifier}
-              subheader={t.updated_at}
+              title={ticket.title}
+              subheader={ticket.updated_at}
             />
 
             <CardMedia
               className={classes.media}
-              image="/static/images/cards/paella.jpg"
+              image={ticket.photos[0]?.url}
             />
 
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
-                {t.title}
+                {ticket.identifier}
               </Typography>
             </CardContent>
 
@@ -104,12 +105,12 @@ export default function RecipeReviewCard({ tickets }) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography paragraph>
-                  {t.description}
+                  {ticket.description}
                 </Typography>
               </CardContent>
             </Collapse>
           </Card>
-      ))))}
+      ))}
     </Grid>
   );
 }
