@@ -23,6 +23,7 @@ export default function MenuAppBar() {
   const open = Boolean(anchorEl);
   const [openSchool, setOpenSchool] = useState(false);
   const [response, setResponse] = useState({});
+  const [schoolIdHash, setSchoolIdHash] = useState();
   const {
     loggedUser,
     handleLogout,
@@ -48,11 +49,12 @@ export default function MenuAppBar() {
   };
 
   const handleClick = () => {
-    subscribeUserToSchool(({ data: { message } }, error) => {
+    subscribeUserToSchool(schoolIdHash, (res, error) => {
       if (error) {
         setResponse({ type: 'error', error});
       } else {
-        setResponse({ type: 'success', message })
+        const { data: { message } } = res;
+        setResponse({ type: 'success', message });
       }
       setOpenSchool(false);
     });
@@ -129,6 +131,8 @@ export default function MenuAppBar() {
               type="number"
               fullWidth
               color="secondary"
+              onChange={(event) => setSchoolIdHash(event.target.value)}
+              value={schoolIdHash}
             />
           </DialogContentText>
         </DialogContent>
