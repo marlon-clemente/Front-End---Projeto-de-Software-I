@@ -4,7 +4,7 @@ const SectionsContext = createContext();
 
 export const SectionsProvider = ({children}) => {
   const [currentSections, setCurrentSections] = useState(" ");
-
+  
   return (
     <div>
       <SectionsContext.Provider

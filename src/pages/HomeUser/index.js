@@ -1,17 +1,41 @@
-import React from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import AppBar from '../../component/AppBarUser';
 import Styles from './styles';
 import Fab from '@material-ui/core/Fab';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 
 import { useSections } from '../../context/Sections';
+import ToSchool from './Sections/toSchool';
+import BoxMsg from './Sections/boxMsg';
+import BoxNoMsg from './Sections/boxNoMsg';
 import NewMsg from './Sections/newMsg';
-import Switcher from './Sections';
+
+import DataContext from '../../context/Data';
 
 export default function Home() {
   const classes = Styles();
+  const { tickets, fetchTickets, school } = useContext(DataContext);
+  const [error, setError] = useState({});
   const { currentSections, setCurrentSections } = useSections();
   
+  const [loading, setloading] = useState(true);
+
+  const loadInfos = async() => {
+    await fetchTickets((res, error) => {
+      if (error)
+        setError(error);
+    });
+    await setloading(false)
+  }
+  
+  useEffect(()=>{
+     loadInfos();
+  },[currentSections])
+
+  setInterval(() => {
+    loadInfos();
+  }, 60000);
+
   const handleFab = () => {
     setCurrentSections("newMsg");
   }
@@ -19,18 +43,23 @@ export default function Home() {
   return (
     <div className={classes.root}><AppBar/><div
       className={classes.content}>
-      {currentSections === 'newMsg' ? (<NewMsg />) : (< Switcher/>)}
-      {currentSections !== 'newMsg' ? (
-        <Fab color="secondary"
-          className={classes.fab}
-          onClick={handleFab}
-          aria-label="add"
-        >
-          <AddCommentIcon />
-        </Fab>
-      ) : (
-        <></>
-      )} 
+      {loading ? (<div className={classes.load}>Aguarde...</div>) : (<>
+        {
+          currentSections === 'newMsg' ? (<NewMsg />) : (<>
+          { tickets.length ? (<BoxMsg tickets={tickets}/>) :
+            !tickets.length && Object.keys(school).length ? (<BoxNoMsg error={error}/>) :
+            !tickets.length && !Object.keys(school).length ? (<ToSchool/>) : (<></>)    
+          }
+          </>)
+        }
+        </>)
+      }
+      
+      { 
+        (tickets.length) || (!tickets.length && Object.keys(school).length) ? (
+        <Fab color="secondary" className={classes.fab}
+          onClick={handleFab} aria-label="add"><AddCommentIcon />
+        </Fab>) : (<></>)}
     </div></div>
     )
 }

@@ -7,7 +7,7 @@ const ThemeGreen = createMuiTheme({
     },
     secondary: {
       main: "#2A3261",
-    },
+    }
   },
 
   typography: {

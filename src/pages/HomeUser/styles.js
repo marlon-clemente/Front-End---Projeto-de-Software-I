@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      height: '100vh',
       padding: theme.spacing(3),
     },
     grid_user: {
@@ -22,6 +21,12 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
       bottom: theme.spacing(2),
       right: theme.spacing(2),
+    },
+    load:{
+      textAlign: 'center',
+      fontSize: 20,
+      fontFamily: 'Lato',
+      color: theme.palette.text.secondary
     },
   }),
 );
