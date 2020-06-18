@@ -18,6 +18,8 @@ export default function Home() {
   const [error, setError] = useState({});
   const { currentSections, setCurrentSections } = useSections();
   
+  const [favButton, setFavButton]=useState()
+
   const [loading, setloading] = useState(true);
 
   const loadInfos = async() => {
@@ -55,9 +57,7 @@ export default function Home() {
         </>)
       }
       
-      { 
-        (tickets.length) || (!tickets.length && Object.keys(school).length) ? (
-        <Fab color="secondary" className={classes.fab}
+      { currentSections !== 'newMsg' || (!tickets.length && !Object.keys(school).length) ? (<Fab color="secondary" className={classes.fab}
           onClick={handleFab} aria-label="add"><AddCommentIcon />
         </Fab>) : (<></>)}
     </div></div>

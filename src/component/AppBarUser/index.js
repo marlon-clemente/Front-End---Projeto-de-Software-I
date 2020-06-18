@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import Drawer from '@material-ui/core/Drawer';
-import Logo from '../../assets/logo.svg';
+import Logo from '../../assets/logo-white.png';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import DataContext from '../../context/Data';
 import Styles from './styles';

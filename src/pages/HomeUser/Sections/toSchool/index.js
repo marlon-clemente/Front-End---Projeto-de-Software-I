@@ -47,7 +47,7 @@ export default function ToSchool({props}) {
         fornecer esse código para você!</Box>
       </Typography>
       
-      <TextField autoFocus
+      <TextField
         margin="dense"
         id="schoolIdHash"
         label="Código identificador"
