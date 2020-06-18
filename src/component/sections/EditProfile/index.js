@@ -14,15 +14,12 @@ import Styles from './styles';
 import Input from '../../../component/Form/input';
 import loginApp from '../../../firebase';
 import { useSections } from '../../../context/Sections';
-// import { AuthContext } from '../../../context/Auth';
 import DataContext from '../../../context/Data';
 
 
 export default function EditProfile() {
   const classes = Styles();
-  // const {currentUser} = useContext(AuthContext);
   const { loggedUser, school } = useContext(DataContext);
-  // const userApp = loginApp.auth().currentUser;
   const [alert, setAlert] = useState((<></>));
   const { setCurrentSections} = useSections();
 
@@ -144,11 +141,10 @@ export default function EditProfile() {
        <Form initialData={ school } onSubmit={handleUpdateUser}>
         <input accept="image/*" className={classes.inputImage}
         id="icon-button-file" name="photo" type="file" onChange={onSelectFile}/>
-        
         { previewUrl && <Avatar className={classes.avatar}
           alt="Crop preview" src={previewUrl} />}
-        {
-          !controlCrop ? (
+        
+        {!controlCrop ? (
             <Link color="primary">
               <label htmlFor="icon-button-file">
                 Adicionar imagem</label>

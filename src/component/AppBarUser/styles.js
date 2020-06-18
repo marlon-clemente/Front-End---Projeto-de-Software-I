@@ -65,9 +65,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     blockBackground:{
       paddingTop: '18px',
-      height: '60px',
-      backgroundColor: theme.palette.secondary.main,
-      backgroundImage: `linear-gradient(to bottom right, ${theme.palette.secondary.main}, #2a2a)`
+      height: 'px',
+      background: theme.palette.secondary.main
     },
     button:{
       width: '80%'

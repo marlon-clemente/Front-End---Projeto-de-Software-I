@@ -25,7 +25,35 @@ const useStyles = makeStyles((theme: Theme) =>
         marginRight: 200,
       },
     },
-    
+    imgBox:{
+      margin: 'auto',
+      marginBottom: '12px',
+      width: '260px',
+      height: '260px',
+    },
+    inputImg:{
+      display: 'block',
+      fontFamily: 'Lato',
+      color:'#ffffff',
+      fontSize: '18px',
+      backgroundColor: theme.palette.secondary.main,
+      borderRadius: 10,
+      height: '100%',
+      width: '100%',
+      cursor: 'pointer',
+    },
+    inputNone:{
+      display: 'none'
+    },
+    imgPrewiew:{
+      position: 'relative',
+      width: '100%',
+      height: '100%'
+    },
+    checkedBox:{
+      marginTop: '8px',
+      marginBottom: '8px',
+    },
     paper: {
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
@@ -50,7 +78,19 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(1),
       width: '100%',
     },
-    
+    label: {
+      fontFamily: 'Lato',
+      fontSize: '18',
+      textAlign:'center',
+      margin: 'auto',
+      cursor: 'pointer',
+      color: theme.palette.secondary.color
+    },
+    icon:{
+      fontSize: '85px',
+      marginTop: '60px',
+      alignItems: 'center',
+    }
   }),
 );
 

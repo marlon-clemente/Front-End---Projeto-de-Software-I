@@ -16,7 +16,7 @@ export default function TextImput() {
   return (
     <div>
       <Typography className={classes.root} 
-        align="center">Relatar um problema
+        align="center">Enviar novo ticket
       </Typography>
       <Divider />
     </div>

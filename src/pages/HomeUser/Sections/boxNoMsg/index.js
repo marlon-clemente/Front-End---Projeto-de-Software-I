@@ -31,7 +31,7 @@ export default function BoxNoMsg({ error }) {
             color="#808080"
             m={2}
           >
-            Nenhuma mensagem no momento
+            Nenhum ticket no momento
           </Box>
           <Box
             fontFamily="Lato"
@@ -40,7 +40,7 @@ export default function BoxNoMsg({ error }) {
             textAlign="center"
             color="primary"
           >
-            Use o botão <AddCommentIcon color="secondary" /> na parte inferior da tela <br/> para reportar algum problema para a direção de sua escola.
+            Use o botão <AddCommentIcon color="secondary" /> na parte inferior da tela <br/> para reportar um problema para a direção de sua escola.
           </Box>
         </>
       )}
