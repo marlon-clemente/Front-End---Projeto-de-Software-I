@@ -1,27 +1,28 @@
 import React, { useContext, useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 import MenuItem from '@material-ui/core/MenuItem';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
+import Drawer from '@material-ui/core/Drawer';
+import Logo from '../../assets/logo.svg';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import DataContext from '../../context/Data';
 import Styles from './styles';
+import clsx from 'clsx';
 
 export default function MenuAppBar() {
   const classes = Styles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [openSchool, setOpenSchool] = useState(false);
+  const [drawer, setDrawer] = useState(false);
+
   const [response, setResponse] = useState({});
   const [schoolIdHash, setSchoolIdHash] = useState();
   const {
@@ -40,6 +41,14 @@ export default function MenuAppBar() {
     });
   }, [])
 
+  const toggleDrawer = ()=>{
+    setDrawer(true);
+  };
+
+  const handleDrawerClose = ()=>{
+    setDrawer(false);
+  }
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -47,134 +56,78 @@ export default function MenuAppBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleClick = () => {
-    subscribeUserToSchool(schoolIdHash, (res, error) => {
-      if (error) {
-        setResponse({ type: 'error', error});
-      } else {
-        const { data: { message } } = res;
-        setResponse({ type: 'success', message });
-      }
-      setOpenSchool(false);
-    });
-  }
-
   return (
     <div className={classes.root}>
       <meta name="theme-color" content="#2A3261"/>
       <AppBar color="secondary" position="static">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Olá, {loggedUser.username}
+        <Toolbar className={classes.toolbarDesktop}>
+          <img src={Logo} className={classes.logo}/>
+          <Typography className={classes.title}>
+            SISGEPE
           </Typography>
-
           <Typography variant="h6" className={classes.title}>
-            { Object.keys(school).length ? `${school.social_reason}(${school.id_hash})` : (
-              <Button 
-                onClick={() => setOpenSchool(true)}
-                style={{
-                  color: "white"
-                }}
-              >Escolher uma escola</Button>
-            ) }
+            {school.social_reason} | {school.id_hash}
           </Typography>
+          <IconButton
+            aria-label="account of current user" aria-controls="menu-appbar"
+            aria-haspopup="true" onClick={handleMenu} color="inherit">
+            <Avatar src={picture} className={classes.avatar}>MC</Avatar>
+            <Typography variant="h6" className={classes.name}>
+              { loggedUser.username }
+            </Typography>
+            <ExpandMoreIcon/>
+          </IconButton>          
+          <Menu id="menu-appbar" anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top', horizontal: 'right'}}
+            keepMounted
+            transformOrigin={{vertical: 'top', horizontal: 'right'}}
+            open={open}
+            onClose={handleClose}>
+            <MenuItem onClick={handleLogout}>Sair</MenuItem>
+          </Menu>
+        </Toolbar>
 
-          <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <Avatar src={picture} className={classes.avatar}>MC</Avatar>
-            </IconButton>
+        <Toolbar className={classes.toobarMobile}>
 
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleLogout}>Sair</MenuItem>
-            </Menu>
-          </div>
+        <IconButton edge="start" onClick={toggleDrawer}
+
+          color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton>
+        <div className={classes.marca}>
+          <img src={Logo} className={classes.logo}/>
+          <Typography className={classes.title}>
+            SISGEPE
+          </Typography>
+        </div>
+          <Drawer anchor="left" open={drawer}
+            onEscapeKeyDown={handleDrawerClose}
+            onBackdropClick={handleDrawerClose}>
+            <div className={classes.drawer}><div 
+              className={classes.blockBackground}>
+                <Avatar src={picture} className={classes.avatar}>MC
+              </Avatar></div>
+              <Box textAlign="center">
+                <Typography  className={classes.name}>
+                  {loggedUser.username}
+                </Typography>
+                <Typography className={classes.school}>
+                  {school.social_reason}
+                </Typography>
+                <Typography className={classes.school}>
+                  {school.id_hash}
+                </Typography>
+                <Button className={classes.button}
+                  onClick={handleLogout}
+                  variant="contained" color="secondary"
+                  disableElevation 
+                >Sair</Button>
+              </Box>
+            </div>
+          </Drawer>
         </Toolbar>
       </AppBar>
-
-      <Dialog
-        open={openSchool}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          Digite o código identificador da sua escola!
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            O diretor da sua escola poderá fornecer esse código para você!
-            <TextField
-              autoFocus
-              margin="dense"
-              id="schoolIdHash"
-              label="Código identificador"
-              type="number"
-              fullWidth
-              color="secondary"
-              onChange={(event) => setSchoolIdHash(event.target.value)}
-              value={schoolIdHash}
-            />
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button 
-            color="secondary"
-            onClick={() => setOpenSchool(false)}
-          >
-            Fechar
-          </Button>
-          <Button
-            color="secondary"
-            autoFocus
-            onClick={handleClick}
-          >
-            Enviar
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={Object.keys(response).length ? true : false}
-        aria-labelledby="response-dialog-title"
-        aria-describedby="response-dialog-description"
-      >
-        <DialogTitle id="response-dialog-title">
-          { response.type === 'error' ? `Erro: ${response.error.name}` : `Sucesso!` }
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="response-dialog-description">
-            { response.type === 'error' ? response.error.message : response.message }
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button 
-            color="secondary"
-            onClick={() => setResponse({})}
-          >
-            Fechar
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 }
