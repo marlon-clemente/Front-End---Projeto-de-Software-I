@@ -118,18 +118,21 @@ function App() {
     }
   }
 
-  const handleSaveTicket = async({ title, description, classroom, agreement }, cb) => {
+  const handleSaveTicket = async({ title, description, classroom, photo }, cb) => {
     const { id: classroom_id, slug } = classrooms.find(c => c.identifier === classroom);
 
+    const data = new FormData();
+    data.append('classroom_id', classroom_id);
+    data.append('user_id', loggedUser.id);
+    data.append('title', title);
+    data.append('description', description);
+    data.append('photo', photo)
+
     try {
-      const response = await api.post(`/schools/${school.id_hash}/classrooms/${slug}/tickets`, {
-        classroom_id,
-        user_id: loggedUser.id,
-        title,
-        description
-      }, {
+      const response = await api.post(`/schools/${school.id_hash}/classrooms/${slug}/tickets`, data, {
         headers: {
-          "Authorization" : `Bearer ${token}`
+          "Authorization" : `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
         }
       });
 
@@ -140,9 +143,10 @@ function App() {
     }
   }
 
-  const fetchTickets = async(cb) => {
+  const fetchTickets = async(filters, cb) => {
+    filters = Object.keys(filters).map(key => `${key}=${filters[key]}`).join('&')
     try {
-      const response = await api.get(`/schools/${school.id_hash}/tickets`, {
+      const response = await api.get(`/schools/${school.id_hash}/tickets${filters.length ? '?' + filters : ''}`, {
         headers: {
           "Authorization" : `Bearer ${token}`
         }
@@ -168,6 +172,21 @@ function App() {
       cb(null, error);
     }
   }
+
+  const fetchTicketHistory = async({ ticketId, classroomSlug }, cb) => {
+    try {
+      const response = await api.get(`schools/${school.id_hash}/classrooms/${classroomSlug}/tickets/${ticketId}/history`, {
+        headers: {
+          "Authorization" : `Bearer ${token}`
+        }
+      });
+      
+      if (cb)
+        cb(response);
+    } catch(error) {
+      cb(null, error);
+    }
+  }
   
   return(
       <DataContext.Provider value={{
@@ -185,7 +204,8 @@ function App() {
         getAuthUserSchool,
         handleSaveTicket,
         fetchTickets,
-        fetchTicketsPerClassroom
+        fetchTicketsPerClassroom,
+        fetchTicketHistory
       }}>
         <SectionsProvider>
           <ThemeProvider theme={Theme}>

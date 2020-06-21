@@ -31,17 +31,18 @@ export default function NewMsg() {
   const [previewUrl, setPreviewUrl] = useState();
   const [upImg, setUpImg] = useState();
   const [controlCrop, setControlCrop] = useState(false);
-  const [confirmForm, setConfirmForm] = useState(false)
+  const [confirmForm, setConfirmForm] = useState(false);
+  const [photo, setPhoto] = useState(null);
 
-  var getFileBlob = function (url, cb) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
-    xhr.responseType = "blob";
-    xhr.addEventListener('load', function() {
-      cb(xhr.response);
-    });
-    xhr.send();
-  };
+  // const getFileBlob = function (url, cb) {
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open("GET", url);
+  //   xhr.responseType = "blob";
+  //   xhr.addEventListener('load', function() {
+  //     cb(xhr.response);
+  //   });
+  //   xhr.send();
+  // };
 
   const { setCurrentSections } = useSections();
   const [agreement, setAgreement] = useState(false);
@@ -62,17 +63,13 @@ export default function NewMsg() {
       getClassrooms();
   }, []);
 
-  const handleVoltar = () => {
-    setCurrentSections("voltar");
-  }
-
-  const handleSelect = () => {setConfirmForm(!confirmForm)}
-
-  const handleOpen = () => {setCrop(true)}
-  const handleClose = () =>{setControlCrop(false)}
+  const handleVoltar = () => setCurrentSections("voltar");
+  const handleSelect = () => setConfirmForm(!confirmForm)
+  const handleOpen = () => setCrop(true)
+  const handleClose = () =>setControlCrop(false)
 
   function handleSubmit({ title, classroom, description }){
-    handleSaveTicket({ title, classroom, description, agreement }, ({ message }, error) => {
+    handleSaveTicket({ title, classroom, description, photo }, ({ message }, error) => {
       if (error) {
         setResponse({ type: 'error', error });
       } else {
@@ -87,6 +84,8 @@ export default function NewMsg() {
       reader.addEventListener('load', () => setUpImg(reader.result));
       reader.readAsDataURL(e.target.files[0]);
       setControlCrop(true);
+
+      setPhoto(e.target.files[0]);
     }
   };
 
@@ -136,21 +135,32 @@ export default function NewMsg() {
   return (
     <div className={classes.layout}><Paper className={classes.paper}><Title/>
       <Form className={classes.form} onSubmit={handleSubmit}> 
-        <input accept="image/*" id="icon-button-file" className={classes.inputNone}
-          name="photo" type="file" onChange={onSelectFile}/>
+        <input 
+          accept="image/*"
+          id="icon-button-file"
+          className={classes.inputNone}
+          name="photo"
+          type="file"
+          onChange={onSelectFile}
+        />
         <div className={classes.imgBox}>
-        {!previewUrl ? (<label htmlFor="icon-button-file">
-          <div className={classes.inputImg}>
-            <Box textAlign="center" fontSize={16}>
-              <AddAPhotoIcon className={classes.icon}/>
-              <Typography>ADICIONAR FOTOGRAFIA</Typography>
-            </Box>
-            
-          </div></label>
-          ) : (<img className={classes.imgPrewiew} src={previewUrl} alt=""/>)}</div> 
+          {
+            !previewUrl ? (
+              <label htmlFor="icon-button-file">
+                <div className={classes.inputImg}>
+                <Box textAlign="center" fontSize={16}>
+                  <AddAPhotoIcon className={classes.icon}/>
+                  <Typography>ADICIONAR FOTOGRAFIA</Typography>
+                </Box>
+                </div>
+              </label>
+            ) : (
+              <img className={classes.imgPrewiew} src={previewUrl} alt=""/>
+            )
+          }
+        </div> 
         
-        {previewUrl ? (<label className={classes.label} htmlFor="icon-button-file">
-          Alterar fotografia</label>) : (<></>) }
+        { previewUrl ? (<label className={classes.label} htmlFor="icon-button-file">Alterar fotografia</label>) : (<></>) }
           
         <Input name="title"
           color="secondary" label="Identificação"
@@ -158,34 +168,60 @@ export default function NewMsg() {
         
         <Autocomplete options={ classrooms }
           getOptionLabel={(option) => option.identifier}
-          renderInput={(params) => <Input 
-            {...params}
-            name="classroom"
-            label={ fetchingData ? 'Buscando salas...' : 'Selecione uma sala' }
-            color="secondary"/>}
+          renderInput={(params) => (
+            <Input 
+              {...params}
+              name="classroom"
+              label={ fetchingData ? 'Buscando salas...' : 'Selecione uma sala' }
+              color="secondary"
+            />
+          )}
         />
         
-        <Input name="description" helperText=" "
-          color="secondary" multiline label="Descrição completa da situação"/>
+        <Input
+          name="description"
+          helperText=" "
+          color="secondary"
+          multiline
+          label="Descrição completa da situação"
+        />
 
-        <FormControlLabel className={classes.checkedBox}
-        control={<Checkbox  color="secondary" onClick={handleSelect}
-          name="state" onChange={event => setAgreement(event.target.checked)}/>
-        }
-        label="Você concorda em enviar essas informações? Lembre-se que 
-        você está sendo identificado e não é possivel voltar atrás."/>
+        <FormControlLabel 
+          className={classes.checkedBox}
+          control={
+            <Checkbox
+              color="secondary"
+              onClick={handleSelect}
+              name="state"
+              onChange={event => setAgreement(event.target.checked)}
+            />
+          }
+          label="Você concorda em enviar essas informações? Lembre-se que você está sendo identificado e não é possivel voltar atrás."
+        />
 
         <Grid container>
           {/* grid buttons */}
-          <Grid xs={12} item>{ !confirmForm ? (<Button variant="contained"
-            className={classes.button_e} color="secondary" disabled
-            fullWidth>Enviar</Button>) : (<Button variant="contained"
-              className={classes.button_e} color="secondary"
-            fullWidth type="submit">Enviar</Button>)} 
+          <Grid xs={12} item>
+            <Button
+              type="submit"
+              variant="contained"
+              className={classes.button_e}
+              color="secondary"
+              disabled={ !confirmForm ? true : false }
+              fullWidth
+            >
+              Enviar
+            </Button>
           </Grid>
           <Grid xs={12} item >
-            <Button variant="contained" className={classes.button_c}
-              fullWidth onClick={handleVoltar}>Cancelar</Button>
+            <Button 
+              variant="contained"
+              className={classes.button_c}
+              fullWidth
+              onClick={handleVoltar}
+            >
+              Cancelar
+            </Button>
           </Grid>
         </Grid>
       </Form>
@@ -200,16 +236,16 @@ export default function NewMsg() {
       <DialogContent>
         <DialogContentText id="response-dialog-description">
         <ReactCrop
-                src={upImg}
-                onImageLoaded={onLoad}
-                crop={crop}   
-                onChange={c => setCrop(c)}
-                onComplete={makeClientCrop}
-              />
+          src={upImg}
+          onImageLoaded={onLoad}
+          crop={crop}   
+          onChange={c => setCrop(c)}
+          onComplete={makeClientCrop}
+        />
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button color="secondary"onClick={handleClose}>Confirmar</Button>
+        <Button color="secondary" onClick={handleClose}>Confirmar</Button>
       </DialogActions>
     </Dialog>
 

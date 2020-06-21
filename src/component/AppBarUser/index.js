@@ -89,25 +89,32 @@ export default function MenuAppBar() {
         </Toolbar>
 
         <Toolbar className={classes.toobarMobile}>
+          <IconButton 
+            edge="start"
+            onClick={toggleDrawer}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
 
-        <IconButton edge="start" onClick={toggleDrawer}
+          <div className={classes.marca}>
+            <img src={Logo} className={classes.logo}/>
+            <Typography className={classes.title}>
+              SISGEPE
+            </Typography>
+          </div>
 
-          color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <div className={classes.marca}>
-          <img src={Logo} className={classes.logo}/>
-          <Typography className={classes.title}>
-            SISGEPE
-          </Typography>
-        </div>
           <Drawer anchor="left" open={drawer}
             onEscapeKeyDown={handleDrawerClose}
             onBackdropClick={handleDrawerClose}>
-            <div className={classes.drawer}><div 
-              className={classes.blockBackground}>
-                <Avatar src={picture} className={classes.avatar}>MC
-              </Avatar></div>
+            <div className={classes.drawer}>
+              <div className={classes.blockBackground}>
+                <Avatar src={picture} className={classes.avatar}>
+                  MC
+                </Avatar>
+              </div>
+            
               <Box textAlign="center">
                 <Typography  className={classes.name}>
                   {loggedUser.username}
@@ -122,7 +129,9 @@ export default function MenuAppBar() {
                   onClick={handleLogout}
                   variant="contained" color="secondary"
                   disableElevation 
-                >Sair</Button>
+                >
+                  Sair
+                </Button>
               </Box>
             </div>
           </Drawer>

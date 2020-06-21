@@ -3,13 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',
-    backgroundColor: '#ffffff',
-    height: '100%',
+    backgroundColor: '#fff',
+    height: '100vh',
     width: 400,
     textAlign: 'center',
     alignItems: 'center',
     fontFamily: 'lato',
-    //border
     overflow: 'auto',
     boxShadow: '5px 0px 40px 0px #212121',
   },
@@ -17,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('xs')]: {
       width:'360px',
     },
+    width: '100%',
+    overflowY: 'auto',
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
   },
   paper: {
     padding: theme.spacing(2),

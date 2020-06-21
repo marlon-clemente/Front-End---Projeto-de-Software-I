@@ -15,11 +15,11 @@ import DataContext from '../../context/Data';
 export default function Home() {
   const classes = Styles();
   const { tickets, fetchTickets, school } = useContext(DataContext);
-  const [error, setError] = useState({});
   const { currentSections, setCurrentSections } = useSections();
   
   const [favButton, setFavButton]=useState()
-
+  
+  const [error, setError] = useState({});
   const [loading, setloading] = useState(true);
 
   const loadInfos = async() => {
@@ -31,8 +31,9 @@ export default function Home() {
   }
   
   useEffect(()=>{
-     loadInfos();
-  },[currentSections])
+    if (currentSections === 'voltar' || currentSections === ' ')
+      loadInfos();
+  }, [currentSections]);
 
   setInterval(() => {
     loadInfos();
@@ -43,23 +44,41 @@ export default function Home() {
   }
 
   return (
-    <div className={classes.root}><AppBar/><div
-      className={classes.content}>
-      {loading ? (<div className={classes.load}>Aguarde...</div>) : (<>
-        {
-          currentSections === 'newMsg' ? (<NewMsg />) : (<>
-          { tickets.length ? (<BoxMsg tickets={tickets}/>) :
-            !tickets.length && Object.keys(school).length ? (<BoxNoMsg error={error}/>) :
-            !tickets.length && !Object.keys(school).length ? (<ToSchool/>) : (<></>)    
+    <div className={classes.root}>
+      <AppBar/>
+      <div className={classes.content}>
+      {loading ? (<div className={classes.load}>Aguarde...</div>) : (
+        <>
+          {
+            currentSections === 'newMsg' ? (<NewMsg />) : (
+              <>
+                { 
+                  tickets.length 
+                  ? (<BoxMsg tickets={tickets}/>)
+                  : !tickets.length && Object.keys(school).length 
+                    ? (<BoxNoMsg error={error}/>) 
+                    : !tickets.length && !Object.keys(school).length
+                      ? (<ToSchool/>) 
+                      : (<></>)    
+                }
+              </>
+            )
           }
-          </>)
-        }
-        </>)
-      }
+        </>
+      )}
       
-      { currentSections !== 'newMsg' || (!tickets.length && !Object.keys(school).length) ? (<Fab color="secondary" className={classes.fab}
-          onClick={handleFab} aria-label="add"><AddCommentIcon />
-        </Fab>) : (<></>)}
+      { 
+        currentSections !== 'newMsg' || (!tickets.length && !Object.keys(school).length) 
+        ? <Fab
+            color="secondary"
+            className={classes.fab}
+            onClick={handleFab}
+            aria-label="add"
+          >
+            <AddCommentIcon />
+          </Fab>
+        : <></>
+      }
     </div></div>
     )
 }
