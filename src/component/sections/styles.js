@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     overflowY: 'auto',
     flexGrow: 1,
-    // padding: theme.spacing(3),
+    padding: theme.spacing(3),
   },
   paper: {
     padding: theme.spacing(2),
