@@ -46,10 +46,10 @@ export default function Conta() {
         icon="SchoolIcon"
         toSection="editprofile"
       />
-      <LinkIcon 
-        label="Segurança" 
+      <LinkIcon
+        label="Configuração de usuário e segurança" 
         icon="LockIcon"
-        toSection="security"
+        link="/change_user"
       />
     </div>
   )

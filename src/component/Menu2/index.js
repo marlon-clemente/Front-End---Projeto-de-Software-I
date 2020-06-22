@@ -27,6 +27,7 @@ import SchoolIcon from '@material-ui/icons/School';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import SecurityIcon from '@material-ui/icons/Security';
 
 import Styles from './styles';
 import CompSections from '../sections'
@@ -223,15 +224,11 @@ export default function AppBarLeft(props) {
                         <List component="div" disablePadding>
                             <ListItem button component="a" href="/#" className={classes.nested}>
                                 <ListItemIcon><StarBorder /></ListItemIcon>
-                                <ListItemText primary="Configurações do Usuário" />
-                            </ListItem>
-                            <ListItem button component="a" href="/#" className={classes.nested}>
-                                <ListItemIcon><StarBorder /></ListItemIcon>
                                 <ListItemText primary="Configurações Escolares" />
                             </ListItem>
-                            <ListItem button component="a" href="/#" className={classes.nested}>
-                                <ListItemIcon><StarBorder /></ListItemIcon>
-                                <ListItemText primary="Configurações de Segurança" />
+                            <ListItem button component="a" href="/change_user" className={classes.nested}>
+                                <ListItemIcon><SecurityIcon /></ListItemIcon>
+                                <ListItemText primary="Configurações de Usuário e Segurança" />
                             </ListItem>
                         </List>
                       </Collapse>

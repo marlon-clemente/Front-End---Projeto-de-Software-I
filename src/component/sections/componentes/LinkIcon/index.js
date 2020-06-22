@@ -37,7 +37,7 @@ export default function LinkIcon(props) {
         fontFamily="Roboto" fontSize={16}
         fontWeight={500} m={1}
         textAlign="left">
-        <Link href="#"
+        <Link href={props.link}
         onClick={handleOnClick}>
         {props.label}
         </Link></Box>
