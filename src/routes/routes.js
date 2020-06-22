@@ -11,22 +11,13 @@ import Ajuda from '../pages/Ajuda';
 import Error from '../pages/Error';
 import Grid from '../temp/Grades';
 import NewDir from '../pages/NovoDiretor';
+import ChangeUser from '../pages/Support/ConfigUser'
 
 import PrivateRouteDir from './PrivateRouteDir';
 import PrivateRouteUser from './PrivateRouteUser';
 
 import SwitchRoute from './SwitchRoute';
 
-/**
- * Usar PrivateRouteDir em rotas
- * que somente o diretor tem aceso
- * providerId == password
- * 
- * Usar PrivateRouteUser em rotas
- * que somente o usuario
- * tem aceso
- * 
- */
 
 export default function Routers(){
     return (
@@ -40,6 +31,7 @@ export default function Routers(){
                 {/* <PrivateRouteDir path="/salas" component={Salas} /> */}
                 <PrivateRouteDir path="/ajuda" component={Ajuda} />
                 <PrivateRouteDir path="/problemas" component={Problemas} />
+                <PrivateRouteDir path="/change_user" component={ChangeUser} />
                 
                 <PrivateRouteUser path="/home" component={HomeUser} />
                 
