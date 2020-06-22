@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const widthMenu = 84;
+const widthMenu = 90;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -8,6 +8,19 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
         // overflow: 'auto',
     },
+    logo:{
+        marginTop: '2px',
+        marginBottom: '8px',
+        height: '24px',
+        [theme.breakpoints.down('md')]: {
+            height: '36px',
+            margin: 12
+        },
+    },
+    logo_txt:{
+        fontFamily: 'Lato',
+        fontWeight: 600
+    },  
     menuWeb:{
         [theme.breakpoints.down('md')]: {
             display: 'none',
@@ -23,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
         height: 200,
         overflow: 'hidden',
         position: 'relative',
-        border: '1px solid #ebedf0',
+        border: '1px solid `${theme.palette.background.paper}`',
         borderRadius: '2px',
         padding: '48px',
         textAlignlign: 'center',
-        background: '#fafafa',
+        background: theme.palette.background.paper,
     },
     ul: { //lista
         listStyleType: 'nome',
@@ -35,13 +48,13 @@ const useStyles = makeStyles((theme) => ({
         padding: 0,
         width: widthMenu,
         overflow: 'auto',
-        
+        cursor:'pointer'
     },
     listItem: {
         padding: '8px 8px',
         display: 'block',
         margin: 'auto',
-        color: '#ffffff',
+        color: theme.palette.background.paper,
         textDecoration: 'none',
         textAlign: 'center',
         fontFamily: 'Lato',
@@ -55,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         fontFamily: 'Lato',
         fontSize: '16px',
-        backgroundColor: '#ffffff',
+        backgroundColor: theme.palette.background.paper,
         color: theme.palette.primary.main,
     },
     icone: {
@@ -69,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Arial',
         fontSize: '16px',
     },
+    // Mobile
     title:{
         flexGrow: 1,
     },
@@ -77,6 +91,50 @@ const useStyles = makeStyles((theme) => ({
     },
     appbar: {
         width: '100%',
+    },
+    drawer:{
+        position: 'relative',
+        display: 'block',
+        width: '50vh',
+        [theme.breakpoints.down('xs')]: {
+            width: '40vh',
+        },
+
+    },
+    box_school:{
+        backgroundColor: theme.palette.primary.main,
+        paddingBottom: 8
+    },
+    list:{
+        color: theme.palette.primary.main,
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+    info:{
+        display: 'flex',
+        verticalAlign: 'center',
+        color: theme.palette.background.paper,
+        alignContent: 'center',
+        marginBottom: 12
+    },
+    icon_text:{
+        marginLeft: 12,
+        marginRight: 12,
+        margin: 'auto'
+    },
+    name_user:{
+        fontFamily:'Lato',
+        fontSize: 24,
+        alignContent: 'center',
+    },
+    name_school:{
+        fontFamily:'Roboto',
+        fontSize: 18,
+        alignContent: 'center',
+    },
+    nested: {
+        paddingLeft: theme.spacing(4),
     },
   }));
 

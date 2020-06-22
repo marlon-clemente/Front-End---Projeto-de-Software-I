@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     logo: {
       width: '100px',
+      filter: 'hue-rotate(50deg)'
     }
   }),
 );
