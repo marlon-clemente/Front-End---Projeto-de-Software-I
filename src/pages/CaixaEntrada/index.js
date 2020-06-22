@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import Menu from '../../component/Menu2';
-import Styles from '../../styles';
+import Styles from './styles';
 import BoxInfoNoMsg from '../../component/BoxInfo/Default';
 
 import CardList from './component/CardList';
@@ -28,7 +28,7 @@ export default function CaixaEntrada() {
         console.log(res);
     });
   }
-
+  
   useEffect(() => {
     getTickets();
   }, [title, startDate, finishDate]);
