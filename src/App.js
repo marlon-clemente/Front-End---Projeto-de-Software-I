@@ -16,6 +16,7 @@ function App() {
   const [fetchingData, setFetchingData] = useState(false);
   const [picture, setPicture] = useState(localStorage.getItem('picture') || '');
   const [tickets, setTickets] = useState([]);
+  const [schoolUsers, setSchoolUsers] = useState([]);
 
   const handleLogin = async ({ email, password, picture, name }, cb) => {
     try {
@@ -66,9 +67,9 @@ function App() {
     delete api.defaults.headers.common['Authentication'];
   }
 
-  const fetchClassrooms = async () => {
+  const fetchClassrooms = async({ withTickets }) => {
     setFetchingData(true);
-    const { data } = await api.get(`/schools/${school.id_hash}/classrooms`,{
+    const { data } = await api.get(`/schools/${school.id_hash}/classrooms${withTickets ? '?withTickets=true': '' }`,{
       headers: {
         "Authorization" : `Bearer ${token}`
       }
@@ -187,6 +188,23 @@ function App() {
       cb(null, error);
     }
   }
+
+  const fetchSchoolUsers = async(cb) => {
+    try {
+      const response = await api.get(`schools/${school.id_hash}/users`, {
+        headers: {
+          "Authorization" : `Bearer ${token}`
+        }
+      });
+      
+      setSchoolUsers(response.data);
+
+      if (cb)
+        cb(response);
+    } catch(error) {
+      cb(null, error);
+    }
+  }
   
   return(
       <DataContext.Provider value={{
@@ -197,6 +215,7 @@ function App() {
         fetchingData,
         picture,
         tickets,
+        schoolUsers,
         handleLogin,
         handleLogout,
         fetchClassrooms,
@@ -205,7 +224,8 @@ function App() {
         handleSaveTicket,
         fetchTickets,
         fetchTicketsPerClassroom,
-        fetchTicketHistory
+        fetchTicketHistory,
+        fetchSchoolUsers
       }}>
         <SectionsProvider>
           <ThemeProvider theme={Theme}>

@@ -2,7 +2,7 @@ import React from 'react';
 import Styles from '../../styles';
 import Menu from '../../component/Menu2';
 
-import InfoBox from '../../component/BoxInfo/Column' 
+import Report from '../../component/Report';
 
 export default function Problema() {  
   const c = Styles();
@@ -11,9 +11,7 @@ export default function Problema() {
     <div>
       <div className={c.root}>
         <Menu title="Problemas" />
-        <div className={c.content}>
-            {!analises ? (<></>) : (<InfoBox />) }
-        </div>
+        {!analises ? (<></>) : (<Report />) }
       </div>
     </div>
   );
