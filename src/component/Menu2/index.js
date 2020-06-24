@@ -222,8 +222,8 @@ export default function AppBarLeft(props) {
                       </ListItem>
                       <Collapse in={mobMenuOpen} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button component="a" href="/#" className={classes.nested}>
-                                <ListItemIcon><StarBorder /></ListItemIcon>
+                            <ListItem button component="a" href="/change_school" className={classes.nested}>
+                                <ListItemIcon><SchoolIcon /></ListItemIcon>
                                 <ListItemText primary="Configurações Escolares" />
                             </ListItem>
                             <ListItem button component="a" href="/change_user" className={classes.nested}>

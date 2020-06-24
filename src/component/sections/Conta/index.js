@@ -44,7 +44,7 @@ export default function Conta() {
       <LinkIcon 
         label="Alterar perfil escolar"
         icon="SchoolIcon"
-        toSection="editprofile"
+        link="/change_school"
       />
       <LinkIcon
         label="Configuração de usuário e segurança" 

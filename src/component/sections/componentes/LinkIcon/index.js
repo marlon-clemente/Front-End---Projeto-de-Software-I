@@ -5,7 +5,6 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import LockIcon from '@material-ui/icons/Lock';
 import SchoolIcon from '@material-ui/icons/School';
-import { useSections } from '../../../../context/Sections';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,11 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LinkIcon(props) {
   const classes = useStyles();
-  const { setCurrentSections} = useSections();
-
-  const handleOnClick = ()=>{
-    setCurrentSections(props.toSection)
-  }
 
   return(
     <div className={classes.root}>
@@ -37,8 +31,7 @@ export default function LinkIcon(props) {
         fontFamily="Roboto" fontSize={16}
         fontWeight={500} m={1}
         textAlign="left">
-        <Link href={props.link}
-        onClick={handleOnClick}>
+        <Link href={props.link}>
         {props.label}
         </Link></Box>
       </Typography>

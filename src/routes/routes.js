@@ -12,6 +12,7 @@ import Error from '../pages/Error';
 import Grid from '../temp/Grades';
 import NewDir from '../pages/NovoDiretor';
 import ChangeUser from '../pages/Support/ConfigUser'
+import ChangeSchool from '../pages/Support/ConfigSchool'
 
 import PrivateRouteDir from './PrivateRouteDir';
 import PrivateRouteUser from './PrivateRouteUser';
@@ -32,6 +33,7 @@ export default function Routers(){
                 <PrivateRouteDir path="/ajuda" component={Ajuda} />
                 <PrivateRouteDir path="/problemas" component={Problemas} />
                 <PrivateRouteDir path="/change_user" component={ChangeUser} />
+                <PrivateRouteDir path="/change_school" component={ChangeSchool} />
                 
                 <PrivateRouteUser path="/home" component={HomeUser} />
                 
