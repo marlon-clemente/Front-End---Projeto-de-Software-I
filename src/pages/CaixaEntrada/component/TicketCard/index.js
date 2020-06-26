@@ -29,7 +29,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import NoImg from '../../../../assets/no_img.png'
+import NoImg from '../../../../assets/no_img.png';
+import ErrorDialog from '../../../../component/DialogModal/Error';
 
 import DataContext from '../../../../context/Data';
 
@@ -190,25 +191,7 @@ export default function TicketCard({ ticket }) {
         </List>
       </Dialog>
 
-      <Dialog
-        open={Object.keys(error).length ? true : false}
-        aria-labelledby="alert-dialog-error"
-        aria-describedby="alert-dialog-error-description"
-      >
-        <DialogTitle id="alert-dialog-error">
-          {error.name}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-error-description">
-            {error.message}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setError({})}>
-            Fechar
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ErrorDialog error={error} onCloseAction={() => setError({})} />
     </>
   );
 }

@@ -15,6 +15,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ErrorDialog from '../../../DialogModal/Error';
+import SuccessDialog from '../../../DialogModal/Success';
 
 import Styles from './styles';
 import api from '../../../../services/api';
@@ -34,7 +36,7 @@ export default function ItemSala(props) {
     school: { id_hash },
     token,
     fetchClassrooms,
-    fetchTicketsPerClassroom
+    fetchClassroomTickets
   } = useContext(DataContext);
 
   const handleClickOpen = (sala, action) => {
@@ -43,7 +45,7 @@ export default function ItemSala(props) {
       setOpen(true);
     else {
       setOpenInfo(true);
-      fetchTicketsPerClassroom(sala.slug, ({ data }, error) => {
+      fetchClassroomTickets(sala.slug, ({ data }, error) => {
         if (error)
           setError(error);
         else {
@@ -107,25 +109,8 @@ export default function ItemSala(props) {
         </DialogActions>
       </Dialog>
 
-      <Dialog
-        open={Object.keys(error).length ? true : false}
-        aria-labelledby="alert-dialog-error"
-        aria-describedby="alert-dialog-error-description"
-      >
-        <DialogTitle id="alert-dialog-error">
-          {error.name}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-error-description">
-            {error.message}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setError({})}>
-            Fechar
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <ErrorDialog error={error} onCloseAction={() => setError({})} />
+      <SuccessDialog success={success} onCloseAction={fetchClassrooms} />
 
       <Dialog
         open={openInfo}
@@ -173,24 +158,6 @@ export default function ItemSala(props) {
           }}
           >
             Fechar
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={success.status}
-        aria-labelledby="alert-dialog-Success"
-        aria-describedby="alert-dialog-Success-description"
-      >
-        <DialogTitle id="alert-dialog-Success">
-          {success.message}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-Success-description" />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => fetchClassrooms()}>
-            <font color="crimson">Fechar</font>
           </Button>
         </DialogActions>
       </Dialog>

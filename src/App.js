@@ -67,9 +67,9 @@ function App() {
     delete api.defaults.headers.common['Authentication'];
   }
 
-  const fetchClassrooms = async({ withTickets }) => {
+  const fetchClassrooms = async() => {
     setFetchingData(true);
-    const { data } = await api.get(`/schools/${school.id_hash}/classrooms${withTickets ? '?withTickets=true': '' }`,{
+    const { data } = await api.get(`/schools/${school.id_hash}/classrooms`,{
       headers: {
         "Authorization" : `Bearer ${token}`
       }
@@ -159,7 +159,7 @@ function App() {
     }
   }
 
-  const fetchTicketsPerClassroom = async(classroomSlug, cb) => {
+  const fetchClassroomTickets = async(classroomSlug, cb) => {
     try {
       const response = await api.get(`/schools/${school.id_hash}/classrooms/${classroomSlug}/tickets`, {
         headers: {
@@ -223,7 +223,7 @@ function App() {
         getAuthUserSchool,
         handleSaveTicket,
         fetchTickets,
-        fetchTicketsPerClassroom,
+        fetchClassroomTickets,
         fetchTicketHistory,
         fetchSchoolUsers
       }}>

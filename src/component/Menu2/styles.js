@@ -59,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         fontFamily: 'Lato',
         fontSize: '16px',
+        '&:hover':{
+          opacity: '0.8',
+        },
     },
     listItem_active:{
         padding: '8px 8px',

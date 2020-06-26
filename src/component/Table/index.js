@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DataContext from '../../context/Data';
+import ErrorDialog from '../DialogModal/Error';
 import moment from 'moment';
 
 const useRowStyles = makeStyles({
@@ -24,22 +25,32 @@ const useRowStyles = makeStyles({
   },
 });
 
-function Row({ row, type }) {
+function Row({ row, type, setError }) {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
   const [ticketHistory, setTicketHistory] = useState([]);
-  const { fetchTicketHistory } = useContext(DataContext);
+  const [classroomTickets, setClassroomTickets] = useState([]);
+  const { fetchTicketHistory, fetchClassroomTickets } = useContext(DataContext);
 
   const handleOpen = () => {
     setOpen(!open)
-    if (!open)
-      fetchTicketHistory({ ticketId: row.id, classroomSlug: row.slug }, ({ data }, error) => {
-        if (error)
-          console.log(error);
+    if (!open) {
+      if (type === 'classrooms') {
+        fetchClassroomTickets(row.slug, ({ data }, error) => {
+          if (error)
+            setError(error);
         
-        setTicketHistory(data);
-        console.log(ticketHistory)
-      });
+          setClassroomTickets(data);
+        });
+      } else if (type === 'tickets') {
+        fetchTicketHistory({ ticketId: row.id, classroomSlug: row.slug }, ({ data }, error) => {
+          if (error)
+            setError(error);
+          
+          setTicketHistory(data);
+        });
+      }
+    }
   }
 
   return (
@@ -96,7 +107,7 @@ function Row({ row, type }) {
                           style={{ float: 'right' }} 
                           title="Total de Tickets"
                         >
-                          {row.tickets?.length}
+                          {type === 'users' ? row.tickets?.length : classroomTickets.length}
                         </Typography>
                       </>
                     ) : (
@@ -118,7 +129,7 @@ function Row({ row, type }) {
               </Box>
               </Typography>
               {
-                row.tickets?.length
+                row.tickets?.length || classroomTickets.length
                   ? (
                     <Table size="small" aria-label="purchases">
                       <TableHead>
@@ -128,12 +139,24 @@ function Row({ row, type }) {
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {row.tickets.map((ticket, index) => (
-                          <TableRow key={index}>
-                            <TableCell component="th" scope="row">{ticket.title}</TableCell>
-                            <TableCell>{ticket.description}</TableCell>
-                          </TableRow>
-                        ))}
+                        {
+                          row.tickets 
+                            ? (
+                              row.tickets.map((ticket, index) => (
+                                <TableRow key={index}>
+                                  <TableCell component="th" scope="row">{ticket.title}</TableCell>
+                                  <TableCell>{ticket.description}</TableCell>
+                                </TableRow>
+                              ))
+                            ) : (
+                              classroomTickets.map((ticket, index) => (
+                                <TableRow key={index}>
+                                  <TableCell component="th" scope="row">{ticket.title}</TableCell>
+                                  <TableCell>{ticket.description}</TableCell>
+                                </TableRow>
+                              ))
+                            )
+                        }
                       </TableBody>
                     </Table>
                   ) : ticketHistory.length
@@ -171,7 +194,8 @@ function Row({ row, type }) {
 }
 
 export default function CollapsibleTable({ content, type }) {
-  console.log(content)
+  const [error, setError] = useState({});
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -211,6 +235,7 @@ export default function CollapsibleTable({ content, type }) {
           ))}
         </TableBody>
       </Table>
+      <ErrorDialog error={error} onCloseAction={() => setError({})} />
     </TableContainer>
   );
 }

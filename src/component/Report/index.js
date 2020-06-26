@@ -85,7 +85,7 @@ export default function Report() {
     if (value === 0)
       getSchoolUsers();
     else if (value === 1)
-      fetchClassrooms({ withTickets: true });
+      fetchClassrooms();
     else
       getTickets();
   }, [value, filter, startDate, finishDate])
