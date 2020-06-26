@@ -29,6 +29,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import NoImg from '../../../../assets/no_img.png'
 
 import DataContext from '../../../../context/Data';
 
@@ -102,9 +103,9 @@ export default function TicketCard({ ticket }) {
 
         <CardMedia
           className={classes.media}
-          image={ticket.photos[0]?.url}
+          image={ ticket.photos[0] ? ticket.photos[0]?.url : NoImg}
         />
-
+        
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {ticket.identifier}
