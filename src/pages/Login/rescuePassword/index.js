@@ -12,8 +12,7 @@ export default function RescuePassword() {
   const classes = Styles();
   const { setCurrentSections } = useSections();
   const handleCancel = () => setCurrentSections('loginDir');
-  const handleRescue = () => console.log()
-
+  const handleRescue = () => console.log();
   return(
     <div className={classes.section}>
       <Typography component="div"><Box fontFamily="Lato"
@@ -32,8 +31,7 @@ export default function RescuePassword() {
           variant="outlined" margin="normal"
           required fullWidth
           id="email" label="Endereço de e-mail"
-          name="email" autoComplete="email"                        
-          autoFocus                  
+          name="email" autoComplete="email"                  
         />
         <Button
           className={classes.button}
@@ -51,7 +49,7 @@ export default function RescuePassword() {
           color="primary"
           fontWeight={500}
           textAlign="right">
-          <Link href="#" onClick={handleCancel} color="primary">
+          <Link className={classes.link} onClick={handleCancel} color="primary">
             Cancelar
           </Link>
         </Box></Typography>

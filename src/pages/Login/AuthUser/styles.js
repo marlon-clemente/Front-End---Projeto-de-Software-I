@@ -4,6 +4,7 @@ import ImgBg from '../../../assets/user_bg.svg';
 const useStyles = makeStyles((theme) => ({
   section_description: {
     display: 'flex',
+    marginTop: 12,
     margin: theme.spacing(8, 4),
     flexDirection: 'column',
     alignItems: 'center',
@@ -69,5 +70,9 @@ const useStyles = makeStyles((theme) => ({
     buttonTroca: {
       margin: theme.spacing(3),
     },
+    link:{
+      cursor: 'pointer',
+      userSelect:'none',
+    }
   }));
   export default useStyles;

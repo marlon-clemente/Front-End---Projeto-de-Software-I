@@ -59,24 +59,17 @@ const LoginUser = ({history}) =>{
             <Typography component="div">
                 <Box
                     fontFamily="Lato"
-                    fontSize={20}
-                    fontWeight={300}
-                    textAlign="center"
-                >
-                BEM VINDO
-                </Box>
-                <Box
-                    fontFamily="Comic Neue"
                     fontSize={25}
-                    fontWeight={800}
+                    fontWeight={400}
                     textAlign="center"
                 >
-                Aluno & Professor
+                BEM VINDO, <br/> ALUNO & PROFESSOR
                 </Box>
+                
                 <Box 
-                    fontSize={20}
-                    fontWeight={400}
-                    fontFamily="Lato"
+                    fontFamily="Roboto"
+                    fontSize={18}
+                    fontWeight={300}
                     textAlign="center"
                 >
                     Para contribuir com a direção de sua escola,
@@ -139,21 +132,16 @@ const LoginUser = ({history}) =>{
                 }}
             />
 
-            <Typography component="div">
-                <Box fontFamily="Roboto"
-                    className={classes.buttonTroca}
-                    onClick={handleAlterBox}
-                    fontSize={18}
-                    color="primary"
-                    
-                    fontWeight={300}
-                    textAlign="center"
-                >
-                    <Link href="#" onClick={handleAlterBox} color="inherit">
-                        Acesso da direção escolar
-                    </Link>
-                </Box>
-            </Typography>
+            <Box fontFamily="Roboto" className={classes.buttonTroca}
+                onClick={handleAlterBox} fontSize={18}
+                color="primary"
+                fontWeight={300}
+                textAlign="center"
+            >
+            <Link className={classes.link} onClick={handleAlterBox} color="inherit">
+                Acesso da direção escolar
+            </Link>
+            </Box>
         </div>
     </>)
 }

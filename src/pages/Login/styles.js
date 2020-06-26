@@ -10,6 +10,29 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         position: 'absolute'
     },
+    block_logo:{
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+        },
+    },
+    external_logo:{
+        paddingTop:14,
+        paddingRight:14,
+        flexGrow: 1,
+        textAlign: 'right'
+    },
+    logo:{
+        margin:'auto',
+        position: 'relative',
+        height: 70,
+    },
+    title:{
+        marginLeft: '3px',
+        fontFamily: 'Roboto',
+        fontSize: '32px',
+        fontWeight: 800,
+        flexGrow: 1
+    },
     image: {
         backgroundImage: `url(${ImgBg})`,
         backgroundRepeat: 'no-repeat',

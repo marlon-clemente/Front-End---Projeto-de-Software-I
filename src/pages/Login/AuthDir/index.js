@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Styles from './styles';
+import Logo from '../../../assets/logo.svg'
 
 import { useSections } from '../../../context/Sections';
 import DataContext from '../../../context/Data';
@@ -45,7 +46,7 @@ const Login = ({history}) =>{
           fontSize={25}
           fontWeight={400}
           textAlign="center"
-        >BEM VINDO DIREÇÃO
+        >BEM VINDO DIREÇÃO ESCOLAR
         </Box>
         <Box
           fontFamily="Roboto"
@@ -103,7 +104,6 @@ const Login = ({history}) =>{
         name="email"
         autoComplete="email"                        
         label="Endereço de e-mail da escola"
-        autoFocus
         error = {requiredEmail}
         onChange={event => {
           setRequiredEmail(false);
@@ -135,32 +135,21 @@ const Login = ({history}) =>{
         type="submit"
       > { loading ? 'Carregando...' : 'Entrar' }
       </Button>
-
-      <Typography component="div" color="primary">
-        <Box mt={1}
-          fontFamily="Roboto"
-          onClick={handleSuport}
-          fontSize={16}
-          color="primary"
-          fontWeight={500}
-          textAlign="right">
-          <Link href="#" onClick={handleSuport} color="inherit">
-            Esqueceu sua senha?
-          </Link>
-        </Box></Typography><Typography>
-        <Box fontFamily="Roboto"
-          m={3}
-          fontSize={18}
-          onClick={handleAlterBox}
-          fontWeight={300}
-          textAlign="center">
-          <Link href="#" onClick={handleAlterBox} color="inherit">
-            Acesso do aluno e professor
-          </Link>
-        </Box>
-      </Typography>
+      <Box textAlign="right" fontFamily="Roboto"
+        fontSize={18} fontWeight={700} m={1} 
+        color="primary">
+        <Link className={classes.link} onClick={handleSuport}>
+        Esqueceu sua senha?</Link>
+      </Box>
     </form>
-  
+
+    <Box fontFamily="Roboto"
+      onClick={handleAlterBox} fontSize={18}
+      color="primary" fontWeight={300}
+      textAlign="center">
+      <Link className={classes.link} onClick={handleAlterBox} color="inherit">
+      Acesso do aluno e professor</Link>
+    </Box>
   </div>
   )
 };

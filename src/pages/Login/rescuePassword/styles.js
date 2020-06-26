@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   section: {
     display: 'flex',
+    marginTop: 12,
     margin: theme.spacing(8, 4),
     flexDirection: 'column',
     alignItems: 'center',
@@ -22,5 +23,9 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff',
     },
   },
+  link:{
+    cursor: 'pointer',
+    userSelect:'none',
+  }
 }));
 export default useStyles;

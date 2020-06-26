@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
           margin: 0,
         },
+        marginTop: 12,
         margin: theme.spacing(8, 4),
         display: 'flex',
         flexDirection: 'column',
@@ -15,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down('xs')]: {
         display: 'none'
       },
+    },
+    logo:{
+      [theme.breakpoints.down('xs')]: {
+        display: 'none'
+      }
     },
     section_mobile:{
       [theme.breakpoints.up('sm')]: {
@@ -40,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
     alert:{
       fontFamily: 'Robotto',
       fontSize: 14,
+    },
+    link:{
+      cursor: 'pointer',
+      userSelect:'none',
     }
   }));
 
