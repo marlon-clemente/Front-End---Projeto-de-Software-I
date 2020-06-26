@@ -9,7 +9,7 @@ export default function AppBar() {
     <div className={classes.root}><div className={classes.line}>
       <img src={Logo} className={classes.logo}/>
       <div className={classes.title}>SISGEPE</div>
-      <Button variant="contained" href="/login" disableElevation color="primary" className={classes.button}>Entrar</Button>
+      <Button variant="contained" href="/redirect" disableElevation color="primary" className={classes.button}>Entrar</Button>
     </div></div>
   );
 }

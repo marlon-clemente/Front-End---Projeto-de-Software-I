@@ -28,7 +28,7 @@ export default function Body (){
             inutilizável.
           </Box>
         </Typography>
-        <Button variant="contained" href="/login" color="primary" disableElevation className={classes.button}>Entrar</Button>
+        <Button variant="contained" href="/redirect" color="primary" disableElevation className={classes.button}>Entrar</Button>
         <Button variant="outlined" color="primary" disableElevation className={classes.button}>Ver mais</Button>
       </Grid>
       <Grid item xl={6} lg={6} md={6} className={classes.img_web}>

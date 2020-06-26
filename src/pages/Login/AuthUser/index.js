@@ -50,7 +50,7 @@ const LoginUser = ({history}) =>{
     }
     
     if(Object.keys(loggedUser).length){
-        return <Redirect to="/" />
+        return <Redirect to="/redirect" />
     }
 
     return (<>

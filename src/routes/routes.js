@@ -25,7 +25,8 @@ export default function Routers(){
             <Switch>
                 {/* <Route path="/" component={SwitchRoute} exact /> */}
                 <Route path="/" component={HomePage} exact />
-                <Route path="/login" component={Login} />
+                <Route path="/login" component={Login}/>
+                <Route path="/redirect" component={SwitchRoute} />
                 
                 <PrivateRouteDir path="/dashboard" component={Dashboard} />
                 <PrivateRouteDir path="/caixa_entrada" component={CaixaEntrada} />

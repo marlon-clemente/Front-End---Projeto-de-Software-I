@@ -33,7 +33,7 @@ const Login = ({history}) =>{
   const { handleLogin, loggedUser } = useContext(DataContext);
 
   if(Object.keys(loggedUser).length){
-    return <Redirect to="/" />
+    return <Redirect to="/redirect" />
   }
   return(
   <div className={classes.paper}>
@@ -89,7 +89,7 @@ const Login = ({history}) =>{
                 </Alert>
               );
             } else {
-              status === 200 && history.push('/')
+              status === 200 && history.push('/redirect')
             }
             setLoading(false);
           });
