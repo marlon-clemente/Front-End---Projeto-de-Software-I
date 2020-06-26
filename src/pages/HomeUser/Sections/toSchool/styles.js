@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      backgroundColor: theme.palette.background.default,
       display: 'block',
       [theme.breakpoints.up('sm')]: {
         width: '100%',

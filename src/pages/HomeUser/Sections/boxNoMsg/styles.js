@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'block',
+      backgroundColor: theme.palette.background.default,
       fontFamily: 'Lato',
     },
   }),

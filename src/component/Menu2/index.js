@@ -85,7 +85,7 @@ export default function AppBarLeft(props) {
                     menuSection === 'conta' ? (
                         <div
                             onClick={handleOffActive}
-                            className={classes.listItem_active}
+                            className={classes.listItem_activeCount}
                         >
                             <AccountCircleOutlinedIcon className={classes.icone} />
                             <div className={classes.text}>Conta</div>

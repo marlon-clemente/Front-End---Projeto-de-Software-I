@@ -4,6 +4,7 @@ const UseStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: '100vh',
+    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.down('md')]: {
       display:'block',
     },

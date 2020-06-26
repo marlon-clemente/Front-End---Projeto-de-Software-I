@@ -4,6 +4,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'block',
+      height: '100vh',
+      backgroundColor: theme.palette.background.default,
     },
     content: {
       flexGrow: 1,

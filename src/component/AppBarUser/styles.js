@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      backgroundColor: theme.palette.background.default,
     },
     avatar: {
       marginRight: theme.spacing(2),

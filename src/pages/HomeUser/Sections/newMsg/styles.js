@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     layout: {
       width: 'auto',
+      backgroundColor: theme.palette.background.default,
       [theme.breakpoints.down('xs')]: {
         marginLeft: 0,
         marginRight: 0,
