@@ -4,6 +4,7 @@ import ImgBg from '../../assets/background-login.jpg';
 const useStyles = makeStyles((theme) => ({
     root: {
       height: '100vh',
+      userSelect:'none',
     },
     trocar: {
         bottom: '16px',
@@ -11,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute'
     },
     block_logo:{
+        marginTop: 32,
         [theme.breakpoints.down('xs')]: {
             display: 'none',
         },
@@ -24,12 +26,13 @@ const useStyles = makeStyles((theme) => ({
     logo:{
         margin:'auto',
         position: 'relative',
-        height: 70,
+        height: 46,
     },
     title:{
         marginLeft: '3px',
-        fontFamily: 'Roboto',
-        fontSize: '32px',
+        fontFamily: 'Lato',
+        fontSize: '36px',
+        color: theme.palette.primary.main,
         fontWeight: 800,
         flexGrow: 1
     },

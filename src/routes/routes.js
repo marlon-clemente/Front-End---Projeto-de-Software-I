@@ -11,20 +11,20 @@ import Ajuda from '../pages/Ajuda';
 import Error from '../pages/Error';
 import Grid from '../temp/Grades';
 import NewDir from '../pages/NovoDiretor';
-import ChangeUser from '../pages/Support/ConfigUser'
-import ChangeSchool from '../pages/Support/ConfigSchool'
-
+import ChangeUser from '../pages/Support/ConfigUser';
+import ChangeSchool from '../pages/Support/ConfigSchool';
+import HomePage from '../pages/HomePage';
 import PrivateRouteDir from './PrivateRouteDir';
 import PrivateRouteUser from './PrivateRouteUser';
 
 import SwitchRoute from './SwitchRoute';
 
-
 export default function Routers(){
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" component={SwitchRoute} exact />
+                {/* <Route path="/" component={SwitchRoute} exact /> */}
+                <Route path="/" component={HomePage} exact />
                 <Route path="/login" component={Login} />
                 
                 <PrivateRouteDir path="/dashboard" component={Dashboard} />
