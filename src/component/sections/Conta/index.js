@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-
+import SchoolIcon from '@material-ui/icons/School';
 import LinkIcon from '../componentes/LinkIcon';
 import Title from "../componentes/Title";
 import NumCount from "../componentes/NumCount";
@@ -17,12 +17,12 @@ export default function Conta() {
 
   return (
     <div>
-      <Avatar className={classes.avatar}
-        src="">
-      </Avatar>
-
+      
+      <div className={classes.avatar}><SchoolIcon style={{ fontSize: 40 }}/></div>
+      
       <Title title={loggedUser.username}
        city="Nome da cidade | UF"/>
+       
       <Button
         variant="contained"
         color="primary"

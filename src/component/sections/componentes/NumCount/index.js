@@ -13,12 +13,19 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   root:{
     display:'block',
-    marginBlock: 2
+    position:'relative',
   },
   buttonInfo:{
-    position:'relative',
-    marginTop: 2,
-    marginRight: 2,
+    position:'absolute',
+    bottom: 2,
+    right: 2,
+  },
+  text:{
+    marginTop: '24px',
+  },
+  text2:{
+    marginTop: '12px',
+    marginBottom: '24px',
   },
   help:{
     marginBlock: 2
@@ -38,14 +45,23 @@ function NumCount(props) {
 
   return (
     <div className={classes.root}>
-      <IconButton 
-        aria-label="delete" size="small"
+      { !open && (
+        <IconButton size="small"
         className={classes.buttonInfo}
         onClick={handleButtonHelp}>
         <HelpOutlineIcon fontSize="inherit" />
       </IconButton>
+      )}
 
-    <Typography component="div">
+    <Typography component="div" className={classes.text}>
+     <Box fontFamily="Lato"
+      fontSize={16}
+      color="text.secondary"
+      fontWeight={800}>
+      CÓDIGO DE SEGURANÇA DA ESCOLA
+      </Box></Typography>
+
+    <Typography component="div" className={classes.text2}>
      <Box fontFamily="Roboto"
       fontSize={20}
       color="primary"
