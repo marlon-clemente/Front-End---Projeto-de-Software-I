@@ -106,24 +106,28 @@ export default function Report() {
           value={filter}
           onChange={event => setFilter(event.target.value)}
         />
-        <TextField
-          label="Início"
-          type="date"
-          defaultValue={startDate}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={event => setStartDate(event.target.value)}
-        />
-        <TextField
-          label="Fim"
-          type="date"
-          defaultValue={finishDate}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={event => setFinishDate(event.target.value)}
-        />
+        {value === 0 ? <></> : (
+          <>
+            <TextField
+              label="Início"
+              type="date"
+              defaultValue={startDate}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={event => setStartDate(event.target.value)}
+            />
+            <TextField
+              label="Fim"
+              type="date"
+              defaultValue={finishDate}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={event => setFinishDate(event.target.value)}
+            />
+          </>
+        )}
       </Box>
       <TabPanel value={value} index={0}>
         <Table content={schoolUsers && schoolUsers} type="users" />
