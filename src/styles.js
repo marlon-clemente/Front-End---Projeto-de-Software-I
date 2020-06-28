@@ -2,18 +2,18 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       display: 'flex',
       height: '100vh',
       backgroundColor: theme.palette.background.default,
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         display:'block',
       },
     },
     content: {
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('sm')]: {
         margin: 0, 
         flexGrow:0,
       },
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
       // height: '100vh',
       padding: theme.spacing(3),
     },
-
     paper: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -45,6 +44,19 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
+    graphs: {
+      maxWidth: '85vw',
+      position: 'absolute',
+      left: 150,
+      top: 120
+    },
+    infoPaper: {
+      '&:hover': {
+        opacity: 0.8,
+        cursor: 'pointer',
+        boxShadow: '3px 4px #336666'
+      }
+    }
   }),
 );
 

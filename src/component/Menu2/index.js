@@ -71,11 +71,13 @@ export default function AppBarLeft(props) {
         setDrawer(false);
     }
 
-
     return (
         <div className={classes.root}><div className={classes.menuWeb}>
-            <List component="nav" className={classes.ul}
-                aria-label="main mailbox folders">
+            <List
+                component="nav"
+                className={classes.ul}
+                aria-label="main mailbox folders"
+            >
                 <div className={classes.listItem}>
                     <img src={Logo} className={classes.logo} />
                     <div className={classes.text}>SISGEPE</div>
@@ -99,7 +101,7 @@ export default function AppBarLeft(props) {
                                 <AccountCircleOutlinedIcon className={classes.icone} />
                                 <div className={classes.text}>Conta</div>
                             </div>
-                        )
+                    )
                 }
 
                 <NavLink
@@ -142,7 +144,7 @@ export default function AppBarLeft(props) {
                             <MeetingRoomOutlinedIcon className={classes.icone} />
                             <div className={classes.text}>Salas</div>
                         </div>
-                    )}
+                )}
 
                 {
                     menuSection === 'ajuda' ? (
@@ -154,14 +156,14 @@ export default function AppBarLeft(props) {
                             <div className={classes.text}>Ajuda</div>
                         </div>
                     ) : (
-                            <div
-                                onClick={handleActiveMenuAjuda}
-                                className={classes.listItem}
-                            >
-                                <HelpOutlineOutlinedIcon className={classes.icone} />
-                                <div className={classes.text}>Ajuda</div>
-                            </div>
-                        )
+                        <div
+                            onClick={handleActiveMenuAjuda}
+                            className={classes.listItem}
+                        >
+                            <HelpOutlineOutlinedIcon className={classes.icone} />
+                            <div className={classes.text}>Ajuda</div>
+                        </div>
+                    )
                 }
             </List>
 

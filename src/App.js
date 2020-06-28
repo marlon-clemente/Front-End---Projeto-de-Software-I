@@ -205,6 +205,48 @@ function App() {
       cb(null, error);
     }
   }
+
+  const makeRequest = async({ verb = 'get', body, endpoint }, cb) => {
+    try {
+      let response = null;
+
+      switch(verb) {
+        case 'get':
+          response = await api.get(endpoint, {
+            headers: {
+              "Authorization" : `Bearer ${token}`
+            }
+          })
+          break;
+        case 'post':
+          response = await api.post(endpoint, body, {
+            headers: {
+              "Authorization" : `Bearer ${token}`
+            }
+          })
+          break;
+        case 'put':
+          response = await api.put(endpoint, {
+            headers: {
+              "Authorization" : `Bearer ${token}`
+            }
+          })
+          break;
+        case 'delete':
+          response = await api.delete(endpoint, {
+            headers: {
+              "Authorization" : `Bearer ${token}`
+            }
+          })
+          break;
+        default: // nothing to do
+      }
+
+      cb && cb(response);
+    } catch(error) {
+      cb(null, error);
+    }
+  }
   
   return(
       <DataContext.Provider value={{
@@ -225,7 +267,8 @@ function App() {
         fetchTickets,
         fetchClassroomTickets,
         fetchTicketHistory,
-        fetchSchoolUsers
+        fetchSchoolUsers,
+        makeRequest
       }}>
         <SectionsProvider>
           <ThemeProvider theme={Theme}>

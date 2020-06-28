@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         backgroundColor: theme.palette.primary.main,
         // overflow: 'auto',
+        zIndex: 1,
     },
     logo:{
         marginTop: '2px',
