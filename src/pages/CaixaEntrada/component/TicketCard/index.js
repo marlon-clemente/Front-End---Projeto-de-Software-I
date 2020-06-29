@@ -12,17 +12,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import ListIcon from '@material-ui/icons/List';
-// import LinkIcon from '@material-ui/icons/Link';
 import PersonIcon from '@material-ui/icons/Person';
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
@@ -31,6 +25,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import NoImg from '../../../../assets/no_img.png';
 import ErrorDialog from '../../../../component/DialogModal/Error';
+import HistoryDialog from '../../../../component/DialogModal/History';
 
 import DataContext from '../../../../context/Data';
 
@@ -58,14 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
-  },
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
+  }
 }));
 
 export default function TicketCard({ ticket }) {
@@ -148,48 +136,12 @@ export default function TicketCard({ ticket }) {
         </Collapse>
       </Card>
 
-      <Dialog
+      <HistoryDialog
         open={historyDialogOpen}
-        aria-labelledby="history-dialog"
-        aria-describedby="history-dialog-description"
-        fullScreen
-      >
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={() => setHistoryDialogOpen(false)} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-            {ticket.title}
-          </Toolbar>
-        </AppBar>
-        <List>
-          {ticketHistory && ticketHistory.map(action => (
-            <React.Fragment key={action.id}>
-              <ListItem button>
-                <ListItemText 
-                  primary="Descrição"
-                  secondary={action.description}
-                />
-
-                <ListItemText
-                  primary="Situação"
-                  secondary={
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      // className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {action.situation}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </List>
-      </Dialog>
+        ticket={ticket}
+        history={ticketHistory}
+        onClickAction={() => setHistoryDialogOpen(false)}
+      />
 
       <ErrorDialog error={error} onCloseAction={() => setError({})} />
     </>

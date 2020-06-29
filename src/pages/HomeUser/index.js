@@ -17,8 +17,6 @@ export default function Home() {
   const { tickets, fetchTickets, school } = useContext(DataContext);
   const { currentSections, setCurrentSections } = useSections();
   
-  const [favButton, setFavButton]=useState()
-  
   const [error, setError] = useState({});
   const [loading, setloading] = useState(true);
 
@@ -80,5 +78,5 @@ export default function Home() {
         : <></>
       }
     </div></div>
-    )
+  )
 }

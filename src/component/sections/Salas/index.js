@@ -4,7 +4,7 @@ import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Header from '../componentes/header';
-import Input from '../../../component/Form/input';
+import Input from '../../HistoryForm/input';
 
 import InfoZeroSalas from '../componentes/BoxInfo/semSalas';
 import ListaSalas from '../componentes/itemSala';
