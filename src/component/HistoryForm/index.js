@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HistoryForm({ handleError, handleResponse, onCloseAction, classroomSlug, ticketId }) {
+export default function HistoryForm({ activityInfo, handleError, handleResponse, onCloseAction, classroomSlug, ticketId }) {
   const classes = useStyles();
   const situations = [
     'Aguardando aceitação',
@@ -22,13 +22,24 @@ export default function HistoryForm({ handleError, handleResponse, onCloseAction
     'Encaminhado para conserto',
     'Encerrado'
   ];
+
+  const [situation, setSituation] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    setSituation(activityInfo.situation);
+    setDescription(activityInfo.description);
+  }, [])
+
   const { makeRequest, school: { id_hash: schoolIdHash} } = useContext(DataContext);
   
   const handleSubmit = ({ situation, description }) => {
+    const isUpdate = Object.keys(activityInfo).length > 0;
+
     makeRequest({
-      verb: 'post',
+      verb: isUpdate ? 'put' : 'post',
       body: { situation, description },
-      endpoint: `/schools/${schoolIdHash}/classrooms/${classroomSlug}/tickets/${ticketId}/history`
+      endpoint: `/schools/${schoolIdHash}/classrooms/${classroomSlug}/tickets/${ticketId}/history/${isUpdate ? activityInfo.id : ''}`
     }, (res, error) => {
       if (error)
         handleError(error);
@@ -37,10 +48,13 @@ export default function HistoryForm({ handleError, handleResponse, onCloseAction
       onCloseAction();
     });
   }
-
+  
   return (
     <Form onSubmit={handleSubmit}> 
-      <Autocomplete options={ situations }
+      <Autocomplete
+        value={situation}
+        onChange={event => setSituation(event.target.innerText)}
+        options={ situations }
         getOptionLabel={(option) => option}
         renderInput={(params) => (
           <Input 
@@ -59,6 +73,8 @@ export default function HistoryForm({ handleError, handleResponse, onCloseAction
         multiline
         fullWidth
         label="Descrição completa da situação"
+        value={description}
+        onChange={event => setDescription(event.target.value)}
       />
 
       <Grid container>

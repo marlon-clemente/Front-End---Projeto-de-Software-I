@@ -5,7 +5,7 @@ import Styles from '../../styles';
 import BoxProb from './components/BoxProblemas';
 import BoxMsg from './components/BoxMensagens';
 import Highcharts from "highcharts/highstock";
-import PieChart from "highcharts-react-official";
+import Chart from "highcharts-react-official";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -183,7 +183,7 @@ export default function Dashboard () {
                         <Paper style={{ display: 'flex' }}>
                             <div style={{ width: '100%', textAlign: 'center' }}>
                                 {Object.keys(reportedTicketsData).length ? (
-                                    <PieChart 
+                                    <Chart 
                                         highcharts={Highcharts}
                                         options={reportedTicketsData}
                                     />
@@ -197,7 +197,7 @@ export default function Dashboard () {
                         <Paper style={{ display: 'flex' }}>
                             <div style={{ width: '30vw', textAlign: 'center' }}>
                                 {Object.keys(reportedTicketsByUserData).length ? (
-                                    <PieChart 
+                                    <Chart 
                                         highcharts={Highcharts}
                                         options={reportedTicketsByUserData}
                                     />
@@ -207,7 +207,7 @@ export default function Dashboard () {
                             </div>
                             <div style={{ width: '30vw', textAlign: 'center' }}>
                                 {Object.keys(reportedTicketsByClassroomData).length ? (
-                                    <PieChart 
+                                    <Chart 
                                         highcharts={Highcharts}
                                         options={reportedTicketsByClassroomData}
                                     />
@@ -221,7 +221,7 @@ export default function Dashboard () {
                         <Paper style={{ display: 'flex' }}>
                             <div style={{ width: '100%', textAlign: 'center' }}>
                                 {Object.keys(reportedTicketsBySituationData).length ? (
-                                    <PieChart 
+                                    <Chart 
                                         highcharts={Highcharts}
                                         options={reportedTicketsBySituationData}
                                     />

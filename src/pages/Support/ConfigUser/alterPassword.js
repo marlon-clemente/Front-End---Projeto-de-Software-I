@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import {Form} from '@unform/web';
 import Button from '@material-ui/core/Button';
 
-import TextField from '../../../component/Form/input';
+import TextField from '../../../component/HistoryForm/input';
 import DataContext from '../../../context/Data';
 
 export default function AlterPassword() {

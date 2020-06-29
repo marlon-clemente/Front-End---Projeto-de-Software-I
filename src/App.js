@@ -226,7 +226,7 @@ function App() {
           })
           break;
         case 'put':
-          response = await api.put(endpoint, {
+          response = await api.put(endpoint, body, {
             headers: {
               "Authorization" : `Bearer ${token}`
             }

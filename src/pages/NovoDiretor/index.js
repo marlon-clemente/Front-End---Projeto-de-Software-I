@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Form} from '@unform/web';
 
-import Input from '../../component/Form/input'; 
+import Input from '../../component/HistoryForm/input'; 
 
 import UseStyles from './styles';
 export default function Registro() {

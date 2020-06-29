@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
+import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import Typography from '@material-ui/core/Typography';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import ErrorDialog from '../Error';
 import SuccessDialog from '../Success';
 import HistoryForm from '../../HistoryForm';
+import DataContext from '../../../context/Data';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -34,11 +34,52 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function History ({ open, ticket, history, onClickAction }) {
+export default function History ({ open, ticket, onClickAction }) {
   const classes = useStyles();
   const [error, setError] = useState({});
   const [success, setSuccess] = useState({});
   const [openForm, setOpenForm] = useState(false);
+  const [activityInfo, setActivityInfo] = useState({});
+  const [history, setHistory] = useState([]);
+  const [formTitle, setFormTitle] = useState('Adicionar nova atividade');
+
+  const { makeRequest, school: { id_hash: schoolIdHash } } = useContext(DataContext);
+  const { id: ticketId, slug: classroomSlug } = ticket;
+
+  useEffect(() => {
+    makeRequest({
+      endpoint: `/schools/${schoolIdHash}/classrooms/${classroomSlug}/tickets/${ticketId}/history/`
+    }, ({ data }, error) => {
+      if (error)
+        setError(error);
+      
+      setHistory(data);
+    });
+  }, [])
+
+  const handleActionClick = (action) => {
+    setActivityInfo(action);
+    setFormTitle('Editar atividade')
+    setOpenForm(true);
+  }
+
+  const handleCloseForm = () => {
+    setOpenForm(false);
+    setActivityInfo({});
+    setFormTitle('Adicionar nova atividade');
+  }
+
+  const handleDelete = (actionId) => {
+    makeRequest({
+      verb: 'delete',
+      endpoint: `/schools/${schoolIdHash}/classrooms/${classroomSlug}/tickets/${ticketId}/history/${actionId}`
+    }, (res, error) => {
+      if (error)
+        setError(error);
+      
+      setSuccess(res);
+    });
+  }
 
   return (
     <>
@@ -72,25 +113,19 @@ export default function History ({ open, ticket, history, onClickAction }) {
         <List>
           {history && history.map(action => (
             <React.Fragment key={action.id}>
-              <ListItem button>
+              <ListItem
+                button
+                onClick={() => handleActionClick(action)}
+              >
                 <ListItemText
-                  primary="Descrição"
-                  secondary={action.description}
+                  primary={action.description}
+                  secondary={action.situation}
                 />
-
-                <ListItemText
-                  primary="Situação"
-                  secondary={
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      // className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {action.situation}
-                    </Typography>
-                  }
-                />
+                <ListItemSecondaryAction>
+                  <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(action.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
               </ListItem>
               <Divider />
             </React.Fragment>
@@ -105,18 +140,21 @@ export default function History ({ open, ticket, history, onClickAction }) {
         open={openForm}
         aria-labelledby="alert-dialog-form"
         aria-describedby="alert-dialog-form-description"
+        fullWidth
+        maxWidth = {'md'}
       >
-        <DialogTitle id="alert-dialog-form">Adicionar nova atividade</DialogTitle>
+        <DialogTitle id="alert-dialog-form">{formTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-form-description">
             {ticket.title}
           </DialogContentText>
           <HistoryForm
+            activityInfo={activityInfo}
             ticketId={ticket.id}
             classroomSlug={ticket.slug}
             handleError={setError}
             handleResponse={setSuccess}
-            onCloseAction={() => setOpenForm(false)}
+            onCloseAction={handleCloseForm}
           />
         </DialogContent>
       </Dialog>

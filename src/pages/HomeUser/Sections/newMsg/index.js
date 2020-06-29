@@ -15,7 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Title from '../../componentes/titleForm';
-import Input from '../../../../component/Form/input';
+import Input from '../../../../component/HistoryForm/input';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';

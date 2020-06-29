@@ -14,7 +14,7 @@ export default function SuccessDialog({ success, onCloseAction }) {
       aria-describedby="alert-dialog-Success-description"
     >
       <DialogTitle id="alert-dialog-Success">
-        {success.message}
+        Atualizações salvas com sucesso!
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-Success-description" />
