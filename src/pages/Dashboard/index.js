@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Menu from '../../component/Menu2';
-import Styles from '../../styles';
-import BoxProb from './components/BoxProblemas';
-import BoxMsg from './components/BoxMensagens';
+import Styles from './styles';
+import Title from '../../component/Title';
 import Highcharts from "highcharts/highstock";
 import Chart from "highcharts-react-official";
 import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import DataContext from '../../context/Data';
@@ -126,112 +126,100 @@ export default function Dashboard () {
     }, [])
 
     return (
-        <div className={c.root}>
-            <Menu title="Dashboard"/>
-            <div className={c.content}>
-                <Grid container spacing={4}>
-                    <Grid item xl={9} lg={12} md={12} sm={12} xs={12}>
-                        <BoxProb />
-                    </Grid>
-                    <Grid item xl={3} lg={12} md={12} sm={12} xs={12}>
-                        <BoxMsg />
-                    </Grid>
-                </Grid>
-            </div>
-
+        <div className={c.root}><Menu title="Dashboard"/>
+          <div className={c.content}>
+            <Title>Dashboard</Title>
+            <Divider/>
             <ErrorDialog error={error} onCloseAction={() => setError({})} />
-            
-            <div className={c.graphs}>
-                <Grid container spacing={3}>
-                    <Grid item xs={6} sm={3}>
-                        <Link href="/problemas" underline="none">
-                            <Paper className={[c.paper, c.infoPaper].join(' ')}>
-                                <Typography variant="h6" component="h6" color="primary">
-                                    Usuários cadastrados
-                                </Typography>
-                                <Typography variant="h5" style={{ textAlign: registeredUsers ? '' : 'center' }}>
-                                    {registeredUsers ? registeredUsers : <img src={Loading} style={{ width: 30 }} />}
-                                </Typography>
-                            </Paper>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={6} sm={3}>
-                        <Link href="/problemas" underline="none">
-                            <Paper className={[c.paper, c.infoPaper].join(' ')}>
-                                <Typography variant="h6" component="h6" color="primary">
-                                    Salas cadastradas
-                                </Typography>
-                                <Typography variant="h5" style={{ textAlign: registeredClassrooms ? '' : 'center' }}>
-                                    {registeredClassrooms ? registeredClassrooms : <img src={Loading} style={{ width: 30 }} />}
-                                </Typography>
-                            </Paper>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={6} sm={3}>
-                        <Link href="/problemas" underline="none">
-                            <Paper className={[c.paper, c.infoPaper].join(' ')}>
-                                <Typography variant="h6" component="h6" color="primary">
-                                    Tickes reportados
-                                </Typography>
-                                <Typography variant="h5" style={{ textAlign: registeredTickets ? '' : 'center' }}>
-                                    {registeredTickets ? registeredTickets : <img src={Loading} style={{ width: 30 }} />}
-                                </Typography>
-                            </Paper>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={9}>
-                        <Paper style={{ display: 'flex' }}>
-                            <div style={{ width: '100%', textAlign: 'center' }}>
-                                {Object.keys(reportedTicketsData).length ? (
-                                    <Chart 
-                                        highcharts={Highcharts}
-                                        options={reportedTicketsData}
-                                    />
-                                ) : (
-                                    <img src={Loading} style={{ width: '15vw' }} />
-                                )}
-                            </div>
+            <Grid container spacing={3}>
+                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                    <Link href="/problemas" underline="none">
+                        <Paper className={[c.paper, c.infoPaper].join(' ')}>
+                            <Typography variant="h6" component="h6" color="primary">
+                                Usuários cadastrados
+                            </Typography>
+                            <Typography variant="h5" style={{ textAlign: registeredUsers ? '' : 'center' }}>
+                                {registeredUsers ? registeredUsers : <img src={Loading} style={{ width: 30 }} />}
+                            </Typography>
                         </Paper>
-                    </Grid>
-                    <Grid item xs={9}>
-                        <Paper style={{ display: 'flex' }}>
-                            <div style={{ width: '30vw', textAlign: 'center' }}>
-                                {Object.keys(reportedTicketsByUserData).length ? (
-                                    <Chart 
-                                        highcharts={Highcharts}
-                                        options={reportedTicketsByUserData}
-                                    />
-                                ) : (
-                                    <img src={Loading} style={{ width: '15vw' }} />
-                                )}
-                            </div>
-                            <div style={{ width: '30vw', textAlign: 'center' }}>
-                                {Object.keys(reportedTicketsByClassroomData).length ? (
-                                    <Chart 
-                                        highcharts={Highcharts}
-                                        options={reportedTicketsByClassroomData}
-                                    />
-                                ) : (
-                                    <img src={Loading} style={{ width: '15vw' }} />
-                                )}
-                            </div>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={9}>
-                        <Paper style={{ display: 'flex' }}>
-                            <div style={{ width: '100%', textAlign: 'center' }}>
-                                {Object.keys(reportedTicketsBySituationData).length ? (
-                                    <Chart 
-                                        highcharts={Highcharts}
-                                        options={reportedTicketsBySituationData}
-                                    />
-                                ) : (
-                                    <img src={Loading} style={{ width: '15vw' }} />
-                                )}
-                            </div>
-                        </Paper>
-                    </Grid>
+                    </Link>
                 </Grid>
+                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                    <Link href="/problemas" underline="none">
+                        <Paper className={[c.paper, c.infoPaper].join(' ')}>
+                            <Typography variant="h6" component="h6" color="primary">
+                                Salas cadastradas
+                            </Typography>
+                            <Typography variant="h5" style={{ textAlign: registeredClassrooms ? '' : 'center' }}>
+                                {registeredClassrooms ? registeredClassrooms : <img src={Loading} style={{ width: 30 }} />}
+                            </Typography>
+                        </Paper>
+                    </Link>
+                </Grid>
+                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                    <Link href="/problemas" underline="none">
+                        <Paper className={[c.paper, c.infoPaper].join(' ')}>
+                            <Typography variant="h6" component="h6" color="primary">
+                                Tickes reportados
+                            </Typography>
+                            <Typography variant="h5" style={{ textAlign: registeredTickets ? '' : 'center' }}>
+                                {registeredTickets ? registeredTickets : <img src={Loading} style={{ width: 30 }} />}
+                            </Typography>
+                        </Paper>
+                    </Link>
+                </Grid>
+
+                <Grid item xl={12} xs={12} lg={12} md={12} sm={12}>
+                    <Paper style={{ display: 'flex' }}>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
+                            {Object.keys(reportedTicketsData).length ? (
+                                <Chart 
+                                    highcharts={Highcharts}
+                                    options={reportedTicketsData}
+                                />
+                            ) : (
+                                <img src={Loading} style={{ width: '15vw' }} />
+                            )}
+                        </div>
+                    </Paper>
+                </Grid>
+                <Grid item xl={6} xs={12} lg={12} md={12} sm={12}><Paper>
+                    {Object.keys(reportedTicketsByUserData).length ? (
+                        <Chart 
+                            highcharts={Highcharts}
+                            options={reportedTicketsByUserData}
+                        />
+                        ) : (
+                            <img src={Loading} style={{ width: '15vw' }} />
+                        )}
+
+                    </Paper>
+                </Grid>
+                <Grid item xl={6} xs={12}><Paper>
+                    {Object.keys(reportedTicketsByClassroomData).length ? (
+                    <Chart highcharts={Highcharts}
+                        options={reportedTicketsByClassroomData}
+                    />
+                    ) : (
+                        <img src={Loading} style={{ width: '15vw' }} />
+                    )}</Paper>
+                </Grid>
+
+                <Grid item xl={12} xs={12} lg={12} md={12} sm={12}>
+                    <Paper style={{ display: 'flex' }}>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
+                            {Object.keys(reportedTicketsBySituationData).length ? (
+                                <Chart 
+                                    highcharts={Highcharts}
+                                    options={reportedTicketsBySituationData}
+                                />
+                            ) : (
+                                <img src={Loading} style={{ width: '15vw' }} />
+                            )}
+                        </div>
+                    </Paper>
+                </Grid>
+            </Grid>
             </div>
         </div>
     );

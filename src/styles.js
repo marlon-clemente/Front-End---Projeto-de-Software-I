@@ -44,19 +44,7 @@ const useStyles = makeStyles((theme) =>
     drawerPaper: {
       width: drawerWidth,
     },
-    graphs: {
-      maxWidth: '85vw',
-      position: 'absolute',
-      left: 150,
-      top: 120
-    },
-    infoPaper: {
-      '&:hover': {
-        opacity: 0.8,
-        cursor: 'pointer',
-        boxShadow: '3px 4px #336666'
-      }
-    }
+    
   }),
 );
 
