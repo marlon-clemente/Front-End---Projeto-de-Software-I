@@ -20,15 +20,18 @@ export default function Home() {
   const [error, setError] = useState({});
   const [loading, setloading] = useState(true);
 
-  const loadInfos = async() => {
-    await fetchTickets((res, error) => {
-      if (error)
+  const loadInfos = () => {
+    fetchTickets({}, (res, error) => {
+      if (error) {
         setError(error);
+        return;
+      }
+
+      setloading(false);
     });
-    await setloading(false)
   }
   
-  useEffect(()=>{
+  useEffect(() => {
     if (currentSections === 'voltar' || currentSections === ' ')
       loadInfos();
   }, [currentSections]);

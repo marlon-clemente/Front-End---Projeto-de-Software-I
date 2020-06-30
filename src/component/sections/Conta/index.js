@@ -30,7 +30,7 @@ export default function Conta() {
         disableElevation
         className={classes.button}
         startIcon={<ExitToAppIcon />}
-        onClick={ handleLogout }
+        onClick={handleLogout}
       >
         Sair
       </Button>

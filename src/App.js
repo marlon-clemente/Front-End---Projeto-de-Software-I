@@ -17,6 +17,7 @@ function App() {
   const [picture, setPicture] = useState(localStorage.getItem('picture') || '');
   const [tickets, setTickets] = useState([]);
   const [schoolUsers, setSchoolUsers] = useState([]);
+  const isAdmin = loggedUser.password ? true : false;
 
   const handleLogin = async ({ email, password, picture, name }, cb) => {
     try {
@@ -154,6 +155,8 @@ function App() {
       });
 
       setTickets(response.data);
+
+      cb && cb(response);
     } catch (error) {
       cb(null, error);
     }
@@ -251,6 +254,7 @@ function App() {
   return(
       <DataContext.Provider value={{
         token,
+        isAdmin,
         loggedUser,
         school,
         classrooms,

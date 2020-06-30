@@ -43,17 +43,26 @@ export default function History ({ open, ticket, onClickAction }) {
   const [history, setHistory] = useState([]);
   const [formTitle, setFormTitle] = useState('Adicionar nova atividade');
 
-  const { makeRequest, school: { id_hash: schoolIdHash } } = useContext(DataContext);
-  const { id: ticketId, slug: classroomSlug } = ticket;
+  const { makeRequest, school: { id_hash: schoolIdHash }, isAdmin } = useContext(DataContext);
+
+  const ticketId = ticket.id;
+  let classroomSlug = null;
+  if (isAdmin) {
+    classroomSlug = ticket.slug;
+  } else {
+    classroomSlug = ticket.classroom.slug;
+  }
 
   useEffect(() => {
     makeRequest({
       endpoint: `/schools/${schoolIdHash}/classrooms/${classroomSlug}/tickets/${ticketId}/history/`
-    }, ({ data }, error) => {
-      if (error)
+    }, (res, error) => {
+      if (error) {
         setError(error);
+        return;
+      }
       
-      setHistory(data);
+      setHistory(res.data);
     });
   }, [])
 
@@ -89,7 +98,7 @@ export default function History ({ open, ticket, onClickAction }) {
         aria-describedby="history-dialog-description"
         fullScreen
       >
-        <AppBar className={classes.appBar}>
+        <AppBar className={classes.appBar} color={isAdmin ? 'primary': 'secondary'}>
           <Toolbar>
             <IconButton edge="start" color="inherit" onClick={onClickAction} aria-label="close">
               <CloseIcon />
@@ -101,14 +110,14 @@ export default function History ({ open, ticket, onClickAction }) {
           </Toolbar>
         </AppBar>
 
-        <Fab
+        {isAdmin && <Fab
           color="primary"
           aria-label="add"
           className={classes.addButton}
           onClick={() => setOpenForm(true)}
         >
           <AddCommentIcon />
-        </Fab>
+        </Fab>}
 
         <List>
           {history && history.map(action => (
@@ -121,11 +130,11 @@ export default function History ({ open, ticket, onClickAction }) {
                   primary={action.description}
                   secondary={action.situation}
                 />
-                <ListItemSecondaryAction>
+                {isAdmin && <ListItemSecondaryAction>
                   <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(action.id)}>
                     <DeleteIcon />
                   </IconButton>
-                </ListItemSecondaryAction>
+                </ListItemSecondaryAction>}
               </ListItem>
               <Divider />
             </React.Fragment>
@@ -136,7 +145,7 @@ export default function History ({ open, ticket, onClickAction }) {
       <ErrorDialog error={error} onCloseAction={() => setError({})} />
       <SuccessDialog success={success} onCloseAction={() => setSuccess({})} />
 
-      <Dialog
+      {isAdmin && <Dialog
         open={openForm}
         aria-labelledby="alert-dialog-form"
         aria-describedby="alert-dialog-form-description"
@@ -157,7 +166,7 @@ export default function History ({ open, ticket, onClickAction }) {
             onCloseAction={handleCloseForm}
           />
         </DialogContent>
-      </Dialog>
+      </Dialog>}
     </>
   )
 }

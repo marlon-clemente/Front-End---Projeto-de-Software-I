@@ -76,7 +76,7 @@ export default function Dashboard () {
                 }]
             });
 
-            setRegisteredClassrooms(data.length);
+            setRegisteredUsers(data.length);
         });
 
         makeRequest({ endpoint: `/schools/${schoolIdHash}/reportedTicketsByClassroom` }, ({ data }, error) => {
@@ -97,6 +97,8 @@ export default function Dashboard () {
                     }))]
                 }]
             });
+
+            setRegisteredClassrooms(data.length);
         });
 
         makeRequest({ endpoint: `/schools/${schoolIdHash}/reportedTicketsBySituation` }, ({ data }, error) => {
@@ -184,26 +186,32 @@ export default function Dashboard () {
                         </div>
                     </Paper>
                 </Grid>
-                <Grid item xl={6} xs={12} lg={12} md={12} sm={12}><Paper>
-                    {Object.keys(reportedTicketsByUserData).length ? (
-                        <Chart 
-                            highcharts={Highcharts}
-                            options={reportedTicketsByUserData}
-                        />
-                        ) : (
-                            <img src={Loading} style={{ width: '15vw' }} />
-                        )}
-
+                <Grid item xl={6} xs={12} lg={12} md={12} sm={12}>
+                    <Paper style={{ display: 'flex' }}>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
+                            {Object.keys(reportedTicketsByUserData).length ? (
+                                <Chart 
+                                    highcharts={Highcharts}
+                                    options={reportedTicketsByUserData}
+                                />
+                            ) : (
+                                <img src={Loading} style={{ width: '15vw' }} />
+                            )}
+                        </div>
                     </Paper>
                 </Grid>
-                <Grid item xl={6} xs={12}><Paper>
-                    {Object.keys(reportedTicketsByClassroomData).length ? (
-                    <Chart highcharts={Highcharts}
-                        options={reportedTicketsByClassroomData}
-                    />
-                    ) : (
-                        <img src={Loading} style={{ width: '15vw' }} />
-                    )}</Paper>
+                <Grid item xl={6} xs={12}>
+                    <Paper style={{ display: 'flex' }}>
+                        <div style={{ width: '100%', textAlign: 'center' }}>
+                            {Object.keys(reportedTicketsByClassroomData).length ? (
+                            <Chart highcharts={Highcharts}
+                                options={reportedTicketsByClassroomData}
+                            />
+                            ) : (
+                                <img src={Loading} style={{ width: '15vw' }} />
+                            )}
+                        </div>
+                    </Paper>
                 </Grid>
 
                 <Grid item xl={12} xs={12} lg={12} md={12} sm={12}>

@@ -131,16 +131,18 @@ export default function ItemSala(props) {
                     tickets.map((ticket)=>(
                       <ListItem key={ticket.id} style={{ borderBottom: '1px solid lightgrey' }}>
                         <ListItemAvatar>
-                          <Avatar>
-                            <ImageIcon />
-                          </Avatar>
+                          { ticket.photos[0] ? (
+                            <Avatar
+                              alt={ticket.photos[0].path}
+                              src={ticket.photos[0].url}
+                            />
+                          ) : (
+                            <Avatar>
+                              <ImageIcon />
+                            </Avatar>
+                          )}
                         </ListItemAvatar>
                         <ListItemText primary={ticket.title} secondary={ticket.description} />
-                          <ListItemSecondaryAction>
-                            <IconButton onClick={() => console.log('deleta')}>
-                              <DeleteIcon />
-                            </IconButton>
-                          </ListItemSecondaryAction>
                       </ListItem>
                     )) 
                   }
