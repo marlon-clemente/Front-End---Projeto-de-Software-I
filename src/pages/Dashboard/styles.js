@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       backgroundColor: theme.palette.background.default,
       [theme.breakpoints.down('md')]: {
-        display:'block',
-        height: 'auto'
+        height: 'auto',
+        display:'block'
       },
     },
     paper: {

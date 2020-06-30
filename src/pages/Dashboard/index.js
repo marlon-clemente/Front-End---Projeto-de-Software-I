@@ -129,6 +129,7 @@ export default function Dashboard () {
         <div className={c.root}><Menu title="Dashboard"/>
           <div className={c.content}>
             <Title>Dashboard</Title>
+            
             <Divider/>
             <ErrorDialog error={error} onCloseAction={() => setError({})} />
             <Grid container spacing={3}>
