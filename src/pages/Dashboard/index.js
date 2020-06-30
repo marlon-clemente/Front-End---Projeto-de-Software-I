@@ -129,11 +129,11 @@ export default function Dashboard () {
         <div className={c.root}><Menu title="Dashboard"/>
           <div className={c.content}>
             <Title>Dashboard</Title>
-            
+
             <Divider/>
             <ErrorDialog error={error} onCloseAction={() => setError({})} />
             <Grid container spacing={3}>
-                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                <Grid item xl={4} xs={12} sm={4} lg={4} md={4}>
                     <Link href="/problemas" underline="none">
                         <Paper className={[c.paper, c.infoPaper].join(' ')}>
                             <Typography variant="h6" component="h6" color="primary">
@@ -145,7 +145,7 @@ export default function Dashboard () {
                         </Paper>
                     </Link>
                 </Grid>
-                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                <Grid item xl={4} xs={12} sm={4} lg={4} md={4}>
                     <Link href="/problemas" underline="none">
                         <Paper className={[c.paper, c.infoPaper].join(' ')}>
                             <Typography variant="h6" component="h6" color="primary">
@@ -157,7 +157,7 @@ export default function Dashboard () {
                         </Paper>
                     </Link>
                 </Grid>
-                <Grid item xl={3} xs={12} sm={4} lg={4} md={4}>
+                <Grid item xl={4} xs={12} sm={4} lg={4} md={4}>
                     <Link href="/problemas" underline="none">
                         <Paper className={[c.paper, c.infoPaper].join(' ')}>
                             <Typography variant="h6" component="h6" color="primary">
